@@ -1,5 +1,5 @@
-const conn = require('./conn')
-const { User, Organization } = require('./index').models;
+const conn = require('./conn');
+const { User, Organization, Description } = require('./index').models;
 
 const seed = () => {
   return Promise.all([
@@ -9,6 +9,12 @@ const seed = () => {
       email: 'admin@test.com',
       userStatus: 'admin'
     }),
+    User.create({
+      firstName: 'Jeremy',
+      lastName: 'Grubard',
+      email: 'jgrubard@gmail.com',
+      userStatus: 'user'
+    }),
     Organization.create({
       name: 'Cliffs LIC',
       organization_type: 'Climbing Gym',
@@ -17,8 +23,24 @@ const seed = () => {
       state: 'New York',
       zip: '11101',
       contact_phone: '718-729-7625'
-    })
+    }),
   ])
+  .then(([admin, jeremy, cliffs, attr ]) => {
+    return Promise.all([
+      Description.create({
+        attribute: 'Bouldering Level',
+        description: 'V6',
+        userId: jeremy.id,
+        organizationId: cliffs.id
+      }),
+      Description.create({
+        attribute: 'Top-Rope Level',
+        description: '5.11',
+        userId: jeremy.id,
+        organizationId: cliffs.id
+      })
+    ])
+  })
 }
 
 conn.sync({ force: true })

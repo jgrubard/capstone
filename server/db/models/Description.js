@@ -10,6 +10,8 @@ const Description = conn.define('description', {
     type: Sequelize.STRING,
     allowNull: false
   }
+}, {
+  timestamps: false
 });
 
 module.exports = Description;

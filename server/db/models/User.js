@@ -19,6 +19,7 @@ const User = conn.define('user', {
     // allowNull: false
   }
 }, {
+  timestamps: false,
   getterMethods: {
     fullName() {
       return `${this.firstName} ${this.lastName}`;
