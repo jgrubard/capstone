@@ -1,8 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getOrganizations } from '../store';
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(){
     super();
+  }
+
+  componentDidMount() {
+    const { loadOrganizations } = this.props;
+    loadOrganizations()
   }
 
   render(){
@@ -11,3 +18,11 @@ export default class App extends React.Component {
     );
   }
 }
+
+const mapDisptach = (dispatch) => {
+  return {
+    loadOrganizations: () => dispatch(getOrganizations())
+  }
+}
+
+export default connect(null, mapDisptach)(App);
