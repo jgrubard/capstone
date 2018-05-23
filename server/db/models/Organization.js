@@ -28,12 +28,14 @@ const Organization = conn.define('organization', {
   },
   contact_name: {
     type: Sequelize.STRING,
-    allowNull: false
+    // allowNull: false
   },
   contact_phone: {
     type: Sequelize.STRING,
     allowNull: false
   }
+}, {
+  timestamps: false
 });
 
 module.exports = Organization;
