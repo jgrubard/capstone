@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 const GOT_USERS = 'GET_USERS';
-const gotUsers = users => {
-  return { type: GOT_USERS, users };
-};
+
+const gotUsers = users => ({ type: GOT_USERS, users });
 
 export const getUsers = () => {
   return dispatch => {

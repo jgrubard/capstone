@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getOrganizations, getUsers } from '../store';
+import { getOrganizations, getUsers, getDescriptions } from '../store';
 
 class App extends React.Component {
   constructor(){
@@ -8,9 +8,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const { loadOrganizations, loadUsers } = this.props;
+    const { loadOrganizations, loadUsers, loadDescriptions } = this.props;
     loadOrganizations();
     loadUsers();
+    loadDescriptions();
   }
 
   render(){
@@ -23,7 +24,8 @@ class App extends React.Component {
 const mapDisptach = (dispatch) => {
   return {
     loadOrganizations: () => dispatch(getOrganizations()),
-    loadUsers: () => dispatch(getUsers())
+    loadUsers: () => dispatch(getUsers()),
+    loadDescriptions: () => dispatch(getDescriptions())
   }
 }
 

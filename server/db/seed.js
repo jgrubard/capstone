@@ -25,7 +25,7 @@ const seed = () => {
       contact_phone: '718-729-7625'
     }),
   ])
-  .then(([admin, jeremy, cliffs, attr ]) => {
+  .then(([ admin, jeremy, cliffs ]) => {
     return Promise.all([
       Description.create({
         attribute: 'Bouldering Level',
@@ -54,6 +54,6 @@ conn.sync({ force: true })
     conn.close()
   })
   .catch(err => {
-    console.log('uh oh, there was an error seeding!')
+    console.log('uh-oh, there was an error seeding!')
     console.log(err)
   })
