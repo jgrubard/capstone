@@ -1,11 +1,13 @@
-const Description = require('./Description');
-const Organization = require('./Organization');
-const User = require('./User');
+const Description = require('./models/Description');
+const Organization = require('./models/Organization');
+const User = require('./models/User');
 const conn = require('./conn');
 
 module.exports = {
   conn,
-  Description,
-  Organization,
-  User
+  models: {
+    Description,
+    Organization,
+    User
+  }
 };
