@@ -1,6 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { getOrganizations, getUsers, getDescriptions } from '../store';
+import { HashRouter as Router, Switch, Link, Route } from 'react-router-dom';
+import { connect} from 'react-redux';
+import { getOrganizations, getUsers, getDescriptions, getUsersFromServer } from '../store';
+
+import Users from './User/Users';
 
 class App extends React.Component {
   constructor(){
@@ -16,7 +19,22 @@ class App extends React.Component {
 
   render(){
     return (
-      <hr />
+      <Router>
+        <div>
+          <div className="container">
+            <div id="body-elements">
+              <Switch>
+
+      {/* USER ROUTES */}
+      {/* ORGANIZATION ROUTES */}
+      {/* ADMIN ROUTES */}
+      <Route exact path='/users' component={Users} />
+      {/* AUTH ROUTES */}
+      </Switch>
+      </div>
+    </div>
+  </div>
+</Router>
     );
   }
 }
@@ -24,7 +42,7 @@ class App extends React.Component {
 const mapDisptach = (dispatch) => {
   return {
     loadOrganizations: () => dispatch(getOrganizations()),
-    loadUsers: () => dispatch(getUsers()),
+    loadUsers: () => dispatch(getUsersFromServer()),
     loadDescriptions: () => dispatch(getDescriptions())
   }
 }
