@@ -15,7 +15,8 @@ const User = conn.define('user', {
     // allowNull: false
   },
   userStatus: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    // allowNull: false
   }
 }, {
   getterMethods: {

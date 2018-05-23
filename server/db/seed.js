@@ -1,8 +1,14 @@
 const conn = require('./conn')
-const { Organization } = require('./index').models;
+const { User, Organization } = require('./index').models;
 
 const seed = () => {
   return Promise.all([
+    User.create({
+      firstName: 'admin',
+      lastName: 'admin',
+      email: 'admin@test.com',
+      userStatus: 'admin'
+    }),
     Organization.create({
       name: 'Cliffs LIC',
       organization_type: 'Climbing Gym',
