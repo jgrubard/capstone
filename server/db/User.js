@@ -14,6 +14,12 @@ const User = conn.define('user', {
     type: Sequelize.STRING,
     allowNull: false
   }
+}, {
+  getterMethods: {
+    fullName() {
+      return `${this.firstName} ${this.lastName}`;
+    }
+  }
 });
 
 module.exports = User;
