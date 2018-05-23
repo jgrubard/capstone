@@ -14,3 +14,8 @@ conn.sync()
     const port = process.env.PORT || 3000;
     app.listen(port, () => console.log(`I'm listening on port ${port}.`));
   });
+
+app.use((err, req, res, next) => {
+  console.log(err.stack);
+  res.status(500).send(err);
+});
