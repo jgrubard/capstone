@@ -2,6 +2,11 @@ const conn = require('../conn');
 const { Sequelize } = conn;
 
 const Organization = conn.define('organization', {
+  id: {
+    type: Sequelize.UUID,
+    primaryKey: true,
+    defaultValue: Sequelize.UUIDV4
+  },
   name: {
     type: Sequelize.STRING,
     allowNull: false

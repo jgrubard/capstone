@@ -4,6 +4,11 @@ const jwt = require('jwt-simple');
 const KEY = process.env.JWT_KEY;
 
 const User = conn.define('user', {
+  id: {
+    type: Sequelize.UUID,
+    primaryKey: true,
+    defaultValue: Sequelize.UUIDV4
+  },
   firstName: {
     type: Sequelize.STRING,
     // allowNull: false
