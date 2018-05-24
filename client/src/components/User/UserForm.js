@@ -11,8 +11,8 @@ class UserForm extends React.Component {
         id: user.id ? user.id : '',
         firstName: user.id ? user.firstName : '',
         lastName: user.id ? user.lastName : '',
-        password: user.id ? user.password : '',
         email: user.id ? user.email : '',
+        password: user.id ? user.password : '',
         isEditing: false
       }
       this.onChange = this.onChange.bind(this);
@@ -38,6 +38,7 @@ class UserForm extends React.Component {
       const { updateUser } = this.props;
       const { id, firstName, lastName, email, password } = this.state
       updateUser({ id, firstName, lastName, email, password });
+      this.setState({ isEditing: false })
     }
   
     render() {
