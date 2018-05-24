@@ -33,6 +33,9 @@ class OrganizationForm extends Component {
     return (
       <div>
         <h3>Organization Form</h3>
+
+        {JSON.stringify(this.state)}
+
         <input name='name' value={name} onChange={handleChange} />
         <button onClick={onSave}>Submit</button>
       </div>

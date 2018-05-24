@@ -17,16 +17,15 @@ export const getOrganizations = () => {
 };
 
 export const updateOrganizationOnServer = (organization) => {
-  // console.log(organization)
   const { id } = organization;
   const method = id ? 'put' : 'post';
-  const url = id ? `/organizations/${id}` : '/organizations';
+  const url = id ? `/api/organizations/${id}` : '/api/organizations';
   const action = id ? updateOrganization : createOrganization;
   return dispatch => {
     return axios[method](url, organization)
       .then(result => result.data)
       .then(organization => {
-        // console.log(organization)
+        console.log(organization)
         dispatch(action(organization))
       })
   }
@@ -39,7 +38,7 @@ const store = (state = [], action) => {
     case CREATE_ORGANIZATION:
       return [ ...state, action.organization ];
     case UPDATE_ORGANIZATION:
-      return [ ...state.filter(org => org.id !== action.organization), action.organization ];
+      return [ ...state.filter(org => org.id !== action.organization.id), action.organization ];
     default:
       return state;
   }
