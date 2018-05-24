@@ -20,6 +20,13 @@ class Users extends React.Component {
     const { users, deleteUser } = this.props
     const { name } = this.state
     const { onChange } = this
+    const matchingUsers = users.reduce((memo, user) => {
+      const lowerFirst = user.firstName.toLowerCase()
+      const lowerLast = user.lastName.toLowerCase()
+      const lowerName = name.toLowerCase()
+      if (lowerFirst.match(lowerName) || lowerLast.match(lowerName)) memo.push(user)
+      return memo
+    }, [])
 
     return (
       <div>
@@ -29,7 +36,7 @@ class Users extends React.Component {
         <input onChange={onChange} value={name} className="form-control margin-b-10" placeholder="Search for a user" />
         <ul className='list-group'>
           {
-            users.map(user => (
+            matchingUsers.map(user => (
               <li key={user.id} className='list-group-item'>
                 <h5>{`${user.firstName} ${user.lastName}`}</h5>
                 <Link to={`/admin/users/${user.id}`}><button className="btn btn-outline-success">Edit user</button></Link>
