@@ -26,11 +26,11 @@ class App extends React.Component {
             <div id="body-elements">
               <Switch>
       {/* USER ROUTES */}
-      <Route exact path='/users/:id/edit' render={({ match }) => (
-        <UserForm id={ match.params.id * 1} /> )} />
+      <Route exact path='/users/:id' component={UserForm}/>
       {/* ORGANIZATION ROUTES */}
       {/* ADMIN ROUTES */}
       <Route exact path='/users' component={Users} />
+
       {/* AUTH ROUTES */}
       </Switch>
       </div>

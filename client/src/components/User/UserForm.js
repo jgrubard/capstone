@@ -6,7 +6,7 @@ import { updateUserOnServer } from '../../store';
 class UserForm extends React.Component {
     constructor(props) {
       super(props);
-      const { user } = this.props;
+      const { user, users } = this.props;
       this.state = {
         id: user.id ? user.id : '',
         firstName: user.id ? user.firstName : '',
@@ -42,7 +42,7 @@ class UserForm extends React.Component {
   
     render() {
       const { onChange, onUpdate } = this;
-      const { user } = this.props
+      const { user, users } = this.props
       const { firstName, lastName, email, password, isEditing } = this.state;
       const fields = {
         firstName: 'First name',
@@ -81,9 +81,13 @@ class UserForm extends React.Component {
       )
     }
   }
-  const mapState = ({ users }, { id }) => {
+  
+  const mapState = ({ users }, {match}) => {
+    const id = match.params.id * 1
+    const user = users.find( _user => _user.id === id)
     return { 
-        user: users && users.find(user => user.id === id)
+        users,
+        user
      }
   }
 

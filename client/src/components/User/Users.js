@@ -13,7 +13,7 @@ class Users extends React.Component {
     }
   
     onChange(ev) {
-      this.setState({ name: ev.target.value, startIndex: 0, endIndex: 15 })
+      this.setState({ name: ev.target.value })
     }
   
     render() {
