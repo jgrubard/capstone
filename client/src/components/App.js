@@ -4,6 +4,7 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import { getOrganizations, getUsers, getDescriptions } from '../store';
 
 import OrganizationList from './Organization/OrganizationList';
+import OrganizationInfo from './Organization/OrganizationInfo';
 
 class App extends React.Component {
   componentDidMount() {
@@ -17,7 +18,10 @@ class App extends React.Component {
     return (
       <div>
         <Router>
-          <Route exact path='/organizations' component={OrganizationList} />
+          <div>
+            <Route exact path='/organizations' component={OrganizationList} />
+            <Route exact path='/organizations/:id' component={({ match }) => <OrganizationInfo id={ match.params.id * 1}/>} />
+          </div>
         </Router>
       </div>
     );

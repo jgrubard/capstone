@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const OrganizationList = ({ organizations }) => {
   return (
@@ -8,7 +9,9 @@ const OrganizationList = ({ organizations }) => {
         {
           organizations.map(org => (
             <li key={org.id}>
-              {org.name}
+              <Link to={`/organizations/${org.id}`}>
+                { org.name }
+              </Link>
             </li>
           ))
         }
