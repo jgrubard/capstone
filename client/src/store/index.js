@@ -5,9 +5,10 @@ import thunk from 'redux-thunk';
 import organizations from './organizations';
 import users from './users';
 import descriptions from './descriptions';
+import sessions from './sessions';
 
 const middleware = applyMiddleware(logger, thunk);
-const reducers = combineReducers({ organizations, users, descriptions });
+const reducers = combineReducers({ organizations, users, descriptions, sessions });
 
 const store = createStore(reducers, middleware);
 
