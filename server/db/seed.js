@@ -4,6 +4,12 @@ const { User, Organization, Description } = require('./index').models;
 const seed = () => {
   return Promise.all([
     User.create({
+      firstName: 'master',
+      lastName: 'master',
+      email: 'master@test.com',
+      userStatus: 'master'
+    }),
+    User.create({
       firstName: 'admin',
       lastName: 'admin',
       email: 'admin@test.com',
@@ -25,7 +31,7 @@ const seed = () => {
       contact_phone: '718-729-7625'
     }),
   ])
-  .then(([ admin, jeremy, cliffs ]) => {
+  .then(([ master, admin, jeremy, cliffs ]) => {
     return Promise.all([
       Description.create({
         attribute: 'Bouldering Level',

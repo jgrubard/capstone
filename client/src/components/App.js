@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import { getOrganizations, getUsers, getDescriptions } from '../store';
+
+import OrganizationList from './Organization/OrganizationList';
 
 class App extends React.Component {
   componentDidMount() {
@@ -12,7 +15,11 @@ class App extends React.Component {
 
   render(){
     return (
-      <hr />
+      <div>
+        <Router>
+          <Route exact path='/organizations' component={OrganizationList} />
+        </Router>
+      </div>
     );
   }
 }
