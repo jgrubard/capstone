@@ -11,9 +11,9 @@ class UserForm extends React.Component {
         id: user.id ? user.id : '',
         firstName: user.id ? user.firstName : '',
         lastName: user.id ? user.lastName : '',
-        username: user.id ? user.username : '',
         password: user.id ? user.password : '',
         email: user.id ? user.email : '',
+        isEditing: false
       }
       this.onChange = this.onChange.bind(this);
       this.onUpdate = this.onUpdate.bind(this);
@@ -22,8 +22,8 @@ class UserForm extends React.Component {
     componentWillReceiveProps(nextProps) {
       const { user } = nextProps;
       if (user.id) {
-        const { id, firstName, lastName, username, email, password } = user
-        this.setState({ id, firstName, lastName, username, email, password })
+        const { id, firstName, lastName, email, password } = user
+        this.setState({ id, firstName, lastName, email, password })
       }
     }
   
@@ -35,29 +35,24 @@ class UserForm extends React.Component {
   
     onUpdate(ev) {
       ev.preventDefault()
-      const { updateUser, updateLogged } = this.props;
-      const { id, firstName, lastName, username, email, password } = this.state
-      updateUser({ id, firstName, lastName, username, email, password });
-      updateLogged({ id, firstName, lastName, username, email, password });
-      this.setState({ isEditing: false })
+      const { updateUser } = this.props;
+      const { id, firstName, lastName, email, password } = this.state
+      updateUser({ id, firstName, lastName, email, password });
     }
   
     render() {
       const { onChange, onUpdate } = this;
       const { user } = this.props
-      const { firstName, lastName, email, username, password, isEditing } = this.state;
+      const { firstName, lastName, email, password, isEditing } = this.state;
       const fields = {
         firstName: 'First name',
         lastName: 'Last name',
         email: 'Email address',
-        username: 'Username',
         password: 'Password'
       }
       return (
         <div>
-          {user.firstName && <Helmet><title>Edit {user.firstName}'s Account | J²A</title></Helmet>}
-          <UserNav user={ user } />
-          <h2>Edit Account</h2>
+          <h2>My Account</h2>
           {
             isEditing ? (
               <button onClick={ onUpdate } className="btn btn-success margin-t-15">Save</button>
@@ -86,13 +81,16 @@ class UserForm extends React.Component {
       )
     }
   }
-  const mapState = ({ user }) => {
-    return { user }
+  const mapState = ({ users }, { id }) => {
+    return { 
+        user: users && users.find(user => user.id === id)
+     }
   }
+
   const mapDispatch = (dispatch) => {
     return {
-      updateUser: (user) => dispatch(updateUserOnServer(user)),
-      updateLogged: (user) => dispatch(updateLoggedUser(user))
+      updateUser: (user) => dispatch(updateUserOnServer(user))
     }
   }
+
   export default connect(mapState, mapDispatch)(UserForm);

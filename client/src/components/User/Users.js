@@ -19,7 +19,7 @@ class Users extends React.Component {
     render() {
       const { users, deleteUser } = this.props
       const { name } = this.state
-      const { onChange, onNextPage, onPreviousPage } = this
+      const { onChange } = this
       const matchingUsers = users.reduce((memo, user )=> {
         const lowerFirst = user.firstName.toLowerCase()
         const lowerLast = user.lastName.toLowerCase()
@@ -30,7 +30,7 @@ class Users extends React.Component {
 
       return (
         <div>
-          <title>Admin: All Users</title>
+          <title>All Users</title>
 
           <h2>Users</h2>
           <input onChange={ onChange } value={ name } className="form-control margin-b-10" placeholder="Search for a user" />

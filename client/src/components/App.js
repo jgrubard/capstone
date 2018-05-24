@@ -4,6 +4,7 @@ import { connect} from 'react-redux';
 import { getOrganizations, getUsers, getDescriptions, getUsersFromServer } from '../store';
 
 import Users from './User/Users';
+import UserForm from './User/UserForm';
 
 class App extends React.Component {
   constructor(){
@@ -24,8 +25,9 @@ class App extends React.Component {
           <div className="container">
             <div id="body-elements">
               <Switch>
-
       {/* USER ROUTES */}
+      <Route exact path='/users/:id/edit' render={({ match }) => (
+        <UserForm id={ match.params.id * 1} /> )} />
       {/* ORGANIZATION ROUTES */}
       {/* ADMIN ROUTES */}
       <Route exact path='/users' component={Users} />
