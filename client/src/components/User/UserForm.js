@@ -8,11 +8,11 @@ class UserForm extends React.Component {
       super(props);
       const { user, users } = this.props;
       this.state = {
-        id: user.id ? user.id : '',
-        firstName: user.id ? user.firstName : '',
-        lastName: user.id ? user.lastName : '',
-        email: user.id ? user.email : '',
-        password: user.id ? user.password : '',
+        id: user ? user.id : '',
+        firstName: user ? user.firstName : '',
+        lastName: user ? user.lastName : '',
+        email: user ? user.email : '',
+        password: user ? user.password : '',
         isEditing: false
       }
       this.onChange = this.onChange.bind(this);
@@ -51,6 +51,7 @@ class UserForm extends React.Component {
         email: 'Email address',
         password: 'Password'
       }
+      if (!user) return null
       return (
         <div>
           <h2>My Account</h2>
