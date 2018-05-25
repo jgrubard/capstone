@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router, Route } from 'react-router-dom';
-import { getOrganizations, getUsers, getDescriptions } from '../store';
+
+import { HashRouter as Router, Switch, Link, Route } from 'react-router-dom';
+import { getOrganizations, getUsers, getDescriptions, getUsersFromServer } from '../store';
+
+import Users from './User/Users';
+import UserForm from './User/UserForm';
 
 import OrganizationList from './Organization/OrganizationList';
 import OrganizationInfo from './Organization/OrganizationInfo';
@@ -16,14 +20,24 @@ class App extends React.Component {
 
   render(){
     return (
-      <div>
-        <Router>
-          <div>
-            <Route exact path='/organizations' component={OrganizationList} />
-            <Route exact path='/organizations/:id' component={({ match, history }) => <OrganizationInfo id={ match.params.id * 1} history={history} />} />
+      <Router>
+        <div>
+          <div className="container">
+            <div id="body-elements">
+              <Switch>
+              {/* USER ROUTES */}
+              <Route exact path='/users/:id' component={UserForm}/>
+              {/* ORGANIZATION ROUTES */}
+              <Route exact path='/organizations' component={OrganizationList} />
+              <Route exact path='/organizations/:id' component={({ match, history }) => <OrganizationInfo id={ match.params.id * 1} history={history} />} />
+              {/* ADMIN ROUTES */}
+              <Route exact path='/users' component={Users} />
+              {/* AUTH ROUTES */}
+              </Switch>
+            </div>
           </div>
-        </Router>
-      </div>
+        </div>
+      </Router>
     );
   }
 }
@@ -31,7 +45,7 @@ class App extends React.Component {
 const mapDisptach = (dispatch) => {
   return {
     loadOrganizations: () => dispatch(getOrganizations()),
-    loadUsers: () => dispatch(getUsers()),
+    loadUsers: () => dispatch(getUsersFromServer()),
     loadDescriptions: () => dispatch(getDescriptions())
   }
 }
