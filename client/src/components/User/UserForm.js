@@ -84,12 +84,8 @@ class UserForm extends React.Component {
     }
   }
 
-  const mapState = ({ users }, {match}) => {
-    const id = match.params.id * 1
-    const user = users.find( _user => _user.id === id)
-    return {
-        user
-     }
+  const mapState = (state, { user }) => {
+    return { user }
   }
 
   const mapDispatch = (dispatch) => {

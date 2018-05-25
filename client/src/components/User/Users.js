@@ -39,7 +39,7 @@ class Users extends React.Component {
             matchingUsers.map(user => (
               <li key={user.id} className='list-group-item'>
                 <h5>{`${user.firstName} ${user.lastName}`}</h5>
-                <Link to={`/admin/users/${user.id}`}><button className="btn btn-outline-success">Edit user</button></Link>
+                <Link to={`/users/${user.id}`}><button className="btn btn-outline-success">Edit user</button></Link>
                 <button onClick={() => deleteUser(user.id)} className="btn btn-outline-danger">Delete user</button>
               </li>
             ))
