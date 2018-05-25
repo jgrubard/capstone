@@ -5,10 +5,10 @@ import { updateOrganizationOnServer } from '../../store';
 class OrganizationForm extends Component {
   constructor(props) {
     super(props);
-    const { organization } = props
+    const { organization } = props;
     this.state = {
-      id: organization.id ? organization.id : '',
-      name: organization.id ? organization.name : '',
+      id: organization ? organization.id : '',
+      name: organization ? organization.name : '',
     }
     this.handleChange = this.handleChange.bind(this);
     this.onSave = this.onSave.bind(this);
@@ -25,6 +25,7 @@ class OrganizationForm extends Component {
     const { createOrUpdateOrganization } = this.props;
     const { id, name } = this.state;
     createOrUpdateOrganization({ id, name });
+    this.setState({ name: '' })
   }
 
   render() {
@@ -33,9 +34,6 @@ class OrganizationForm extends Component {
     return (
       <div>
         <h3>Organization Form</h3>
-
-        {JSON.stringify(this.state)}
-
         <input name='name' value={name} onChange={handleChange} />
         <button onClick={onSave}>Submit</button>
       </div>

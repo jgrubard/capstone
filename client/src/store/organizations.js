@@ -3,10 +3,12 @@ import axios from 'axios';
 const GOT_ORGANIZATIONS = 'GOT_ORGANIZATIONS';
 const CREATE_ORGANIZATION = 'CREATE_ORGANIZATION';
 const UPDATE_ORGANIZATION = 'UPDATE_ORGANIZATION';
+const DELETE_ORGANIZATION = 'DELETE_ORGANIZATION';
 
 const gotOrganizations = organizations => ({ type: GOT_ORGANIZATIONS, organizations });
 const createOrganization = organization => ({ type: CREATE_ORGANIZATION, organization });
 const updateOrganization = organization => ({ type: UPDATE_ORGANIZATION, organization });
+const deleteOrganization = id => ({ type: DELETE_ORGANIZATION, id });
 
 export const getOrganizations = () => {
   return dispatch => {
@@ -24,21 +26,31 @@ export const updateOrganizationOnServer = (organization) => {
   return dispatch => {
     return axios[method](url, organization)
       .then(result => result.data)
-      .then(organization => {
-        console.log(organization)
-        dispatch(action(organization))
-      })
-  }
-}
+      .then(organization => dispatch(action(organization)))
+  };
+};
+
+export const deleteOrganizationFromServer = (id, history) => {
+  return dispatch => {
+    return axios.delete(`/api/organizations/${id}`)
+      .then(() => dispatch(deleteOrganization(id)))
+      .then(() => history.push('/organizations'))
+  };
+};
 
 const store = (state = [], action) => {
+  let organizations;
   switch (action.type) {
     case GOT_ORGANIZATIONS:
       return action.organizations;
     case CREATE_ORGANIZATION:
       return [ ...state, action.organization ];
     case UPDATE_ORGANIZATION:
-      return [ ...state.filter(org => org.id !== action.organization.id), action.organization ];
+      organizations = state.filter(org => org.id !== action.organization.id);
+      return [ ...organizations, action.organization ];
+    case DELETE_ORGANIZATION:
+      organizations = state.filter(org => org.id !== action.id);
+      return organizations;
     default:
       return state;
   }

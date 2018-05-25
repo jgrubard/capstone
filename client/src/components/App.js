@@ -20,7 +20,7 @@ class App extends React.Component {
         <Router>
           <div>
             <Route exact path='/organizations' component={OrganizationList} />
-            <Route exact path='/organizations/:id' component={({ match }) => <OrganizationInfo id={ match.params.id * 1}/>} />
+            <Route exact path='/organizations/:id' component={({ match, history }) => <OrganizationInfo id={ match.params.id * 1} history={history} />} />
           </div>
         </Router>
       </div>
