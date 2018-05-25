@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const GOT_DESCRIPTIONS = 'GET_DESCRIPTIONS';
+const GOT_DESCRIPTIONS = 'GOT_DESCRIPTIONS';
 
 const gotDescriptions = descriptions => ({ type: GOT_DESCRIPTIONS, descriptions });
 
@@ -14,10 +14,10 @@ export const getDescriptions = () => {
 
 const store = (state = [], action) => {
   switch (action.type) {
-  case GOT_DESCRIPTIONS:
-    return action.descriptions;
-  default:
-    return state;
+    case GOT_DESCRIPTIONS:
+      return action.descriptions;
+    default:
+      return state;
   }
 };
 

@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-const GOT_ORGANIZATIONS = 'GET_ORGANIZATIONS';
-const gotOrganizations = organizations => {
-  return { type: GOT_ORGANIZATIONS, organizations };
-};
+const GOT_ORGANIZATIONS = 'GOT_ORGANIZATIONS';
+
+const gotOrganizations = organizations => ({ type: GOT_ORGANIZATIONS, organizations });
 
 export const getOrganizations = () => {
   return dispatch => {
@@ -15,10 +14,10 @@ export const getOrganizations = () => {
 
 const store = (state = [], action) => {
   switch (action.type) {
-  case GOT_ORGANIZATIONS:
-    return action.organizations;
-  default:
-    return state;
+    case GOT_ORGANIZATIONS:
+      return action.organizations;
+    default:
+      return state;
   }
 };
 

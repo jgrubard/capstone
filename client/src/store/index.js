@@ -7,8 +7,8 @@ import users from './users';
 import descriptions from './descriptions';
 import sessions from './sessions';
 
-const middleware = applyMiddleware(logger, thunk);
-const reducers = combineReducers({ organizations, users, descriptions, sessions });
+const middleware = applyMiddleware(thunk, logger);
+const reducers = combineReducers({ organizations, users, descriptions });
 
 const store = createStore(reducers, middleware);
 

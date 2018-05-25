@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { getOrganizations, getUsers, getDescriptions } from '../store';
 
 class App extends React.Component {
-  constructor(){
-    super();
-  }
-
   componentDidMount() {
     const { loadOrganizations, loadUsers, loadDescriptions } = this.props;
     loadOrganizations();
