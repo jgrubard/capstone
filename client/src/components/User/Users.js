@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteUserOnServer } from '../../store';
+import { deleteUserFromServer } from '../../store';
 
 class Users extends React.Component {
   constructor() {
@@ -56,7 +56,7 @@ const mapState = ({ users }) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    deleteUser: (id) => dispatch(deleteUserOnServer(id))
+    deleteUser: (id) => dispatch(deleteUserFromServer(id))
   }
 }
 

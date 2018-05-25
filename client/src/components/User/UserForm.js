@@ -66,15 +66,15 @@ class UserForm extends React.Component {
             {
               Object.keys(fields).map(field => (
                 <div className="margin-b-10" key={field}>
-                <label className="font-weight-bold">{fields[field]}</label>
-                <input
-                name={field}
-                readOnly={isEditing ? false : true}
-                className={`form-control${isEditing ? `` : `-plaintext` }`}
-                onChange={onChange}
-                value={this.state[field]}
-                type={field === 'password' ? 'password' : field === 'email' ? 'email' : 'text' }
-                />
+                  <label className="font-weight-bold">{fields[field]}</label>
+                  <input
+                    name={field}
+                    readOnly={isEditing ? false : true}
+                    className={`form-control${isEditing ? `` : `-plaintext` }`}
+                    onChange={onChange}
+                    value={this.state[field]}
+                    type={field === 'password' ? 'password' : field === 'email' ? 'email' : 'text' }
+                  />
                 </div>
               ))
             }
