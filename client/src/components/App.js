@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import { getOrganizations, getUsers, getDescriptions } from '../store';
+
+import OrganizationList from './Organization/OrganizationList';
+import OrganizationInfo from './Organization/OrganizationInfo';
 
 class App extends React.Component {
   componentDidMount() {
@@ -12,7 +16,14 @@ class App extends React.Component {
 
   render(){
     return (
-      <hr />
+      <div>
+        <Router>
+          <div>
+            <Route exact path='/organizations' component={OrganizationList} />
+            <Route exact path='/organizations/:id' component={({ match, history }) => <OrganizationInfo id={ match.params.id * 1} history={history} />} />
+          </div>
+        </Router>
+      </div>
     );
   }
 }

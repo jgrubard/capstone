@@ -4,6 +4,12 @@ const { User, Organization, Description } = require('./index').models;
 const seed = () => {
   return Promise.all([
     User.create({
+      firstName: 'master',
+      lastName: 'master',
+      email: 'master@test.com',
+      userStatus: 'master'
+    }),
+    User.create({
       firstName: 'admin',
       lastName: 'admin',
       email: 'admin@test.com',
@@ -17,15 +23,15 @@ const seed = () => {
     }),
     Organization.create({
       name: 'Cliffs LIC',
-      organization_type: 'Climbing Gym',
-      address: '11-11 44th Drive',
-      city: 'Queens',
-      state: 'New York',
-      zip: '11101',
-      contact_phone: '718-729-7625'
+      // organization_type: 'Climbing Gym',
+      // address: '11-11 44th Drive',
+      // city: 'Queens',
+      // state: 'New York',
+      // zip: '11101',
+      // contact_phone: '718-729-7625'
     }),
   ])
-  .then(([ admin, jeremy, cliffs ]) => {
+  .then(([ master, admin, jeremy, cliffs ]) => {
     return Promise.all([
       Description.create({
         attribute: 'Bouldering Level',
