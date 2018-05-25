@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const GOT_USERS = 'GET_USERS';
+const GOT_USERS = 'GOT_USERS';
 
 const gotUsers = users => ({ type: GOT_USERS, users });
 
@@ -14,10 +14,10 @@ export const getUsers = () => {
 
 const store = (state = [], action) => {
   switch (action.type) {
-  case GOT_USERS:
-    return action.users;
-  default:
-    return state;
+    case GOT_USERS:
+      return action.users;
+    default:
+      return state;
   }
 };
 
