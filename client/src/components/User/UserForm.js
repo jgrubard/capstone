@@ -18,7 +18,7 @@ class UserForm extends React.Component {
       this.onChange = this.onChange.bind(this);
       this.onUpdate = this.onUpdate.bind(this);
     }
-  
+
     componentWillReceiveProps(nextProps) {
       const { user } = nextProps;
       if (user.id) {
@@ -26,13 +26,13 @@ class UserForm extends React.Component {
         this.setState({ id, firstName, lastName, email, password })
       }
     }
-  
+
     onChange(ev) {
       const change = {}
       change[ev.target.name] = ev.target.value
       this.setState(change);
     }
-  
+
     onUpdate(ev) {
       ev.preventDefault()
       const { updateUser } = this.props;
@@ -40,7 +40,7 @@ class UserForm extends React.Component {
       updateUser({ id, firstName, lastName, email, password });
       this.setState({ isEditing: false })
     }
-  
+
     render() {
       const { onChange, onUpdate } = this;
       const { user, users } = this.props
@@ -87,7 +87,7 @@ class UserForm extends React.Component {
   const mapState = ({ users }, {match}) => {
     const id = match.params.id * 1
     const user = users.find( _user => _user.id === id)
-    return { 
+    return {
         user
      }
   }

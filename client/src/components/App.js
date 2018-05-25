@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, Switch, Link, Route } from 'react-router-dom';
 import { getOrganizationsFromServer, getDescriptionsFromServer, getUsersFromServer } from '../store';
 
+import Nav from './Nav';
 import Users from './User/Users';
 import UserForm from './User/UserForm';
 
@@ -23,6 +24,7 @@ class App extends React.Component {
       <Router>
         <div>
           <div className="container">
+            <Nav />
             <div id="body-elements">
               <Switch>
               {/* USER ROUTES */}
