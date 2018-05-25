@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { HashRouter as Router, Switch, Link, Route } from 'react-router-dom';
-import { getOrganizations, getUsers, getDescriptions, getUsersFromServer } from '../store';
+import { getOrganizationsFromServer, getDescriptionsFromServer, getUsersFromServer } from '../store';
 
 import Users from './User/Users';
 import UserForm from './User/UserForm';
@@ -44,9 +44,9 @@ class App extends React.Component {
 
 const mapDisptach = (dispatch) => {
   return {
-    loadOrganizations: () => dispatch(getOrganizations()),
+    loadOrganizations: () => dispatch(getOrganizationsFromServer()),
     loadUsers: () => dispatch(getUsersFromServer()),
-    loadDescriptions: () => dispatch(getDescriptions())
+    loadDescriptions: () => dispatch(getDescriptionsFromServer())
   }
 }
 

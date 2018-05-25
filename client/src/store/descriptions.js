@@ -1,20 +1,20 @@
 import axios from 'axios';
 
-const GOT_DESCRIPTIONS = 'GOT_DESCRIPTIONS';
+const GET_DESCRIPTIONS = 'GET_DESCRIPTIONS';
 
-const gotDescriptions = descriptions => ({ type: GOT_DESCRIPTIONS, descriptions });
+const getDescriptions = descriptions => ({ type: GET_DESCRIPTIONS, descriptions });
 
-export const getDescriptions = () => {
+export const getDescriptionsFromServer = () => {
   return dispatch => {
     return axios.get('/api/descriptions')
       .then(result => result.data)
-      .then(descriptions => dispatch(gotDescriptions(descriptions)));
+      .then(descriptions => dispatch(getDescriptions(descriptions)));
   };
 };
 
 const store = (state = [], action) => {
   switch (action.type) {
-    case GOT_DESCRIPTIONS:
+    case GET_DESCRIPTIONS:
       return action.descriptions;
     default:
       return state;

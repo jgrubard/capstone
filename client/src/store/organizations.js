@@ -1,20 +1,20 @@
 import axios from 'axios';
 
-const GOT_ORGANIZATIONS = 'GOT_ORGANIZATIONS';
+const GET_ORGANIZATIONS = 'GET_ORGANIZATIONS';
 const CREATE_ORGANIZATION = 'CREATE_ORGANIZATION';
 const UPDATE_ORGANIZATION = 'UPDATE_ORGANIZATION';
 const DELETE_ORGANIZATION = 'DELETE_ORGANIZATION';
 
-const gotOrganizations = organizations => ({ type: GOT_ORGANIZATIONS, organizations });
+const getOrganizations = organizations => ({ type: GET_ORGANIZATIONS, organizations });
 const createOrganization = organization => ({ type: CREATE_ORGANIZATION, organization });
 const updateOrganization = organization => ({ type: UPDATE_ORGANIZATION, organization });
 const deleteOrganization = id => ({ type: DELETE_ORGANIZATION, id });
 
-export const getOrganizations = () => {
+export const getOrganizationsFromServer = () => {
   return dispatch => {
     return axios.get('/api/organizations')
       .then(result => result.data)
-      .then(organizations => dispatch(gotOrganizations(organizations)));
+      .then(organizations => dispatch(getOrganizations(organizations)));
   };
 };
 
@@ -41,7 +41,7 @@ export const deleteOrganizationFromServer = (id, history) => {
 const store = (state = [], action) => {
   let organizations;
   switch (action.type) {
-    case GOT_ORGANIZATIONS:
+    case GET_ORGANIZATIONS:
       return action.organizations;
     case CREATE_ORGANIZATION:
       return [ ...state, action.organization ];

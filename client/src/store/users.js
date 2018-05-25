@@ -1,20 +1,20 @@
 import axios from 'axios';
 
-const GOT_USERS = 'GOT_USERS';
+const GET_USERS = 'GET_USERS';
 
-const gotUsers = users => ({ type: GOT_USERS, users });
+const getUsers = users => ({ type: GET_USERS, users });
 
-export const getUsers = () => {
+export const getUsersFromServer = () => {
   return dispatch => {
     return axios.get('/api/users')
       .then(result => result.data)
-      .then(users => dispatch(gotUsers(users)));
+      .then(users => dispatch(getUsers(users)));
   };
 };
 
 const store = (state = [], action) => {
   switch (action.type) {
-    case GOT_USERS:
+    case GET_USERS:
       return action.users;
     default:
       return state;
