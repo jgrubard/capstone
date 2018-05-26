@@ -45,9 +45,9 @@ class UserForm extends React.Component {
       const { firstName, lastName, email, password } = this.state;
       const fields = {
         firstName: 'First name',
-        // lastName: 'Last name',
-        // email: 'Email address',
-        // password: 'Password'
+        lastName: 'Last name',
+        email: 'Email address',
+        password: 'Password'
       }
       return (
         <div>

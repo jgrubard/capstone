@@ -19,8 +19,6 @@ export const getUsersFromServer = () => {
 };
 
 export const updateUserOnServer = (user) => {
-  let _user;
-  console.log(user)
   const { id } = user;
   const method = id ? 'put' : 'post';
   const url = id ? `/api/users/${id}` : '/api/users';
@@ -45,7 +43,7 @@ const store = (state = [], action) => {
     case GET_USERS:
       return action.users;
     case CREATE_USER:
-      return [ ...state, action.users ];
+      return [ ...state, action.user ];
     case UPDATE_USER:
       users = state.filter(user => user.id !== action.user.id)
       return [ ...users, action.user ];
