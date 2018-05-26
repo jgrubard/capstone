@@ -7,7 +7,7 @@ class OrganizationForm extends Component {
     super(props);
     const { organization } = props;
     this.state = {
-      id: organization ? organization.id : '',
+      id: organization ? organization.id : undefined,
       name: organization ? organization.name : '',
     }
     this.handleChange = this.handleChange.bind(this);
@@ -33,7 +33,6 @@ class OrganizationForm extends Component {
     const { name } = this.state;
     return (
       <div>
-        <h3>Organization Form</h3>
         <input name='name' value={name} onChange={handleChange} />
         <button onClick={onSave}>Submit</button>
       </div>
