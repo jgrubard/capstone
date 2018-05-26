@@ -26,15 +26,23 @@ const seed = () => {
     }),
     Organization.create({
       name: 'Cliffs LIC',
-      // organization_type: 'Climbing Gym',
-      // address: '11-11 44th Drive',
-      // city: 'Queens',
-      // state: 'New York',
-      // zip: '11101',
-      // contact_phone: '718-729-7625'
+      organization_type: 'Climbing Gym',
+      address: '11-11 44th Drive',
+      city: 'Queens',
+      state: 'New York',
+      zip: '11101',
+      contact_name: 'Max',
+      contact_phone: '718-729-7625'
     }),
     Organization.create({
-      name: 'Brooklyn Boulders'
+      name: 'Brooklyn Boulders',
+      organization_type: 'Climbing Gym',
+      address: '575 Degraw St',
+      city: 'Brooklyn',
+      state: 'New York',
+      zip: '11217',
+      contact_name: 'Lucy',
+      contact_phone: '347-834-9066'
     }),
   ])
   .then(([ master, admin, jeremy, cliffs, bkb ]) => {
