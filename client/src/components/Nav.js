@@ -4,7 +4,15 @@ import { connect } from 'react-redux';
 
 const Nav = () => {
   return (
-    <ul>
+    <div>
+    <header className='header'>
+    <h1 class="logo"><a href="#">LOGO</a></h1>
+    <ul className='main-nav'>
+    <li>
+        <Link to='/home'>
+          Home
+        </Link>
+      </li>
       <li>
         <Link to='/users'>
           Users
@@ -16,6 +24,8 @@ const Nav = () => {
         </Link>
       </li>
     </ul>
+    </header>
+    </div>
   );
 }
 
