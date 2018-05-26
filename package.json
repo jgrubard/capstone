@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm run webpack",
+    "start": "node server",
+    "postinstall": "npm run seed && npm run webpack",
     "webpack": "./node_modules/webpack/bin/webpack.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node ./server/db/seed",
