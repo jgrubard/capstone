@@ -19,6 +19,8 @@ export const getUsersFromServer = () => {
 };
 
 export const updateUserOnServer = (user) => {
+  let _user;
+  console.log(user)
   const { id } = user;
   const method = id ? 'put' : 'post';
   const url = id ? `/api/users/${id}` : '/api/users';
@@ -26,7 +28,7 @@ export const updateUserOnServer = (user) => {
   return dispatch => {
     return axios[method](url, user)
       .then(result => result.data)
-      .then(users => dispatch(action(users)));
+      .then(user => dispatch(action(user)))
   };
 };
 

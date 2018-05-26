@@ -7,8 +7,8 @@ import OrganizationForm from './OrganizationForm';
 const OrganizationList = ({ organizations, count, pluralize }) => {
   return (
     <div>
-      <h4>Organizations</h4>
-      <h5>There {pluralize[0]} {count} Organization{pluralize[1]}</h5>
+      <h2>Organizations</h2>
+      <h4>There {pluralize[0]} {count} Organization{pluralize[1]}</h4>
       <OrganizationForm />
       <ul>
         {

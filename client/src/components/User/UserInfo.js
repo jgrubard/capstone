@@ -7,14 +7,13 @@ const UserInfo = ({ user }) => {
   if (!user) return null;
   return (
     <div>
-      <h3>{user.name}</h3>
+      <h2>{user.fullName}'s Account</h2>
       <UserForm user={user} />
     </div>
   );
 }
 
 const mapState = ({ users }, { id }) => {
-  console.log(id)
   const user = users.find(user => user.id === id)
   return { user }
 }

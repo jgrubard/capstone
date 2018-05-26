@@ -1,53 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { deleteUserFromServer } from '../../store';
 
-class Users extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      name: '',
-    }
-    this.onChange = this.onChange.bind(this)
-  }
+import UserForm from './UserForm';
 
-  onChange(ev) {
-    this.setState({ name: ev.target.value })
-  }
-
-  render() {
-    const { users, deleteUser } = this.props
-    const { name } = this.state
-    const { onChange } = this
-    const matchingUsers = users.reduce((memo, user) => {
-      const lowerFirst = user.firstName.toLowerCase()
-      const lowerLast = user.lastName.toLowerCase()
-      const lowerName = name.toLowerCase()
-      if (lowerFirst.match(lowerName) || lowerLast.match(lowerName)) memo.push(user)
-      return memo
-    }, [])
-
-    return (
-      <div>
-        <title>All Users</title>
-
-        <h2>Users</h2>
-        <input onChange={onChange} value={name} className="form-control margin-b-10" placeholder="Search for a user" />
-        <ul className='list-group'>
-          {
-            matchingUsers.map(user => (
-              <li key={user.id} className='list-group-item'>
-                <h5>{`${user.firstName} ${user.lastName}`}</h5>
-                <Link to={`/users/${user.id}`}><button className="btn btn-outline-success">Edit user</button></Link>
-                <button onClick={() => deleteUser(user.id)} className="btn btn-outline-danger">Delete user</button>
+const Users = ({ users, deleteUser }) => {
+  console.log(users)
+  return (
+    <div>
+      <h2>Users</h2>
+      <h4>Add a User</h4>
+      <UserForm />
+      <hr />
+      <ul>
+        {
+          users.map(user => {
+            return (
+              <li key={user.id}>
+                {user.fullName}
               </li>
-            ))
-          }
-        </ul>
-      </div>
-    );
-  }
+            );
+          })
+        }
+      </ul>
+    </div>
+  );
 }
 
 const mapState = ({ users }) => {

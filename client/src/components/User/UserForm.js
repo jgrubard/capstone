@@ -6,17 +6,16 @@ import { updateUserOnServer } from '../../store';
 class UserForm extends React.Component {
     constructor(props) {
       super(props);
-      const { user, users } = this.props;
+      const { user } = this.props;
       this.state = {
-        id: user ? user.id : '',
+        id: user ? user.id : undefined,
         firstName: user ? user.firstName : '',
         lastName: user ? user.lastName : '',
         email: user ? user.email : '',
         password: user ? user.password : '',
-        isEditing: false
       }
       this.onChange = this.onChange.bind(this);
-      this.onUpdate = this.onUpdate.bind(this);
+      this.onSave = this.onSave.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -33,44 +32,33 @@ class UserForm extends React.Component {
       this.setState(change);
     }
 
-    onUpdate(ev) {
+    onSave(ev) {
       ev.preventDefault()
       const { updateUser } = this.props;
       const { id, firstName, lastName, email, password } = this.state
       updateUser({ id, firstName, lastName, email, password });
-      this.setState({ isEditing: false })
     }
 
     render() {
-      const { onChange, onUpdate } = this;
+      const { onChange, onSave } = this;
       const { user, users } = this.props
-      const { firstName, lastName, email, password, isEditing } = this.state;
+      const { firstName, lastName, email, password } = this.state;
       const fields = {
         firstName: 'First name',
-        lastName: 'Last name',
-        email: 'Email address',
-        password: 'Password'
+        // lastName: 'Last name',
+        // email: 'Email address',
+        // password: 'Password'
       }
-      if (!user) return null
       return (
         <div>
-          <h2>My Account</h2>
-          {
-            isEditing ? (
-              <button onClick={ onUpdate } className="btn btn-success margin-t-15">Save</button>
-            ) : (
-              <button onClick={() => this.setState({ isEditing: true })} className="btn btn-outline-success margin-t-15">Edit</button>
-            )
-          }
-          <div className="margin-t-15">
+          <button onClick={onSave}>Save</button>
+          <div>
             {
               Object.keys(fields).map(field => (
-                <div className="margin-b-10" key={field}>
-                  <label className="font-weight-bold">{fields[field]}</label>
+                <div key={field}>
+                  <label>{fields[field]}</label>
                   <input
                     name={field}
-                    readOnly={isEditing ? false : true}
-                    className={`form-control${isEditing ? `` : `-plaintext` }`}
                     onChange={onChange}
                     value={this.state[field]}
                     type={field === 'password' ? 'password' : field === 'email' ? 'email' : 'text' }
