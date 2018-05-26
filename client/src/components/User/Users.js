@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteUserOnServer } from '../../store';
+import { deleteUserFromServer } from '../../store';
+
+import UserForm from './UserForm';
 
 class Users extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       name: '',
     }
@@ -30,17 +32,18 @@ class Users extends React.Component {
 
     return (
       <div>
-        <title>All Users</title>
-
         <h2>Users</h2>
-        <input onChange={onChange} value={name} className="form-control margin-b-10" placeholder="Search for a user" />
-        <ul className='list-group'>
+        <h4>Add a User</h4>
+        <UserForm />
+        <hr />
+        <input onChange={onChange} value={name} placeholder="Search for a user" />
+        <ul>
           {
             matchingUsers.map(user => (
-              <li key={user.id} className='list-group-item'>
-                <h5>{`${user.firstName} ${user.lastName}`}</h5>
-                <Link to={`/admin/users/${user.id}`}><button className="btn btn-outline-success">Edit user</button></Link>
-                <button onClick={() => deleteUser(user.id)} className="btn btn-outline-danger">Delete user</button>
+              <li key={user.id}>
+                {user.fullName}
+                <Link to={`/users/${user.id}`}><button>Edit user</button></Link>
+                <button onClick={() => deleteUser(user.id)}>Delete user</button>
               </li>
             ))
           }
@@ -56,7 +59,7 @@ const mapState = ({ users }) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    deleteUser: (id) => dispatch(deleteUserOnServer(id))
+    deleteUser: (id) => dispatch(deleteUserFromServer(id))
   }
 }
 

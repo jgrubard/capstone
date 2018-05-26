@@ -7,18 +7,21 @@ const seed = () => {
       firstName: 'master',
       lastName: 'master',
       email: 'master@test.com',
+      password: 'master',
       userStatus: 'master'
     }),
     User.create({
       firstName: 'admin',
       lastName: 'admin',
       email: 'admin@test.com',
+      password: 'admin',
       userStatus: 'admin'
     }),
     User.create({
       firstName: 'Jeremy',
       lastName: 'Grubard',
       email: 'jgrubard@gmail.com',
+      password: 'jeremy',
       userStatus: 'user'
     }),
     Organization.create({
@@ -30,8 +33,11 @@ const seed = () => {
       // zip: '11101',
       // contact_phone: '718-729-7625'
     }),
+    Organization.create({
+      name: 'Brooklyn Boulders'
+    }),
   ])
-  .then(([ master, admin, jeremy, cliffs ]) => {
+  .then(([ master, admin, jeremy, cliffs, bkb ]) => {
     return Promise.all([
       Description.create({
         attribute: 'Bouldering Level',
