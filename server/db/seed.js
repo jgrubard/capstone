@@ -1,5 +1,5 @@
 const conn = require('./conn');
-const { User, Organization, Description, Type } = require('./index').models;
+const { User, Organization, Description, Type, UserOrganization } = require('./index').models;
 
 const seed = () => {
   return Promise.all([
@@ -22,6 +22,27 @@ const seed = () => {
       lastName: 'Grubard',
       email: 'jgrubard@gmail.com',
       password: 'jeremy',
+      userStatus: 'user'
+    }),
+    User.create({
+      firstName: 'Anna',
+      lastName: 'Zhang',
+      email: 'annazhang@gmail.com',
+      password: 'anna',
+      userStatus: 'user'
+    }),
+    User.create({
+      firstName: 'Gabriel',
+      lastName: 'Rumbaut',
+      email: 'gabrialrumbaut@gmail.com',
+      password: 'gabrial',
+      userStatus: 'user'
+    }),
+    User.create({
+      firstName: 'Alexander',
+      lastName: 'Levin',
+      email: 'alexanderlevin@gmail.com',
+      password: 'alexander',
       userStatus: 'user'
     }),
     Type.create({
@@ -52,9 +73,39 @@ const seed = () => {
       contact_name: 'Lucy',
       contact_phone: '347-834-9066',
       typeId:1
-    })
+    }),
+    Organization.create({
+      name: 'Fullstack Academy',
+      address: '5 Hanover Square',
+      city: 'New York',
+      state: 'New York',
+      zip: '10004',
+      contact_name: 'David',
+      contact_phone: '123-456-7890',
+      typeId:2
+    }),
+    Organization.create({
+      name: 'New York University',
+      address: '383 Lafayette Street',
+      city: 'New York',
+      state: 'New York',
+      zip: '10003',
+      contact_name: 'Andrew D. Hamilton',
+      contact_phone: '123-456-7890',
+      typeId:2
+    }),
+    Organization.create({
+      name: 'Dos Caminos',
+      address: '373 Park Ave S',
+      city: 'New York',
+      state: 'New York',
+      zip: '10016',
+      contact_name: 'Megan',
+      contact_phone: '212-294-1000',
+      typeId:3
+    }),
   ])
-  .then(([ master, admin, jeremy, fitness, education, restaurant,cliffs, bkb ]) => {
+  .then(([ master, admin, jeremy, anna, gabrial, alexander, fitness, education, restaurant,cliffs, bkb, fullstack, nyu, doscaminos ]) => {
     return Promise.all([
       Description.create({
         attribute: 'Bouldering Level',
@@ -67,7 +118,43 @@ const seed = () => {
         description: '5.11',
         userId: jeremy.id,
         organizationId: cliffs.id
-      })
+      }),
+      UserOrganization.create({
+        userId: jeremy.id,
+        organizationId: cliffs.id
+      }),
+      UserOrganization.create({
+        userId: jeremy.id,
+        organizationId: bkb.id
+      }),
+      UserOrganization.create({
+        userId: jeremy.id,
+        organizationId: fullstack.id
+      }),
+      UserOrganization.create({
+        userId: anna.id,
+        organizationId: fullstack.id
+      }),
+      UserOrganization.create({
+        userId: anna.id,
+        organizationId: nyu.id
+      }),
+      UserOrganization.create({
+        userId: gabrial.id,
+        organizationId: cliffs.id
+      }),
+      UserOrganization.create({
+        userId: gabrial.id,
+        organizationId: fullstack.id
+      }),
+      UserOrganization.create({
+        userId: alexander.id,
+        organizationId: fullstack.id
+      }),
+      UserOrganization.create({
+        userId: alexander.id,
+        organizationId: doscaminos.id
+      }),
     ])
   })
 }

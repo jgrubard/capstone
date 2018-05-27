@@ -20,5 +20,6 @@ router.use('/users', require('./users'));
 router.use('/descriptions', require('./descriptions'));
 router.use('/sessions', require('./sessions'));
 router.use('/types', require('./types'));
+router.use('/userorganizations', require('./userorganizations'))
 
 module.exports = router;

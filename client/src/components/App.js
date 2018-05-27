@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { getOrganizationsFromServer, getDescriptionsFromServer, getUsersFromServer, getTypesFromServer } from '../store';
+import { getOrganizationsFromServer, getDescriptionsFromServer, getUsersFromServer, getTypesFromServer, getUserOrganizationsFromServer } from '../store';
 
 import Nav from './Nav';
 import Users from './User/Users';
@@ -9,13 +9,15 @@ import UserInfo from './User/UserInfo';
 import OrganizationList from './Organization/OrganizationList';
 import OrganizationInfo from './Organization/OrganizationInfo';
 
+
 class App extends React.Component {
   componentDidMount() {
-    const { loadOrganizations, loadUsers, loadDescriptions, loadTypes } = this.props;
+    const { loadOrganizations, loadUsers, loadDescriptions, loadTypes,loadUserOrganizations } = this.props;
     loadOrganizations();
     loadUsers();
     loadDescriptions();
     loadTypes();
+    loadUserOrganizations();
   }
 
   render(){
@@ -48,7 +50,8 @@ const mapDisptach = (dispatch) => {
     loadOrganizations: () => dispatch(getOrganizationsFromServer()),
     loadUsers: () => dispatch(getUsersFromServer()),
     loadDescriptions: () => dispatch(getDescriptionsFromServer()),
-    loadTypes: ()=> dispatch(getTypesFromServer())
+    loadTypes: ()=> dispatch(getTypesFromServer()),
+    loadUserOrganizations:()=>dispatch(getUserOrganizationsFromServer())
   }
 }
 
