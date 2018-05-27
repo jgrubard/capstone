@@ -1,5 +1,5 @@
 const conn = require('./conn');
-const { User, Organization, Description } = require('./index').models;
+const { User, Organization, Description, Type } = require('./index').models;
 
 const seed = () => {
   return Promise.all([
@@ -24,28 +24,37 @@ const seed = () => {
       password: 'jeremy',
       userStatus: 'user'
     }),
+    Type.create({
+      name: 'Fitness',
+    }),
+    Type.create({
+      name: 'Education',
+    }),
+    Type.create({
+      name: 'Restaurant',
+    }),
     Organization.create({
       name: 'Cliffs LIC',
-      organization_type: 'Climbing Gym',
       address: '11-11 44th Drive',
       city: 'Queens',
       state: 'New York',
       zip: '11101',
       contact_name: 'Max',
-      contact_phone: '718-729-7625'
+      contact_phone: '718-729-7625',
+      typeId:1
     }),
     Organization.create({
       name: 'Brooklyn Boulders',
-      organization_type: 'Climbing Gym',
       address: '575 Degraw St',
       city: 'Brooklyn',
       state: 'New York',
       zip: '11217',
       contact_name: 'Lucy',
-      contact_phone: '347-834-9066'
-    }),
+      contact_phone: '347-834-9066',
+      typeId:1
+    })
   ])
-  .then(([ master, admin, jeremy, cliffs, bkb ]) => {
+  .then(([ master, admin, jeremy, fitness, education, restaurant,cliffs, bkb ]) => {
     return Promise.all([
       Description.create({
         attribute: 'Bouldering Level',
