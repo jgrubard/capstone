@@ -44,7 +44,7 @@ User.authenticate = function(credentials) {
     where: { email, password }
   })
     .then(user => {
-      if(user) return jwt.encode({ id: user.id, KEY });
+      if(user) return jwt.encode({ id: user.id }, KEY);
       throw { status: 401 };
     })
     .catch(err => {
