@@ -8,3 +8,9 @@ router.get('/', (req, res, next) => {
     .then(userorganizations=> res.send(userorganizations))
     .catch(next);
 });
+
+router.post('/', (req, res, next) => {
+  UserOrganization.create(req.body)
+    .then(userorganization => res.send(userorganization))
+    .catch(next);
+});

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { deleteOrganizationFromServer } from '../../store';
 
 import OrganizationForm from './OrganizationForm';
+import AddUserForm from '../User/AddUserForm'
 
 const OrganizationInfo = ({ organization, id, deleteOrganization,thisOrganizationUsersNew }) => {
   if (!organization) return null
@@ -16,6 +17,7 @@ const OrganizationInfo = ({ organization, id, deleteOrganization,thisOrganizatio
       <ul>
       {thisOrganizationUsersNew && thisOrganizationUsersNew.map(user=><li key={user.id}>{user.fullName}</li>)}
       </ul>
+      <AddUserForm organization={organization}/>
     </div>
   );
 }
