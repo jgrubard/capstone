@@ -1,5 +1,6 @@
 const Description = require('./models/Description');
 const Organization = require('./models/Organization');
+const UserOrganization = require ('./models/UserOrganization')
 const User = require('./models/User');
 const conn = require('./conn');
 
@@ -9,11 +10,16 @@ const conn = require('./conn');
 Description.belongsTo(User);
 Description.belongsTo(Organization);
 
+UserOrganization.belongsTo(User);
+UserOrganization.belongsTo(Organization);
+
 module.exports = {
   conn,
   models: {
     Description,
     Organization,
-    User
+    UserOrganization,
+    User,
+    
   }
 };
