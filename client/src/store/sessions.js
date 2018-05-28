@@ -9,8 +9,9 @@ export const attemptLogin = (credentials, history) => {
       .then(result => result.data)
       .then(token => {
         window.localStorage.setItem('token', token);
-        dispatch(getUserFromToken(token));
+        return token;
       })
+      .then(token => dispatch(getUserFromToken(token)))
       .then(() => history.push('/'))
       .catch(err => {
         window.localStorage.removeItem('token');

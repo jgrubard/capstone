@@ -226,9 +226,9 @@ const mapState = ({ users, user }) => {
   return { emails, user }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
-    attemptLogin: (credentials) => dispatch(attemptLogin(credentials)),
+    attemptLogin: (credentials) => dispatch(attemptLogin(credentials, history)),
     attemptSignup: (user, page) => dispatch(updateUserOnServer(user, page)),
   }
 }
