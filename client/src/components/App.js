@@ -1,22 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { getOrganizationsFromServer, getDescriptionsFromServer, getUsersFromServer, getUserOrganizationsFromServer } from '../store';
+import { getOrganizationsFromServer, getDescriptionsFromServer, getUsersFromServer, getUserOrganizationsFromServer, getUserFromToken } from '../store';
 
 import Nav from './Nav';
 import Users from './User/Users';
 import UserInfo from './User/UserInfo';
 import OrganizationList from './Organization/OrganizationList';
 import OrganizationInfo from './Organization/OrganizationInfo';
+import LoginForm from './User/LoginForm';
 
 
 class App extends React.Component {
   componentDidMount() {
-    const { loadOrganizations, loadUsers, loadDescriptions, loadUserOrganizations } = this.props;
+    const { loadOrganizations, loadUsers, loadDescriptions, loadUserOrganizations, loadUser } = this.props;
     loadOrganizations();
     loadUsers();
     loadDescriptions();
     loadUserOrganizations();
+    loadUser();
   }
 
   render(){
@@ -35,6 +37,8 @@ class App extends React.Component {
                 <Route exact path='/organizations/:id' component={({ match, history }) => <OrganizationInfo id={ match.params.id } history={history} />} />
                 {/* ADMIN ROUTES */}
                 {/* AUTH ROUTES */}
+                <Route exact path='/login' component={LoginForm} />
+                <Route exact path='/signup' component={LoginForm} />
               </Switch>
             </div>
           </div>
@@ -49,7 +53,13 @@ const mapDisptach = (dispatch) => {
     loadOrganizations: () => dispatch(getOrganizationsFromServer()),
     loadUsers: () => dispatch(getUsersFromServer()),
     loadDescriptions: () => dispatch(getDescriptionsFromServer()),
-    loadUserOrganizations:()=>dispatch(getUserOrganizationsFromServer())
+    loadUserOrganizations:()=>dispatch(getUserOrganizationsFromServer()),
+    loadUser: () =>{
+      const token = window.localStorage.getItem('token')
+      if(token){
+        dispatch(getUserFromToken(token))
+      }
+    }
   }
 }
 
