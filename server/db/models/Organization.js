@@ -11,6 +11,10 @@ const Organization = conn.define('organization', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  organization_type: {
+    type: Sequelize.STRING,
+    // allowNull: false
+  },
   address: {
     type: Sequelize.STRING,
     // allowNull: false

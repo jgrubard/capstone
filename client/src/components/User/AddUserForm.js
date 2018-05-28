@@ -55,7 +55,7 @@ class AddUserForm extends React.Component {
       return (
         <div>
           <div>
-          <input name='email' value={email} onChange={onChange}></input><button onClick={onSearch}>Search</button>
+          <input name='email' value={email} onChange={onChange}></input><button onClick={onSearch}>Search by email</button>
           {/* <button onClick={onSave}>Save</button> */}
           {findUser? <div>{findUser.firstName} {findUser.lastName}<button onClick={onSave}>Add {findUser.firstName} to {organization.name}</button></div>: errormessage? <p>Can't find this user</p>:null  }
           </div>

@@ -2,7 +2,6 @@ const Description = require('./models/Description');
 const Organization = require('./models/Organization');
 const UserOrganization = require ('./models/UserOrganization')
 const User = require('./models/User');
-const Type = require('./models/Type');
 const conn = require('./conn');
 
 // User.belongsToMany(Organization, { through: Description });
@@ -10,7 +9,6 @@ const conn = require('./conn');
 
 Description.belongsTo(User);
 Description.belongsTo(Organization);
-Type.hasMany(Organization)
 
 UserOrganization.belongsTo(User);
 UserOrganization.belongsTo(Organization);
@@ -22,6 +20,6 @@ module.exports = {
     Organization,
     UserOrganization,
     User,
-    Type
+    
   }
 };

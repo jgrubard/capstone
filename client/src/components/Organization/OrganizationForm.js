@@ -9,6 +9,7 @@ class OrganizationForm extends Component {
     this.state = {
       id: organization ? organization.id : undefined,
       name: organization ? organization.name : '',
+      organization_type: organization ? organization.organization_type : '',
       typeId: organization ? organization.typeId : null,
       address: organization ? organization.address : '',
       city: organization ? organization.city : '',
@@ -22,7 +23,6 @@ class OrganizationForm extends Component {
   }
 
   handleChange(ev) {
-    const {types}=this.props;
     const change = {}
     change[ev.target.name] = ev.target.value;
     this.setState(change);
@@ -32,40 +32,20 @@ class OrganizationForm extends Component {
     ev.preventDefault();
     const { organization }=this.props;
     const { createOrUpdateOrganization } = this.props;
-    const { id, name, typeId, address, city, state, zip, contact_name, contact_phone  } = this.state;
-    createOrUpdateOrganization({ id, name, typeId, address, city, state, zip, contact_name, contact_phone  });
-    if(organization){
-    this.setState({ typeId: typeId})
-    } else{
-    this.setState({name:'', typeId:null, address:'', city:'', state:'', zip:'', contact_name:'', contact_phone:''})
-    }
+    const { id, name, organization_type, address, city, state, zip, contact_name, contact_phone  } = this.state;
+    createOrUpdateOrganization({ id, name, organization_type, address, city, state, zip, contact_name, contact_phone  });
+    this.setState({name:'', organization_type:'', address:'', city:'', state:'', zip:'', contact_name:'', contact_phone:''})
   }
 
   render() {
     const { handleChange, onSave } = this;
-    const { name, typeId, address, city, state, zip, contact_name, contact_phone } = this.state;
-    const { types, organization }=this.props;
-    var thisType;
-    var otherTypes;
-    if(organization){
-      thisType=types.find(type => type.id === organization.typeId)
-      otherTypes = types.filter(eachType => eachType.id != organization.typeId)
-    } else{
-      thisType = null;
-      otherTypes = types;
-    }
+    const { name, organization_type, address, city, state, zip, contact_name, contact_phone } = this.state;
       
 
     return (
       <div>
         <div>Organization Name<input name='name' value={name} onChange={handleChange} /></div>
-        <div>
-          <select value={typeId} name='typeId' onChange={handleChange}>
-          {thisType?<option value={thisType.id}>{thisType.name}</option>:<option value={null}>Select Type</option>}
-          {otherTypes.map(type => <option key={type.id} value={type.id}>{type.name}</option>)
-          }
-        </select>
-        </div>
+        <div>Type<input name='organization_type' value={organization_type} onChange={handleChange} /></div>
         <div>Address<input name='address' value={address} onChange={handleChange} /></div>
         <div>City<input name='city' value={city} onChange={handleChange} /></div>
         <div>State<input name='state' value={state} onChange={handleChange} /></div>
@@ -78,8 +58,8 @@ class OrganizationForm extends Component {
   }
 }
 
-const mapState = ({state,types}, { organization }) => {
-  return { organization, types }
+const mapState = (state, { organization }) => {
+  return { organization }
 }
 
 const mapDispatch = (dispatch) => {

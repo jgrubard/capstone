@@ -1,5 +1,5 @@
 const conn = require('./conn');
-const { User, Organization, Description, Type, UserOrganization } = require('./index').models;
+const { User, Organization, Description, UserOrganization } = require('./index').models;
 
 const seed = () => {
   return Promise.all([
@@ -45,67 +45,58 @@ const seed = () => {
       password: 'alexander',
       userStatus: 'user'
     }),
-    Type.create({
-      name: 'Fitness',
-    }),
-    Type.create({
-      name: 'Education',
-    }),
-    Type.create({
-      name: 'Restaurant',
-    }),
     Organization.create({
       name: 'Cliffs LIC',
+      organization_type: 'Clmbing Gym',
       address: '11-11 44th Drive',
       city: 'Queens',
       state: 'New York',
       zip: '11101',
       contact_name: 'Max',
       contact_phone: '718-729-7625',
-      typeId:1
     }),
     Organization.create({
       name: 'Brooklyn Boulders',
+      organization_type: 'Clmbing Gym',
       address: '575 Degraw St',
       city: 'Brooklyn',
       state: 'New York',
       zip: '11217',
       contact_name: 'Lucy',
       contact_phone: '347-834-9066',
-      typeId:1
     }),
     Organization.create({
       name: 'Fullstack Academy',
+      organization_type: 'Education',
       address: '5 Hanover Square',
       city: 'New York',
       state: 'New York',
       zip: '10004',
       contact_name: 'David',
       contact_phone: '123-456-7890',
-      typeId:2
     }),
     Organization.create({
       name: 'New York University',
+      organization_type: 'Education',
       address: '383 Lafayette Street',
       city: 'New York',
       state: 'New York',
       zip: '10003',
       contact_name: 'Andrew D. Hamilton',
       contact_phone: '123-456-7890',
-      typeId:2
     }),
     Organization.create({
       name: 'Dos Caminos',
+      organization_type: 'Restaurant',
       address: '373 Park Ave S',
       city: 'New York',
       state: 'New York',
       zip: '10016',
       contact_name: 'Megan',
       contact_phone: '212-294-1000',
-      typeId:3
     }),
   ])
-  .then(([ master, admin, jeremy, anna, gabrial, alexander, fitness, education, restaurant,cliffs, bkb, fullstack, nyu, doscaminos ]) => {
+  .then(([ master, admin, jeremy, anna, gabrial, alexander,cliffs, bkb, fullstack, nyu, doscaminos ]) => {
     return Promise.all([
       Description.create({
         attribute: 'Bouldering Level',
