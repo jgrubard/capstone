@@ -111,6 +111,10 @@ const seed = () => {
         organizationId: cliffs.id
       }),
       UserOrganization.create({
+        userId: admin.id,
+        organizationId: cliffs.id
+      }),
+      UserOrganization.create({
         userId: jeremy.id,
         organizationId: cliffs.id
       }),

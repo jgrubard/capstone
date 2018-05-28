@@ -1,36 +1,53 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logout } from '../store'
 
-const Nav = () => {
+const Nav = ({ user, loggedIn, orgId, logout }) => {
+  const url = location.hash.slice(1)
   return (
     <div>
-    <header className='header'>
-    <h1 className="logo"><a href="#">LOGO</a></h1>
-    <ul className='main-nav'>
-    <li>
-        <Link to='/home'>
-          Home
-        </Link>
-      </li>
-      <li>
-        <Link to='/users'>
-          Users
-        </Link>
-      </li>
-      <li>
-        <Link to='/organizations'>
-          Organizations
-        </Link>
-      </li>
-    </ul>
-    </header>
+      <header className='header'>
+        <h1 className="logo"><a href="#">LOGO</a></h1>
+        <div>
+          {
+            loggedIn ?
+              (
+                <ul className='main-nav' >
+                  <li>
+                    <Link to={`/organizations/${orgId}`}>Home</Link>
+                  </li>
+                  <li >
+                    <span onClick={logout}>Log out</span>
+                  </li>
+                </ul>
+              ) : (
+                <ul className='main-nav' >
+                  <li>
+                    <Link to='/login'>Log In</Link>
+                  </li>
+                </ul>
+              )
+          }
+        </div>
+      </header>
     </div>
   );
 }
 
-const mapState = ({ users, organizations }) => {
-  return { users, organizations }
+const mapState = ({ user, userorganizations, logout }) => {
+  const loggedIn = !!user.id;
+  const entry = loggedIn && userorganizations.find( (ent) => {
+    ent.userId === user.id
+  });
+  const orgId = entry && entry.organizationId;
+  return { user, loggedIn, orgId }
 }
 
-export default connect(mapState)(Nav)
+const mapDispatch = (dispatch) => {
+  return {
+    logout: () => dispatch(logout())
+  }
+}
+
+export default connect(mapState, mapDispatch)(Nav)
