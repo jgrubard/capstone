@@ -47,7 +47,7 @@ const seed = () => {
     }),
     Organization.create({
       name: 'Cliffs LIC',
-      organization_type: 'Clmbing Gym',
+      organization_type: 'Climbing Gym',
       address: '11-11 44th Drive',
       city: 'Queens',
       state: 'New York',
@@ -57,7 +57,7 @@ const seed = () => {
     }),
     Organization.create({
       name: 'Brooklyn Boulders',
-      organization_type: 'Clmbing Gym',
+      organization_type: 'Climbing Gym',
       address: '575 Degraw St',
       city: 'Brooklyn',
       state: 'New York',

@@ -9,7 +9,7 @@ const Organization = conn.define('organization', {
   },
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    // allowNull: false
   },
   organization_type: {
     type: Sequelize.STRING,
