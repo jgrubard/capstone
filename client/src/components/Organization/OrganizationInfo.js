@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteOrganizationFromServer, deleteUserFromServer, deleteUserOrganizationFromServer } from '../../store';
+import { deleteOrganizationFromServer, deleteUserFromServer, deleteUserOrganizationFromServer, deleteFormFromServer } from '../../store';
 import OrganizationForm from './OrganizationForm';
 import AddUserForm from '../User/AddUserForm';
 import AddForm from './AddForm';
 import { Link } from 'react-router-dom';
 
-const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownForms, forms, deleteUser, userorganizations }) => {
+const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownForms, forms, deleteUser, userorganizations, deleteForm }) => {
   if (!organization) return null
   console.log(ownUsers)
   return (
@@ -33,6 +33,7 @@ const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownF
         ownForms.map(form=>(
           <li key={form.id}>
             {form.name}
+            <button onClick={() => deleteForm(form.id)}>Delete Form/Category</button>
           </li>
         ))
       }
@@ -59,6 +60,7 @@ const mapState = ({ organizations, users, userorganizations, forms }, { id }) =>
 const mapDispatch = (dispatch, { history }) => {
   return {
     deleteOrganization: (id) => dispatch(deleteOrganizationFromServer(id, history)),
+    deleteForm: (id) => dispatch(deleteFormFromServer(id, history)),
     deleteUser: (id, userorganizations) => {
       userorganizations.forEach(userOrg => {
         if(userOrg.userId === id) {

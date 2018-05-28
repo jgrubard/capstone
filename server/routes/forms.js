@@ -14,3 +14,10 @@ router.post('/', (req, res, next) => {
     .then(form => res.send(form))
     .catch(next);
 });
+
+router.delete('/:id', (req, res, next) => {
+  Form.findById(req.params.id)
+    .then(form => form.destroy())
+    .then(() => res.sendStatus(204))
+    .catch(next);
+});
