@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const { conn } = require('./db');
 const path = require('path');
+require('dotenv').config();
 
 app.use(require('body-parser').json());
 

@@ -1,7 +1,6 @@
 const conn = require('../conn');
 const { Sequelize } = conn;
 const jwt = require('jwt-simple');
-const KEY = process.env.JWT_KEY;
 
 const User = conn.define('user', {
   id: {
@@ -44,7 +43,7 @@ User.authenticate = function(credentials) {
     where: { email, password }
   })
     .then(user => {
-      if(user) return jwt.encode({ id: user.id }, KEY);
+      if(user) return jwt.encode({ id: user.id }, process.env.JWT_KEY);
       throw { status: 401 };
     })
     .catch(err => {
@@ -54,7 +53,7 @@ User.authenticate = function(credentials) {
 
 User.exchangeTokenForUser = function(token) {
   try {
-    const id = jwt.decode(token, KEY).id;
+    const id = jwt.decode(token, process.env.JWT_KEY).id;
     return User.find({
       where: { id }
     })

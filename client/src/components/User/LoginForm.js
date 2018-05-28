@@ -88,7 +88,7 @@ class LoginForm extends React.Component {
             <h1> Log In </h1>
         }
         {
-          user ? (
+          user.id ? (
             <div>
               <h4> You are already logged in </h4>
               <Link to='/'><button className="btn btn-info">Back home</button></Link>
