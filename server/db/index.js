@@ -3,6 +3,7 @@ const Organization = require('./models/Organization');
 const UserOrganization = require ('./models/UserOrganization')
 const OrganizationRequest = require ('./models/OrganizationRequest')
 const User = require('./models/User');
+const Form = require('./models/Form')
 const conn = require('./conn');
 
 // User.belongsToMany(Organization, { through: Description });
@@ -10,6 +11,10 @@ const conn = require('./conn');
 
 Description.belongsTo(User);
 Description.belongsTo(Organization);
+Description.belongsTo(Form);
+Form.hasMany(Description);
+
+Form.belongsTo(Organization);
 
 UserOrganization.belongsTo(User);
 UserOrganization.belongsTo(Organization);
@@ -24,6 +29,6 @@ module.exports = {
     Organization,
     UserOrganization,
     User,
-    OrganizationRequest
+    Form
   }
 };
