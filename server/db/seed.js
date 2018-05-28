@@ -1,5 +1,5 @@
 const conn = require('./conn');
-const { User, Organization, Description, UserOrganization } = require('./index').models;
+const { User, Organization, Description, UserOrganization, Form } = require('./index').models;
 
 const seed = () => {
   return Promise.all([
@@ -94,21 +94,49 @@ const seed = () => {
       zip: '10016',
       contact_name: 'Megan',
       contact_phone: '212-294-1000'
-    }),
+    })
   ])
-  .then(([ master, admin, jeremy, anna, gabrial, alexander,cliffs, bkb, fullstack, nyu, doscaminos ]) => {
+  .then(([ master, admin, jeremy, anna, gabrial, alexander,cliffs, bkb, fullstack, nyu, doscaminos]) => {
     return Promise.all([
-      Description.create({
-        attribute: 'Bouldering Level',
-        description: 'V6',
-        userId: jeremy.id,
+      Form.create({
+        name: 'Climbing beginner',
         organizationId: cliffs.id
       }),
-      Description.create({
-        attribute: 'Top-Rope Level',
-        description: '5.11',
-        userId: jeremy.id,
+      Form.create({
+        name: 'Climbing advance',
         organizationId: cliffs.id
+      }),
+      Form.create({
+        name: 'Senior developer',
+        organizationId: fullstack.id
+      }),
+      Form.create({
+        name: 'Junior developer',
+        organizationId: fullstack.id
+      }),
+      Description.create({
+        description: 'I am beginner',
+        userId: jeremy.id,
+        organizationId: cliffs.id,
+        // formId: form1.id
+      }),
+      Description.create({
+        description: 'I am super cool',
+        userId: gabrial.id,
+        organizationId: cliffs.id,
+        // formId: form2.id
+      }),
+      Description.create({
+        description: 'I am a junior',
+        userId: anna.id,
+        organizationId: fullstack.id,
+        // formId: form3.id
+      }),
+      Description.create({
+        description: 'I am a senior',
+        userId: alexander.id,
+        organizationId: fullstack.id,
+        // formId: form4.id
       }),
       UserOrganization.create({
         userId: jeremy.id,
@@ -146,6 +174,14 @@ const seed = () => {
         userId: alexander.id,
         organizationId: doscaminos.id
       }),
+    ])
+  })
+  .then(([ form1, form2, form3, form4, des1, des2, des3, des4, uo1, uo2, uo3, uo4, uo5, uo6, uo7, uo8, uo9 ]) => {
+    return Promise.all([
+    form1.setDescriptions([des1]),
+    form2.setDescriptions([des2]),
+    form3.setDescriptions([des3]),
+    form4.setDescriptions([des4]),
     ])
   })
 }

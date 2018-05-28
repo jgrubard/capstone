@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteOrganizationFromServer } from '../../store';
-
 import OrganizationForm from './OrganizationForm';
-import AddUserForm from '../User/AddUserForm'
+import AddUserForm from '../User/AddUserForm';
+import AddForm from './AddForm'
 
-const OrganizationInfo = ({ organization, id, deleteOrganization,thisOrganizationUsersNew }) => {
+const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownForms, forms }) => {
   if (!organization) return null
-  console.log(thisOrganizationUsersNew)
+  console.log(ownForms)
+  console.log(forms)
   return (
     <div>
       <h2>{organization.name}</h2>
@@ -15,19 +16,41 @@ const OrganizationInfo = ({ organization, id, deleteOrganization,thisOrganizatio
       <button onClick={() => deleteOrganization(id)}>Delete Organization</button>
       <h4>Users of this organization</h4>
       <ul>
-      {thisOrganizationUsersNew && thisOrganizationUsersNew.map(user=><li key={user.id}>{user.fullName}</li>)}
+      {
+        ownUsers.map(user=>(
+          <li key={user.id}>
+            {user.fullName}
+          </li>
+        ))
+      }
       </ul>
-      <AddUserForm organization={organization}/>
+      <AddUserForm organization={organization} />
+      <h4>Forms/Categories of this organization</h4>
+      <ul>
+      {
+        ownForms.map(form=>(
+          <li key={form.id}>
+            {form.name}
+          </li>
+        ))
+      }
+      </ul>
+      <AddForm />
     </div>
   );
 }
 
-const mapState = ({ organizations, users, userorganizations }, { id }) => {
+const mapState = ({ organizations, users, userorganizations, forms }, { id }) => {
   const organization = organizations.find(org => org.id === id);
-  const thisOrganizationUsers = userorganizations.filter(userorganization => userorganization.organizationId === organization.id);
-  const idArr = thisOrganizationUsers.map(thisOrganizationUser => thisOrganizationUser.userId);
-  const thisOrganizationUsersNew = users.filter(user => idArr.includes(user.id));
-  return { organization, thisOrganizationUsersNew }
+  const ownUsers = userorganizations.reduce((memo, userOrg) => {
+    const user = users.find(user => user.id === userOrg.userId)
+    if (!memo.includes(user)) {
+      memo.push(user)
+    }
+    return memo;
+  }, [])
+  const ownForms = forms.filter(form => form.organizationId === id)
+  return { organization, ownUsers, ownForms, forms }
 }
 
 const mapDispatch = (dispatch, { history }) => {

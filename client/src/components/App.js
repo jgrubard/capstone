@@ -1,24 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { getOrganizationsFromServer, getDescriptionsFromServer, getUsersFromServer, getUserOrganizationsFromServer, getUserFromToken } from '../store';
+import { getOrganizationsFromServer, getDescriptionsFromServer, getUsersFromServer, getUserOrganizationsFromServer, getUserFromToken, getFormsFromServer } from '../store';
 
 import Nav from './Nav';
 import Users from './User/Users';
 import UserInfo from './User/UserInfo';
 import OrganizationList from './Organization/OrganizationList';
 import OrganizationInfo from './Organization/OrganizationInfo';
-import LoginForm from './User/LoginForm';
+import LoginForm from './User/LoginForm'; 
 
 
 class App extends React.Component {
   componentDidMount() {
-    const { loadOrganizations, loadUsers, loadDescriptions, loadUserOrganizations, loadUser } = this.props;
+    const { loadOrganizations, loadUsers, loadDescriptions, loadUserOrganizations, loadUser, loadForm } = this.props;
     loadOrganizations();
     loadUsers();
     loadDescriptions();
     loadUserOrganizations();
     loadUser();
+    loadForm();
   }
 
   render(){
@@ -54,6 +55,7 @@ const mapDisptach = (dispatch) => {
     loadUsers: () => dispatch(getUsersFromServer()),
     loadDescriptions: () => dispatch(getDescriptionsFromServer()),
     loadUserOrganizations:()=>dispatch(getUserOrganizationsFromServer()),
+    loadForm: () =>dispatch(getFormsFromServer()),
     loadUser: () =>{
       const token = window.localStorage.getItem('token')
       if(token){
