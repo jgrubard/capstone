@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 
 const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownForms, forms, deleteUser, userorganizations, deleteForm }) => {
   if (!organization) return null
-  console.log(ownUsers)
   return (
     <div>
       <h2>{organization.name}</h2>
@@ -45,7 +44,6 @@ const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownF
 
 const mapState = ({ organizations, users, userorganizations, forms }, { id }) => {
   const organization = organizations.find(org => org.id === id);
-
   const ownUsers = userorganizations.reduce((memo, userOrg) => {
     const user = users.find(user => user.id === userOrg.userId && id === userOrg.organizationId)
     if (!memo.includes(user) && user) {

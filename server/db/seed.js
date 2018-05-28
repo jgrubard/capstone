@@ -139,6 +139,10 @@ const seed = () => {
         // formId: form4.id
       }),
       UserOrganization.create({
+        userId: admin.id,
+        organizationId: cliffs.id
+      }),
+      UserOrganization.create({
         userId: jeremy.id,
         organizationId: cliffs.id
       }),

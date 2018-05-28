@@ -6,7 +6,7 @@ const DELETE_USERORGANIZATION = 'DELETE_USERORGANIZATION'
 
 
 const getUserOrganizations = userorganizations => ({ type: GET_USERORGANIZATIONS, userorganizations });
-const createUserOrganization =userorganization=>({type:CREATE_USERORGANIZATION,userorganization  })
+const createUserOrganization =userorganization => ({ type:CREATE_USERORGANIZATION, userorganization });
 const deleteUserOrganization = id => ({ type: DELETE_USERORGANIZATION, id });
 
 export const getUserOrganizationsFromServer = () => {
