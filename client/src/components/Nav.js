@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store'
 
-const Nav = ({ user, loggedIn, orgId, logout }) => {
+const Nav = ({ user, loggedIn,logout, orgId }) => {
   const url = location.hash.slice(1)
   return (
     <div>
@@ -38,7 +38,7 @@ const Nav = ({ user, loggedIn, orgId, logout }) => {
 const mapState = ({ user, userorganizations, logout }) => {
   const loggedIn = !!user.id;
   const entry = loggedIn && userorganizations.find( (ent) => {
-    ent.userId === user.id
+    return ent.userId === user.id
   });
   const orgId = entry && entry.organizationId;
   return { user, loggedIn, orgId }

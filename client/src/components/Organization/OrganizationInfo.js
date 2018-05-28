@@ -28,7 +28,6 @@ const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers }) =>
 
 const mapState = ({ organizations, users, userorganizations }, { id }) => {
   const organization = organizations.find(org => org.id === id);
-  
   const ownUsers = userorganizations.reduce((memo, userOrg) => {
     const user = users.find(user => user.id === userOrg.userId)
     if (!memo.includes(user)) {
