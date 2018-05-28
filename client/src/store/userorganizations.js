@@ -4,7 +4,7 @@ const GET_USERORGANIZATIONS = 'GET_USERORGANIZATIONS';
 const CREATE_USERORGANIZATION = 'CREATE_USERORGANIZATION'
 
 const getUserOrganizations = userorganizations => ({ type: GET_USERORGANIZATIONS, userorganizations });
-const createUserOrganization =userorganization=>({type:CREATE_USERORGANIZATION,userorganization  })
+const createUserOrganization = userorganization => ({ type: CREATE_USERORGANIZATION, userorganization })
 
 export const getUserOrganizationsFromServer = () => {
   return dispatch => {
