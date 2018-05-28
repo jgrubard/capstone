@@ -35,7 +35,7 @@ const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownF
         ))
       }
       </ul>
-      <AddForm />
+      <AddForm organization={organization}/>
     </div>
   );
 }

@@ -1,28 +1,17 @@
 /* eslint-disable */
 import React from 'react';
 import { connect } from 'react-redux';
-import { createUserOrganizationOnServer } from '../../store';
+import { createUserOrganizationOnServer, createFormOnServer } from '../../store';
 
 class AddForm extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        email: '',
-        findUser:null,
-        errormessage: false
+        name: '',
       }
       this.onChange = this.onChange.bind(this);
       this.onSave = this.onSave.bind(this);
-      this.onSearch=this.onSearch.bind(this)
     }
-
-    // componentWillReceiveProps(nextProps) {
-    //   const { user } = nextProps;
-    //   if (user.id) {
-    //     const { id, firstName, lastName, email, password } = user
-    //     this.setState({ id, firstName, lastName, email, password })
-    //   }
-    // }
 
     onChange(ev) {
       const change = {}
@@ -30,34 +19,23 @@ class AddForm extends React.Component {
       this.setState(change);
     }
 
-    onSearch(ev){
-      const findUser=this.props.users.find(user=>user.email===this.state.email)
-      if(findUser){this.setState({findUser:findUser});}
-      else{this.setState({errormessage:true})}
-    }
-
     onSave(ev) {
       ev.preventDefault()
-      const { updateUser } = this.props;
-      const userId = this.state.findUser.id;
+      const { createForm } = this.props;
+      const name = this.state.name;
       const organizationId = this.props.organization.id;
-      console.log(userId,organizationId)
-      this.props.createUserOrganization({userId:userId,organizationId:organizationId});
-      this.setState({errormessage:false});
-      this.setState({findUser:null});
-
+      this.props.createForm({ name: name, organizationId: organizationId });
+      this.setState({ name: '' });
     }
 
     render() {
-      const { onChange, onSave, onSearch } = this;
-      const { user, users, organization } = this.props
-      const { email, findUser, errormessage} = this.state;
+      const { onChange, onSave } = this;
+      const { organization } = this.props
+      const { name} = this.state;
       return (
         <div>
           <div>
-          <input name='email' value={email} onChange={onChange}></input><button onClick={onSearch}>Search by email</button>
-          {/* <button onClick={onSave}>Save</button> */}
-          {findUser? <div>{findUser.firstName} {findUser.lastName}<button onClick={onSave}>Add {findUser.firstName} to {organization.name}</button></div>: errormessage? <p>Can't find this user</p>:null  }
+          <input name='name' value={name} onChange={onChange}></input><button onClick={onSave}>Add Form/Category</button>
           </div>
         </div>
       )
@@ -70,7 +48,7 @@ class AddForm extends React.Component {
 
   const mapDispatch = (dispatch) => {
     return {
-      createUserOrganization: (userorganization) => dispatch(createUserOrganizationOnServer(userorganization))
+      createForm: (form) => dispatch(createFormOnServer(form))
     }
   }
 
