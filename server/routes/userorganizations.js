@@ -14,3 +14,10 @@ router.post('/', (req, res, next) => {
     .then(userorganization => res.send(userorganization))
     .catch(next);
 });
+
+router.delete('/:id', (req, res, next) => {
+  UserOrganization.findById(req.params.id)
+    .then(userorganization => userorganization.destroy())
+    .then(() => res.sendStatus(204))
+    .catch(next);
+});
