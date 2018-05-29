@@ -32,6 +32,14 @@ export const getUserFromToken = token => {
   };
 };
 
+export const logout = () => {
+  return (dispatch) => {
+    window.localStorage.removeItem('token');
+    dispatch(gotUser({}));
+    location.hash='/login'
+  }
+}
+
 const store = (state = {}, action) => {
   switch (action.type) {
   case GOT_USER:

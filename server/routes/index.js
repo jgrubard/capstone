@@ -20,6 +20,6 @@ router.use('/users', require('./users'));
 router.use('/descriptions', require('./descriptions'));
 router.use('/sessions', require('./sessions'));
 router.use('/userorganizations', require('./userorganizations'))
-router.use('/organizationRequests', require('./organizationRequests'))
+router.use('/forms', require('./forms'));
 
 module.exports = router;

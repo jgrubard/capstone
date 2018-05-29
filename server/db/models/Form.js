@@ -1,13 +1,13 @@
 const conn = require('../conn');
 const { Sequelize } = conn;
 
-const Description = conn.define('description', {
+const Form = conn.define('form', {
   id: {
     type: Sequelize.UUID,
     primaryKey: true,
     defaultValue: Sequelize.UUIDV4
   },
-  description: {
+  name: {
     type: Sequelize.STRING,
     allowNull: false
   }
@@ -15,4 +15,4 @@ const Description = conn.define('description', {
   timestamps: false
 });
 
-module.exports = Description;
+module.exports = Form;
