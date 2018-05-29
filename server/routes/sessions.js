@@ -8,6 +8,13 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
+router.post('/signup', (req, res, next) => {
+  User.create(req.body)
+    .then(user => User.authenticate({ email: req.body.email, password: req.body.password }))
+    .then(token => res.send(token))
+    .catch(next);
+});
+
 router.get('/:token', (req, res, next) => {
   User.exchangeTokenForUser(req.params.token)
     .then(user => res.send(user))

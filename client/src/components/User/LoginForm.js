@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { attemptLogin, updateUserOnServer } from '../../store'
+import { attemptLogin, signup } from '../../store'
 import { Input, Button, Progress } from 'mdbreact';
 import axios from 'axios';
 
@@ -67,7 +67,7 @@ class LoginForm extends React.Component {
       }, {})
       this.setState({ errors })
       if (Object.keys(errors).length) return;
-      attemptSignup({ firstName, lastName, email, password, userStatus }, 'signup')
+      attemptSignup({ firstName, lastName, email, password, userStatus })
     }
     else {
       attemptLogin({ email, password })
@@ -231,7 +231,7 @@ const mapState = ({ users, user }) => {
 const mapDispatch = (dispatch, { history }) => {
   return {
     attemptLogin: (credentials) => dispatch(attemptLogin(credentials, history)),
-    attemptSignup: (user, page) => dispatch(updateUserOnServer(user, page)),
+    attemptSignup: user => dispatch(signup(user)),
   }
 }
 
