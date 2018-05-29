@@ -18,7 +18,8 @@ class LoginForm extends React.Component {
       lastName: '',
       email: '',
       password: '',
-      errors: {}
+      errors: {},
+      userStatus: 'admin'
     }
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
@@ -54,7 +55,7 @@ class LoginForm extends React.Component {
   onSubmit(ev) {
     ev.preventDefault()
     const url = location.hash.slice(1)
-    const { firstName, lastName, email, password } = this.state
+    const { firstName, lastName, email, password, userStatus } = this.state
     const { attemptLogin, attemptSignup } = this.props
     if (url === '/signup') {
       const errors = Object.keys(this.validators).reduce((memo, key) => {
@@ -66,7 +67,7 @@ class LoginForm extends React.Component {
       }, {})
       this.setState({ errors })
       if (Object.keys(errors).length) return;
-      attemptSignup({ firstName, lastName, email, password }, 'signup')
+      attemptSignup({ firstName, lastName, email, password, userStatus }, 'signup')
     }
     else {
       attemptLogin({ email, password })
@@ -75,7 +76,7 @@ class LoginForm extends React.Component {
   render() {
     const url = location.hash.slice(1)
     const { onChange, onSubmit } = this
-    const { user } = this.props
+    const { user} = this.props
     const { firstName, lastName, password, email, errors } = this.state
     const passwordTestStrong = passwordRegexStrong.test(password)
     const passwordTestMedium = passwordRegexMedium.test(password)
@@ -83,7 +84,7 @@ class LoginForm extends React.Component {
       <div className="login-form">
         {
           url === '/signup' ?
-            <h1> Sign Up </h1>
+            <h1> Sign Up to Create an Organization </h1>
             :
             <h1> Log In </h1>
         }
@@ -219,6 +220,7 @@ class LoginForm extends React.Component {
   }
 }
 const mapState = ({ users, user }) => {
+
   const emails = users.reduce((memo, user) => {
     memo.push(user.email)
     return memo
