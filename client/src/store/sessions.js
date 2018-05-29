@@ -20,6 +20,23 @@ export const attemptLogin = (credentials, history) => {
   };
 };
 
+export const signup = (userInfo, history) => {
+  return dispatch => {
+    return axios.post('/api/sessions/signup', userInfo)
+      .then(result => result.data)
+      .then(token => {
+        window.localStorage.setItem('token', token);
+        return token;
+      })
+      .then(token => dispatch(getUserFromToken(token)))
+      .then(() => history.push('/'))
+      .catch(err => {
+        window.localStorage.removeItem('token');
+        return err;
+      })
+  }
+}
+
 export const getUserFromToken = token => {
   return dispatch => {
     return axios.get(`/api/sessions/${token}`)
