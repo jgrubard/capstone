@@ -4,7 +4,7 @@ const { User } = require('../db').models;
 router.use((req, res, next) => {
   const token = req.headers.authorization;
 
-  if(!token) {
+  if (!token) {
     return next();
   }
   User.exchangeTokenForUser(token)
