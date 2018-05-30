@@ -56,8 +56,6 @@ class OrganizationForm extends Component {
   render() {
     const { handleChange, onSave, addPhoto } = this;
     const { name, organization_type, address, city, state, zip, contact_name, contact_phone } = this.state;
-
-    console.log(this.state)
     return (
       <div>
         <div>Organization Name<input name='name' value={name} onChange={handleChange} /></div>
