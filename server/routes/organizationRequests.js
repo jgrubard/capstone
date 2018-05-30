@@ -15,15 +15,15 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
-// router.put('/:id', (req, res, next) => {
-//   OrganizationRequest.findById(req.params.id)
-//     .then(organizationRequest => {
-//       Object.assign(organizationRequest, req.body)
-//       return organizationRequest.save()
-//     })
-//     .then(organizationRequest => res.send(organizationRequest))
-//     .catch(next);
-// });
+router.put('/:id', (req, res, next) => {
+  OrganizationRequest.findById(req.params.id)
+    .then(organizationRequest => {
+      Object.assign(organizationRequest, req.body)
+      return organizationRequest.save()
+    })
+    .then(organizationRequest => res.send(organizationRequest))
+    .catch(next);
+});
 
 // router.delete('/:id', (req, res, next) => {
 //   OrganizationRequest.findById(req.params.id)
