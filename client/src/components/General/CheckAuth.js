@@ -25,7 +25,7 @@ const CheckAuth = (Component) => {
 
   const mapState = ({user}) => {
     const token = window.localStorage.getItem('token')
-    const isAuthenticated = token && user.userStatus != 'user' ? true : false
+    const isAuthenticated = token && user.userStatus !== 'user' ? true : false
     return { isAuthenticated }
   }
 
