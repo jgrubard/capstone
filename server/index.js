@@ -4,7 +4,7 @@ const { conn } = require('./db');
 const path = require('path');
 require('dotenv').config();
 
-app.use(require('body-parser').json());
+app.use(require('body-parser').json({ limit: '10mb' }));
 
 app.use(express.static(path.join(__dirname, '../client/public')));
 app.use('/vendor', express.static(path.join(__dirname, '../node_modules')));

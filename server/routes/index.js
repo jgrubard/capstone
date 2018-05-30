@@ -4,7 +4,7 @@ const { User } = require('../db').models;
 router.use((req, res, next) => {
   const token = req.headers.authorization;
 
-  if(!token) {
+  if (!token) {
     return next();
   }
   User.exchangeTokenForUser(token)
@@ -21,5 +21,6 @@ router.use('/descriptions', require('./descriptions'));
 router.use('/sessions', require('./sessions'));
 router.use('/userorganizations', require('./userorganizations'))
 router.use('/forms', require('./forms'));
+router.use('/organizationRequests', require('./organizationRequests'))
 
 module.exports = router;

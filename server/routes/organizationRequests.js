@@ -9,11 +9,11 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-// router.post('/', (req, res, next) => {
-//   OrganizationRequest.create(req.body)
-//     .then(organizationRequest => res.send(organizationRequest))
-//     .catch(next);
-// });
+router.post('/', (req, res, next) => {
+  OrganizationRequest.create(req.body)
+    .then(organizationRequest => res.send(organizationRequest))
+    .catch(next);
+});
 
 // router.put('/:id', (req, res, next) => {
 //   OrganizationRequest.findById(req.params.id)

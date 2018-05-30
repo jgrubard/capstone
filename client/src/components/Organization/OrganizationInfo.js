@@ -11,6 +11,7 @@ const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownF
   return (
     <div>
       <h2>{organization.name}</h2>
+      {organization.image && <img src={organization.image} style={{ height: '200px', width: 'auto'}}/>}
       <OrganizationForm organization={organization} />
       <button onClick={() => deleteOrganization(id)}>Delete Organization</button>
       <h4>Users of this organization</h4>
