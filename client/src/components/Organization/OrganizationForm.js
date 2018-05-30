@@ -5,7 +5,7 @@ import { updateOrganizationOnServer } from '../../store';
 class OrganizationForm extends Component {
   constructor(props) {
     super(props);
-    const { organization} = props;
+    const { organization } = props;
     this.state = {
       id: organization ? organization.id : undefined,
       name: organization ? organization.name : '',
@@ -16,11 +16,18 @@ class OrganizationForm extends Component {
       state: organization ? organization.state : '',
       zip: organization ? organization.zip : '',
       contact_name: organization ? organization.contact_name : '',
-      contact_phone: organization ? organization.contact_phone: ''
+      contact_phone: organization ? organization.contact_phone: '',
+      image: organization ? organization.contact_phone: ''
     }
     this.handleChange = this.handleChange.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.addPhoto = this.addPhoto.bind(this);
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   const { organization } = nextProps;
+  //   this.setState(organization);
+  // }
 
   handleChange(ev) {
     const change = {}
@@ -28,20 +35,29 @@ class OrganizationForm extends Component {
     this.setState(change);
   }
 
+  addPhoto(ev) {
+    const file = ev.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.setState({ image: reader.result });
+    }
+    reader.readAsDataURL(file);
+  }
+
   onSave(ev) {
     ev.preventDefault();
-    const { organization }=this.props;
+    const { organization } = this.props;
     const { createOrUpdateOrganization } = this.props;
-    const { id, name, organization_type, address, city, state, zip, contact_name, contact_phone  } = this.state;
-    createOrUpdateOrganization({ id, name, organization_type, address, city, state, zip, contact_name, contact_phone  });
-    this.setState({name:'', organization_type:'', address:'', city:'', state:'', zip:'', contact_name:'', contact_phone:''})
+    const { id, name, organization_type, address, city, state, zip, contact_name, contact_phone, image } = this.state;
+    createOrUpdateOrganization({ id, name, organization_type, address, city, state, zip, contact_name, contact_phone, image });
+    // this.setState({name: '', organization_type: '', address: '', city: '', state: '', zip: '', contact_name: '', contact_phone: ''})
   }
 
   render() {
-    const { handleChange, onSave } = this;
+    const { handleChange, onSave, addPhoto } = this;
     const { name, organization_type, address, city, state, zip, contact_name, contact_phone } = this.state;
-      
 
+    console.log(this.state)
     return (
       <div>
         <div>Organization Name<input name='name' value={name} onChange={handleChange} /></div>
@@ -52,7 +68,8 @@ class OrganizationForm extends Component {
         <div>Zip<input name='zip' value={zip} onChange={handleChange} /></div>
         <div>Contact Name<input name='contact_name' value={contact_name} onChange={handleChange} /></div>
         <div>Contact Phone<input name='contact_phone' value={contact_phone} onChange={handleChange} /></div>
-        <button onClick={onSave}>Submit</button>
+        <div>Add Image<input type='file' onChange={addPhoto}/></div>
+        <div><button onClick={onSave}>Submit</button></div>
       </div>
     );
   }

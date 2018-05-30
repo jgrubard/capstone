@@ -38,6 +38,9 @@ const Organization = conn.define('organization', {
   contact_phone: {
     type: Sequelize.STRING,
     // allowNull: false
+  },
+  image: {
+    type: Sequelize.TEXT
   }
 }, {
   timestamps: false
