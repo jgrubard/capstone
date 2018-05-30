@@ -11,10 +11,10 @@ const MasterNav = ({ user, isMaster }) => {
               (
                 <ul className='main-nav' >
                   <li>
-                    <Link to='/master/organizations'>Organizations</Link>
+                    <Link to='/organizations'>Organizations</Link>
                   </li>
                   <li>
-                    <Link to='/master/users'>Users</Link>
+                    <Link to='/users'>Users</Link>
                   </li>
                 </ul>
               ) : null
