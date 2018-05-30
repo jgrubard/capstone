@@ -14,6 +14,7 @@ import UserInfo from './User/UserInfo';
 import OrganizationList from './Organization/OrganizationList';
 import OrganizationInfo from './Organization/OrganizationInfo';
 import LoginForm from './User/LoginForm'; 
+import Welcome from './General/Welcome'
 
 
 
@@ -31,23 +32,23 @@ class App extends React.Component {
   render(){
     const OrganizationsMaster = CheckMaster(OrganizationList)
     const UsersMaster = CheckMaster(Users)
-    const NavMaster = CheckMaster(MasterNav)
     return (
       <Router>
         <div>
           <div className="container">
             <Nav />
             <div id="body-elements">
-            <NavMaster />
+            <MasterNav />
             <Switch>
             {/* USER ROUTES */}
-            <Route exact path='/master/users' component={UsersMaster} />
+            <Route exact path='/users' component={UsersMaster} />
             <Route exact path='/users/:id' component={({ match }) => <UserInfo id={ match.params.id } />} />
             {/* ORGANIZATION ROUTES */}
-            <Route exact path='/master/organizations' component={OrganizationsMaster} />
+            <Route exact path='/organizations' component={OrganizationsMaster} />
             <Route exact path='/organizations/:id' component={({ match, history }) => <OrganizationInfo id={ match.params.id } history={history} />} />
+            <Route exact path='/' component={Welcome} />
             {/* ADMIN ROUTES */}
-            <Route exact path ='/master' component={NavMaster}/>
+            <Route exact path ='/master' component={OrganizationsMaster}/>
             {/* AUTH ROUTES */}
             <Route exact path='/login' component={LoginForm} />
             <Route exact path='/signup' component={LoginForm} />

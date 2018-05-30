@@ -14,9 +14,11 @@ const Nav = ({ user, loggedIn,logout, orgId }) => {
             loggedIn ?
               (
                 <ul className='main-nav' >
+                { user.userStatus === 'admin' ?
                   <li>
-                    <Link to={`/organizations/${orgId}`}>Home</Link>
-                  </li>
+                    <Link to={`/organizations/${orgId}`}>Dashboard</Link>
+                  </li> : null
+                  }
                   <li >
                     <span onClick={logout}>Log out</span>
                   </li>
