@@ -29,6 +29,7 @@ module.exports = {
     Organization,
     UserOrganization,
     User,
-    Form
+    Form,
+    OrganizationRequest
   }
 };
