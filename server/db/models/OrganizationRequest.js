@@ -6,6 +6,10 @@ const OrganizationRequest = conn.define('organization_request', {
     type: Sequelize.UUID,
     primaryKey: true,
     defaultValue: Sequelize.UUIDV4
+  },
+  status: {
+    type: Sequelize.STRING,
+    defaultValue: 'pending'
   }
 }, {
   timestamps: false
