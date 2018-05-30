@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { getOrganizationsFromServer, getDescriptionsFromServer, getUsersFromServer, getUserOrganizationsFromServer, getUserFromToken, getFormsFromServer } from '../store';
+import { getOrganizationsFromServer, getDescriptionsFromServer, getUsersFromServer, getUserOrganizationsFromServer, getUserFromToken, getFormsFromServer, getOrganizationRequestsFromServer } from '../store';
 
 import CheckMaster from './General/CheckMaster'
 import CheckAuth from './General/CheckAuth'
@@ -13,19 +13,20 @@ import Users from './User/Users';
 import UserInfo from './User/UserInfo';
 import OrganizationList from './Organization/OrganizationList';
 import OrganizationInfo from './Organization/OrganizationInfo';
-import LoginForm from './User/LoginForm'; 
+import LoginForm from './User/LoginForm';
 
 
 
 class App extends React.Component {
   componentDidMount() {
-    const { loadOrganizations, loadUsers, loadDescriptions, loadUserOrganizations, loadUser, loadForm } = this.props;
+    const { loadOrganizations, loadUsers, loadDescriptions, loadUserOrganizations, loadUser, loadForm, loadOrganizationRequests } = this.props;
     loadOrganizations();
     loadUsers();
     loadDescriptions();
     loadUserOrganizations();
     loadUser();
     loadForm();
+    loadOrganizationRequests();
   }
 
   render(){
@@ -68,8 +69,9 @@ const mapDisptach = (dispatch) => {
     loadOrganizations: () => dispatch(getOrganizationsFromServer()),
     loadUsers: () => dispatch(getUsersFromServer()),
     loadDescriptions: () => dispatch(getDescriptionsFromServer()),
-    loadUserOrganizations:()=>dispatch(getUserOrganizationsFromServer()),
-    loadForm: () =>dispatch(getFormsFromServer()),
+    loadUserOrganizations:() => dispatch(getUserOrganizationsFromServer()),
+    loadForm: () => dispatch(getFormsFromServer()),
+    loadOrganizationRequests: () => dispatch(getOrganizationRequestsFromServer()),
     loadUser: () =>{
       const token = window.localStorage.getItem('token')
       if (token){
