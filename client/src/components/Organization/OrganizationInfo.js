@@ -4,6 +4,7 @@ import { deleteOrganizationFromServer, deleteUserFromServer, deleteUserOrganizat
 import OrganizationForm from './OrganizationForm';
 import AddUserForm from '../User/AddUserForm';
 import AddForm from './AddForm';
+import OrganizationRequests from './OrganizationRequests';
 import { Link } from 'react-router-dom';
 
 const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownForms, forms, deleteUser, userorganizations, deleteForm }) => {
@@ -38,6 +39,10 @@ const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownF
         ))
       }
       </ul>
+      <hr />
+      <h3>Pending Requests</h3>
+      <OrganizationRequests organization={organization} />
+      <hr />
       <AddForm organization={organization}/>
     </div>
   );
