@@ -3,10 +3,12 @@ import axios from 'axios';
 const GET_ORGANIZATION_REQUESTS = 'GET_ORGANIZATION_REQUESTS';
 const CREATE_ORGANIZATION_REQUEST = 'CREATE_ORGANIZATION_REQUEST';
 const UPDATE_ORGANIZATION_REQUEST = 'UPDATE_ORGANIZATION_REQUEST';
+const DELETE_ORGANIZATION_REQUEST = 'DELETE_ORGANIZATION_REQUEST';
 
 const getOrganizationRequests = organizationRequests => ({ type: GET_ORGANIZATION_REQUESTS, organizationRequests });
 const createOrganizationRequest = organizationRequest => ({ type: CREATE_ORGANIZATION_REQUEST, organizationRequest });
 const updateOrganizationRequest = organizationRequest => ({ type: UPDATE_ORGANIZATION_REQUEST, organizationRequest });
+const deleteOrganizationRequest = id => ({ type: DELETE_ORGANIZATION_REQUEST, id });
 
 export const getOrganizationRequestsFromServer = () => {
   return dispatch => {
@@ -33,6 +35,13 @@ export const updateOrganizationRequestOnServer = (organizationRequest) => {
   };
 };
 
+export const deleteOrganizationRequestFromServer = (id) => {
+  return dispatch => {
+    return axios.delete(`/api/organizationRequests/${id}`)
+      .then(() => dispatch(deleteOrganizationRequest(id)))
+  }
+}
+
 const store = (state = [], action) => {
   let organizationRequests;
   switch (action.type) {
@@ -41,8 +50,11 @@ const store = (state = [], action) => {
     case CREATE_ORGANIZATION_REQUEST:
       return [ ...state, action.organizationRequest ];
     case UPDATE_ORGANIZATION_REQUEST:
-      organizationRequests = state.filter(request => request.id === action.organizationRequest.id)
+      organizationRequests = state.filter(request => request.id !== action.organizationRequest.id)
       return [ ...organizationRequests, action.organizationRequest ];
+    case DELETE_ORGANIZATION_REQUEST:
+      organizationRequests = state.filter(request => request.id !== action.id)
+      return organizationRequests;
     default:
       return state;
   }
