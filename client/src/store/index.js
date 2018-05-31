@@ -6,7 +6,7 @@ import organizations from './organizations';
 import users from './users';
 import descriptions from './descriptions';
 import user from './sessions';
-import userOrganizations from './userorganizations';
+import userOrganizations from './userOrganizations';
 import forms from './forms'
 import organizationRequests from './organizationRequests';
 
