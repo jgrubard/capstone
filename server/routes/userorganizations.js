@@ -5,29 +5,29 @@ const { UserOrganization } = require('../db').models;
 
 router.get('/', (req, res, next) => {
   UserOrganization.findAll()
-    .then(userorganizations=> res.send(userorganizations))
+    .then(userOrganizations => res.send(userOrganizations))
     .catch(next);
 });
 
 router.post('/', (req, res, next) => {
   UserOrganization.create(req.body)
-    .then(userorganization => res.send(userorganization))
+    .then(userOrganization => res.send(userOrganization))
     .catch(next);
 });
 
 // router.put('/:id', (req, res, next) => {
 //   UserOrganization.findById(req.params.id)
-//     .then(userorganization => {
-//       Object.assign(userorganization, req.body);
-//       return userorganization.save();
+//     .then(userOrganization => {
+//       Object.assign(userOrganization, req.body);
+//       return userOrganization.save();
 //     })
-//     .then(userorganization => res.send(userorganization))
+//     .then(userOrganization => res.send(userOrganization))
 //     .catch(next);
 // });
 
 router.delete('/:id', (req, res, next) => {
   UserOrganization.findById(req.params.id)
-    .then(userorganization => userorganization.destroy())
+    .then(userOrganization => userOrganization.destroy())
     .then(() => res.sendStatus(204))
     .catch(next);
 });
