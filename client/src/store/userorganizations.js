@@ -4,7 +4,6 @@ const GET_USER_ORGANIZATIONS = 'GET_USER_ORGANIZATIONS';
 const CREATE_USER_ORGANIZATION = 'CREATE_USER_ORGANIZATION';
 const DELETE_USER_ORGANIZATION = 'DELETE_USER_ORGANIZATION';
 
-
 const getUserOrganizations = userOrganizations => ({ type: GET_USER_ORGANIZATIONS, userOrganizations });
 const createUserOrganization = userOrganization => ({ type: CREATE_USER_ORGANIZATION, userOrganization });
 const deleteUserOrganization = id => ({ type: DELETE_USER_ORGANIZATION, id });
