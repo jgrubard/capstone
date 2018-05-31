@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteOrganizationFromServer, /*deleteUserFromServer, deleteUserOrganizationFromServer,*/ deleteFormFromServer, deleteUserOrganizationFromServer } from '../../store';
+import { deleteOrganizationFromServer, deleteFormFromServer, deleteUserOrganizationFromServer } from '../../store';
 import OrganizationForm from './OrganizationForm';
 import AddUserForm from '../User/AddUserForm';
 import AddForm from './AddForm';
 import OrganizationRequests from './OrganizationRequests';
 import { Link } from 'react-router-dom';
 
-const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownForms, forms, /*deleteUser,*/ removeUser, userorganizations, deleteForm }) => {
+const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownForms, forms, removeUser, userorganizations, deleteForm }) => {
   if (!organization) return null
   return (
     <div>
@@ -65,14 +65,6 @@ const mapDispatch = (dispatch, { history }) => {
   return {
     deleteOrganization: (id) => dispatch(deleteOrganizationFromServer(id, history)),
     deleteForm: (id) => dispatch(deleteFormFromServer(id, history)),
-    // deleteUser: (id, userorganizations) => {
-      // userorganizations.forEach(userOrg => {
-        // if(userOrg.userId === id) {
-          // dispatch(deleteUserOrganizationFromServer(userOrg.id))
-        // }
-      // })
-      // dispatch(deleteUserFromServer(id))
-    // }
     removeUser: (userId, organizationId, userOrgs) => {
       const userOrg = userOrgs.find(userOrg => userOrg.userId === userId && userOrg.organizationId === organizationId)
       dispatch(deleteUserOrganizationFromServer(userOrg.id))
