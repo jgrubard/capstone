@@ -25,9 +25,9 @@ router.put('/:id', (req, res, next) => {
     .catch(next);
 });
 
-// router.delete('/:id', (req, res, next) => {
-//   OrganizationRequest.findById(req.params.id)
-//     .then(organizationRequest => organizationRequest.destroy())
-//     .then(() => res.sendStatus(204))
-//     .catch(next);
-// });
+router.delete('/:id', (req, res, next) => {
+  OrganizationRequest.findById(req.params.id)
+    .then(organizationRequest => organizationRequest.destroy())
+    .then(() => res.sendStatus(204))
+    .catch(next);
+});

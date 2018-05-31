@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateOrganizationRequestOnServer } from '../../store';
+import { updateOrganizationRequestOnServer, deleteOrganizationRequestFromServer } from '../../store';
 
 class OrganizationRequests extends Component {
   constructor() {
@@ -21,7 +21,7 @@ class OrganizationRequests extends Component {
   }
 
   render() {
-    const { ownUsers, organization, organizationRequests } = this.props;
+    const { ownUsers, organization, organizationRequests, deleteRequest } = this.props;
     const { accept, decline } = this;
     return (
       <div>
@@ -34,6 +34,7 @@ class OrganizationRequests extends Component {
                 {user.fullName}
                 <button onClick={() => accept(id, userId, organizationId)}>Accept</button>
                 <button onClick={() => decline(id, userId, organizationId)}>Decline</button>
+                <button onClick={() => deleteRequest(id)}>Delete Request</button>
                 { this.state.requestStatus === 'accepted' && 'Accepted' }
                 { this.state.requestStatus === 'declined' && 'Declined' }
               </div>
@@ -66,6 +67,7 @@ const mapState = ({ users, organizations, organizationRequests }, { organization
 const mapDispatch = dispatch => {
   return {
     updateRequest: (orgReq) => dispatch(updateOrganizationRequestOnServer(orgReq)),
+    deleteRequest: (id) => dispatch(deleteOrganizationRequestFromServer(id)),
   }
 }
 
