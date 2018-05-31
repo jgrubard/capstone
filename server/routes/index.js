@@ -19,7 +19,7 @@ router.use('/organizations', require('./organizations'));
 router.use('/users', require('./users'));
 router.use('/descriptions', require('./descriptions'));
 router.use('/sessions', require('./sessions'));
-router.use('/userOrganizations', require('./userOrganizations'))
+router.use('/userorganizations', require('./userorganizations'))
 router.use('/forms', require('./forms'));
 router.use('/organizationRequests', require('./organizationRequests'))
 
