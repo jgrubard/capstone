@@ -14,6 +14,8 @@ Description.belongsTo(Organization);
 Description.belongsTo(Form);
 Form.hasMany(Description);
 
+User.belongsTo(Organization, { as: 'checkedIn' })
+
 Form.belongsTo(Organization);
 
 UserOrganization.belongsTo(User);

@@ -1,12 +1,14 @@
 import axios from 'axios';
 
 const GET_USERORGANIZATIONS = 'GET_USERORGANIZATIONS';
-const CREATE_USERORGANIZATION = 'CREATE_USERORGANIZATION'
-const DELETE_USERORGANIZATION = 'DELETE_USERORGANIZATION'
+const CREATE_USERORGANIZATION = 'CREATE_USERORGANIZATION';
+// const UPDATE_USERORGANIZATION = 'UPDATE_USERORGANIZATION';
+const DELETE_USERORGANIZATION = 'DELETE_USERORGANIZATION';
 
 
 const getUserOrganizations = userorganizations => ({ type: GET_USERORGANIZATIONS, userorganizations });
-const createUserOrganization =userorganization => ({ type:CREATE_USERORGANIZATION, userorganization });
+const createUserOrganization = userorganization => ({ type: CREATE_USERORGANIZATION, userorganization });
+// const updateUserOrganization = userorganization => ({ type: UPDATE_USERORGANIZATION, userorganization });
 const deleteUserOrganization = id => ({ type: DELETE_USERORGANIZATION, id });
 
 export const getUserOrganizationsFromServer = () => {
@@ -18,12 +20,22 @@ export const getUserOrganizationsFromServer = () => {
 };
 
 export const createUserOrganizationOnServer = (userorganization) => {
+  console.log('thunk:', userorganization)
   return dispatch => {
     return axios.post('/api/userorganizations', userorganization)
       .then(result => result.data)
       .then(userorganization => dispatch(createUserOrganization(userorganization)))
   };
 };
+
+// export const UpdateUserOrganizationOnServer = (userorganization) => {
+//   const { id } = userorganization;
+//   return dispatch => {
+//     return axios.put(`/api/userorganizations/${id}`, userorganization)
+//       .then(result => result.data)
+//       .then(userorganization => dispatch(updateUserOrganization(userorganization)))
+//   };
+// };
 
 export const deleteUserOrganizationFromServer = (id) => {
   return dispatch => {

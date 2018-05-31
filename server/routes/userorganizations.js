@@ -15,6 +15,16 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
+// router.put('/:id', (req, res, next) => {
+//   UserOrganization.findById(req.params.id)
+//     .then(userorganization => {
+//       Object.assign(userorganization, req.body);
+//       return userorganization.save();
+//     })
+//     .then(userorganization => res.send(userorganization))
+//     .catch(next);
+// });
+
 router.delete('/:id', (req, res, next) => {
   UserOrganization.findById(req.params.id)
     .then(userorganization => userorganization.destroy())
@@ -22,9 +32,9 @@ router.delete('/:id', (req, res, next) => {
     .catch(next);
 });
 
-router.delete('/:id', (req, res, next) => {
-  User.findById(req.params.id)
-    .then(user => user.destroy())
-    .then(() => res.sendStatus(204))
-    .catch(next);
-});
+// router.delete('/:id', (req, res, next) => {
+//   User.findById(req.params.id)
+//     .then(user => user.destroy())
+//     .then(() => res.sendStatus(204))
+//     .catch(next);
+// });

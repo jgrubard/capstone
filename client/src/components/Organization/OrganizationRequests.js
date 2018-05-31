@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateOrganizationRequestOnServer, deleteOrganizationRequestFromServer } from '../../store';
+import { updateOrganizationRequestOnServer, deleteOrganizationRequestFromServer, createUserOrganizationOnServer } from '../../store';
 
 class OrganizationRequests extends Component {
   constructor() {
@@ -11,18 +11,22 @@ class OrganizationRequests extends Component {
   }
 
   accept(id, userId, organizationId) {
+    const { updateRequest, createUserOrganization } = this.props;
     this.setState({ requestStatus: 'accepted' });
-    this.props.updateRequest({ id, userId, organizationId, status: 'accepted' })
+    createUserOrganization({ userId, organizationId });
+    updateRequest({ id, userId, organizationId, status: 'accepted' })
   }
 
   decline(id, userId, organizationId) {
+    const { updateRequest } = this.props;
     this.setState({ requestStatus: 'declined' });
-    this.props.updateRequest({ id, userId, organizationId, status: 'declined' })
+    updateRequest({ id, userId, organizationId, status: 'declined' })
   }
 
   render() {
     const { ownUsers, organization, organizationRequests, deleteRequest } = this.props;
     const { accept, decline } = this;
+    const { requestStatus } = this.state;
     return (
       <div>
         {
@@ -30,14 +34,16 @@ class OrganizationRequests extends Component {
             const ownRequest = organizationRequests.find(request => request.userId === user.id && request.organizationId === organization.id);
             const { id, userId, organizationId } = ownRequest;
             return (
-              <div key={user.id}>
-                {user.fullName}
-                <button onClick={() => accept(id, userId, organizationId)}>Accept</button>
-                <button onClick={() => decline(id, userId, organizationId)}>Decline</button>
-                <button onClick={() => deleteRequest(id)}>Delete Request</button>
-                { this.state.requestStatus === 'accepted' && 'Accepted' }
-                { this.state.requestStatus === 'declined' && 'Declined' }
-              </div>
+              ownRequest.status !== 'accepted' ? (
+                <div key={user.id}>
+                  {user.fullName}
+                  <button onClick={() => accept(id, userId, organizationId)}>Accept</button>
+                  <button disabled={requestStatus === 'declined'} onClick={() => decline(id, userId, organizationId)}>Decline</button>
+                  <button onClick={() => deleteRequest(id)}>Delete Request</button>
+                  { requestStatus === 'accepted' && 'Accepted' }
+                  { requestStatus === 'declined' && 'Declined' }
+                </div>
+              ) : null
             )
           })
         }
@@ -66,6 +72,7 @@ const mapState = ({ users, organizations, organizationRequests }, { organization
 
 const mapDispatch = dispatch => {
   return {
+    createUserOrganization: (userOrg) => dispatch(createUserOrganizationOnServer(userOrg)),
     updateRequest: (orgReq) => dispatch(updateOrganizationRequestOnServer(orgReq)),
     deleteRequest: (id) => dispatch(deleteOrganizationRequestFromServer(id)),
   }
