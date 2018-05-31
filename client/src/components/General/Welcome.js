@@ -15,9 +15,9 @@ const Welcome = ({user, orgId}) => {
   )
 }
 
-const mapState = ({ user, userorganizations}) => {
+const mapState = ({ user, userOrganizations}) => {
   const loggedIn = !!user.id;
-  const entry = loggedIn && userorganizations.find( (ent) => {
+  const entry = loggedIn && userOrganizations.find( (ent) => {
     return ent.userId === user.id
   });
   const orgId = entry && entry.organizationId;

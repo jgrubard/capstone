@@ -8,7 +8,7 @@ class AddUserForm extends React.Component {
       super(props);
       this.state = {
         email: '',
-        findUser:null,
+        findUser: null,
         errormessage: false
       }
       this.onChange = this.onChange.bind(this);
@@ -38,14 +38,10 @@ class AddUserForm extends React.Component {
 
     onSave(ev) {
       ev.preventDefault()
-      const { updateUser } = this.props;
-      const userId = this.state.findUser.id;
-      const organizationId = this.props.organization.id;
-      console.log(userId,organizationId)
-      this.props.createUserOrganization({userId:userId,organizationId:organizationId});
-      this.setState({errormessage:false});
-      this.setState({findUser:null});
-
+      const { createUserOrganization, organization } = this.props;
+      const { findUser } = this.state;
+      createUserOrganization({ userId: findUser.id, organizationId: organization.id});
+      this.setState({ errormessage: false, findUser: null });
     }
 
     render() {
@@ -64,13 +60,13 @@ class AddUserForm extends React.Component {
     }
   }
 
-  const mapState = ({state,users}) => {
-    return { users }
+  const mapState = ({ user, users }, { organization }) => {
+    return { users, organization }
   }
 
   const mapDispatch = (dispatch) => {
     return {
-      createUserOrganization: (userorganization) => dispatch(createUserOrganizationOnServer(userorganization))
+      createUserOrganization: (userOrganization) => dispatch(createUserOrganizationOnServer(userOrganization))
     }
   }
 

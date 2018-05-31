@@ -7,7 +7,7 @@ import AddForm from './AddForm';
 import OrganizationRequests from './OrganizationRequests';
 import { Link } from 'react-router-dom';
 
-const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownForms, forms, removeUser, userorganizations, deleteForm }) => {
+const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownForms, forms, removeUser, userOrganizations, deleteForm }) => {
   if (!organization) return null
   return (
     <div>
@@ -22,7 +22,7 @@ const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownF
           <li key={user.id}>
             {user.fullName}
             <Link to={`/users/${user.id}`}><button>Edit user</button></Link>
-            <button onClick={() => removeUser(user.id, organization.id, userorganizations)}>Remove from {organization.name}</button>
+            <button onClick={() => removeUser(user.id, organization.id, userOrganizations)}>Remove from {organization.name}</button>
           </li>
         ))
       }
@@ -48,9 +48,9 @@ const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownF
   );
 }
 
-const mapState = ({ organizations, users, userorganizations, forms }, { id }) => {
+const mapState = ({ organizations, users, userOrganizations, forms }, { id }) => {
   const organization = organizations.find(org => org.id === id);
-  const ownUsers = userorganizations.reduce((memo, userOrg) => {
+  const ownUsers = userOrganizations.reduce((memo, userOrg) => {
     const user = users.find(user => user.id === userOrg.userId && id === userOrg.organizationId)
     if (!memo.includes(user) && user) {
       memo.push(user)
@@ -58,7 +58,7 @@ const mapState = ({ organizations, users, userorganizations, forms }, { id }) =>
     return memo;
   }, [])
   const ownForms = forms.filter(form => form.organizationId === id)
-  return { organization, ownUsers, ownForms, forms, userorganizations }
+  return { organization, ownUsers, ownForms, forms, userOrganizations }
 }
 
 const mapDispatch = (dispatch, { history }) => {

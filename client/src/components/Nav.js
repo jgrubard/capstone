@@ -37,9 +37,9 @@ const Nav = ({ user, loggedIn,logout, orgId }) => {
   );
 }
 
-const mapState = ({ user, userorganizations, logout }) => {
+const mapState = ({ user, userOrganizations, logout }) => {
   const loggedIn = !!user.id;
-  const entry = loggedIn && userorganizations.find( (ent) => {
+  const entry = loggedIn && userOrganizations.find( (ent) => {
     return ent.userId === user.id
   });
   const orgId = entry && entry.organizationId;
