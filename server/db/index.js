@@ -1,7 +1,7 @@
 const Description = require('./models/Description');
 const Organization = require('./models/Organization');
-const UserOrganization = require ('./models/UserOrganization')
-const OrganizationRequest = require ('./models/OrganizationRequest')
+const UserOrganization = require('./models/UserOrganization')
+const OrganizationRequest = require('./models/OrganizationRequest')
 const User = require('./models/User');
 const Form = require('./models/Form')
 const conn = require('./conn');
