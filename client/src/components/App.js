@@ -41,7 +41,7 @@ class App extends React.Component {
         <div>
           <div className="container">
             <Nav />
-            <div id="body-elements">
+            <div id="body-elements" className= 'ui container'>
             <MasterNav />
             <Switch>
             {/* USER ROUTES */}

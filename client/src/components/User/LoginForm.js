@@ -176,15 +176,16 @@ class LoginForm extends React.Component {
                         </div>
                       </div>
                     ) : (
-                        <div>
+                        <div className="ui form">
                           {/* <label className="font-weight-bold">Email</label> */}
-                          <div className="form-group">
+                          <div className="field">
+                          <label>Email</label>
                             <Input
-                              label='Email'
                               name="email"
                               className="form-control"
                               onChange={onChange}
                               value={email}
+                              type="text"
                             />
                             {errors.email && <div className="help-block">
                               {errors.email}
@@ -193,19 +194,21 @@ class LoginForm extends React.Component {
                           </div>
 
                           {/*  <label className="font-weight-bold">Password</label> */}
+                          <div className="field">
+                          <label>Password</label>
                           <Input
-                            label='Password'
                             name="password"
                             className="form-control"
                             onChange={onChange}
                             value={password}
                             type="password"
                           />
+                          </div>
                         </div>
                       )
                   }
                 </div>
-                <button onClick={onSubmit} className="btn btn-success margin-t-15">
+                <button onClick={onSubmit} className="ui primary button">
                   {url === '/signup' ? ('Create account') : ('Log in')}
                 </button>
                 {url === '/signup' ?
