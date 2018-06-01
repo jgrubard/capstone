@@ -10,9 +10,10 @@ const AllOrganizationRequests = ({ users, organizations, organizationRequests, d
         organizationRequests.map(request => {
           const user = users.find(user => user.id === request.userId)
           const organization = organizations.find(organization => organization.id === request.organizationId)
+          const checkedOrg = organizations.find(org => org.id === user.checkedInId)
           return (
             <div key={request.id}>
-              {organization.name} requested by {user.fullName} ({ request.status })
+              {organization.name} requested by {user.fullName} ({ request.status }) - {user.checkedInId ? `Checked into ${checkedOrg.name}` : 'Checked in Nowhere'}
               <button onClick={() => deleteOrganizationRequest(request.id)}>delete</button>
             </div>
           );
