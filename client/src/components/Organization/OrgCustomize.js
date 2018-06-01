@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { deleteFormFromServer } from '../../store';
 import AddForm from './AddForm';
 import { Link } from 'react-router-dom';
+import ColorPicker from '../General/ColorPicker';
 
 const OrgCustomize = ({ organization, id, ownForms, forms, deleteForm }) => {
     if (!organization) return null
@@ -21,6 +22,8 @@ const OrgCustomize = ({ organization, id, ownForms, forms, deleteForm }) => {
                 }
             </ul>
             <AddForm organization={organization} />
+            <h4>Select Your Page's Background Color</h4>
+            <ColorPicker organization={organization} />
         </div>
     );
 }
@@ -33,7 +36,7 @@ const mapState = ({ organizations, users, userOrganizations, forms }, { id }) =>
 
 const mapDispatch = (dispatch, { history }) => {
     return {
-        deleteForm: (id) => dispatch(deleteFormFromServer(id, history))
+        deleteForm: (id) => dispatch(deleteFormFromServer(id, history)),
     }
 }
 

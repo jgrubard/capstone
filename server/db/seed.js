@@ -53,7 +53,9 @@ const seed = () => {
       state: 'New York',
       zip: '11101',
       contact_name: 'Mary',
-      contact_phone: '718-729-7625'
+      contact_phone: '718-729-7625',
+      backgroundColor: '#c5cae9',
+      textColor: '#000000'
     }),
     Organization.create({
       name: 'Brooklyn Boulders',
@@ -64,6 +66,8 @@ const seed = () => {
       zip: '11217',
       contact_name: 'Lucy',
       contact_phone: '347-834-9066',
+      backgroundColor: '#33691e',
+      textColor: '#ffffff'
     }),
     Organization.create({
       name: 'Fullstack Academy',
