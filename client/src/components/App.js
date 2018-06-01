@@ -12,8 +12,9 @@ import NotMaster from './Master/NotMaster';
 import Users from './User/Users';
 import UserInfo from './User/UserInfo';
 import OrganizationList from './Organization/OrganizationList';
+import AllOrganizationRequests from './Organization/AllOrganizationRequests';
 import OrganizationInfo from './Organization/OrganizationInfo';
-import LoginForm from './User/LoginForm'; 
+import LoginForm from './User/LoginForm';
 import Welcome from './General/Welcome'
 
 
@@ -45,14 +46,15 @@ class App extends React.Component {
             <MasterNav />
             <Switch>
             {/* USER ROUTES */}
-            <Route exact path='/users' component={UsersMaster} />
-            <Route exact path='/users/:id' component={({ match }) => <UserInfoAuth id={ match.params.id } />} />
+            <Route exact path= '/users' component={UsersMaster} />
+            <Route exact path= '/users/:id' component={({ match }) => <UserInfoAuth id={ match.params.id } />} />
             {/* ORGANIZATION ROUTES */}
-            <Route exact path='/organizations' component={OrganizationsMaster} />
-            <Route exact path='/organizations/:id' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
-            <Route exact path='/' component={Welcome} />
+            <Route exact path= '/organizations' component={OrganizationsMaster} />
+            <Route exact path= '/organizations/:id' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
+            <Route exact path= '/' component={Welcome} />
             {/* ADMIN ROUTES */}
-            <Route exact path ='/master' component={OrganizationsMaster}/>
+            <Route exact path = '/master' component={OrganizationsMaster}/>
+            <Route exact path = '/master/organizationRequests' component={AllOrganizationRequests}/>
             {/* AUTH ROUTES */}
             <Route exact path='/login' component={LoginForm} />
             <Route exact path='/signup' component={LoginForm} />
