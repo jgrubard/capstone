@@ -16,6 +16,9 @@ const MasterNav = ({ user, isMaster }) => {
                   <li>
                     <Link to='/users'>Users</Link>
                   </li>
+                  <li>
+                    <Link to='/master/organizationRequests'>Organization Requests</Link>
+                  </li>
                 </ul>
               ) : null
           }
