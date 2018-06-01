@@ -13,6 +13,7 @@ import Users from './User/Users';
 import UserInfo from './User/UserInfo';
 import OrganizationList from './Organization/OrganizationList';
 import OrganizationInfo from './Organization/OrganizationInfo';
+import OrgUsers from './Organization/OrgUsers';
 import LoginForm from './User/LoginForm'; 
 import Welcome from './General/Welcome'
 
@@ -36,6 +37,7 @@ class App extends React.Component {
     const UsersMaster = CheckMaster(Users)
     const UserInfoAuth = CheckAuth(UserInfo)
     const OrganizationInfoAuth = CheckAuth(OrganizationInfo)
+    const OrgUsersAuth = CheckAuth(OrgUsers)
     return (
       <Router>
         <div>
@@ -45,14 +47,17 @@ class App extends React.Component {
             <MasterNav />
             <Switch>
             {/* USER ROUTES */}
-            <Route exact path='/users' component={UsersMaster} />
             <Route exact path='/users/:id' component={({ match }) => <UserInfoAuth id={ match.params.id } />} />
             {/* ORGANIZATION ROUTES */}
-            <Route exact path='/organizations' component={OrganizationsMaster} />
-            <Route exact path='/organizations/:id' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
             <Route exact path='/' component={Welcome} />
-            {/* ADMIN ROUTES */}
+            <Route exact path='/organizations/:id/users' component={({ match, history }) => <OrgUsersAuth id={ match.params.id } history={history} />} />
+            <Route exact path='/organizations/:id/requests' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
+            <Route exact path='/organizations/:id/customize' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
+            <Route exact path='/organizations/:id/account' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
+            {/* MASTER ROUTES */}
             <Route exact path ='/master' component={OrganizationsMaster}/>
+            <Route exact path='/organizations' component={OrganizationsMaster} />
+            <Route exact path='/users' component={UsersMaster} />
             {/* AUTH ROUTES */}
             <Route exact path='/login' component={LoginForm} />
             <Route exact path='/signup' component={LoginForm} />

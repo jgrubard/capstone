@@ -28,13 +28,13 @@ const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownF
       }
       </ul>
       <AddUserForm organization={organization} />
-      <h4>Forms/Categories of this organization</h4>
+      <h4>My Organization Input Forms</h4>
       <ul>
       {
         ownForms.map(form=>(
           <li key={form.id}>
             {form.name}
-            <button onClick={() => deleteForm(form.id)}>Delete Form/Category</button>
+            <button onClick={() => deleteForm(form.id)}>Delete Form</button>
           </li>
         ))
       }
