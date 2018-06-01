@@ -16,8 +16,6 @@ class ColorPicker extends Component {
     }
     handleColorChange(ev) {
         this.setState({backgroundColor: ev.hex});
-        const change = {}
-        change[ev.target.name] = ev.target.value;
     }
 
     onSave(ev) {
@@ -25,7 +23,7 @@ class ColorPicker extends Component {
         const { createOrUpdateOrganization } = this.props;
         const { id, backgroundColor } = this.state;
         createOrUpdateOrganization({ id, backgroundColor });
-        console.log("******state", this.state)
+        console.log("******state", backgroundColor)
       }
 
     render() {
@@ -38,7 +36,7 @@ class ColorPicker extends Component {
                 name='backgroundColor' value={backgroundColor}
                 onChangeComplete={this.handleColorChange}
                 />
-                <div><button onClick={onSave}>Save Background Color</button></div>
+                <div><button onClick={onSave} style={{background:backgroundColor}}>Save Background Color</button></div>
             </div>
         )
     }
