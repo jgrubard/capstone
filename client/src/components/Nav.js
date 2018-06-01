@@ -15,7 +15,7 @@ const Nav = ({ user, loggedIn, logout, orgId }) => {
                 (
                   <div>
                     <li className="item">
-                      <Link to={`/organizations/${orgId}/users`}>Manage Users</Link>
+                      <Link to={`/organizations/${orgId}/users`}>Manage Members</Link>
                     </li>
                     <li className="item">
                       <Link to={`/organizations/${orgId}/requests`}>Manage Requests</Link>
@@ -24,7 +24,7 @@ const Nav = ({ user, loggedIn, logout, orgId }) => {
                       <Link to={`/organizations/${orgId}/customize`}>Customize My Page</Link>
                     </li>
                     <li className="item">
-                      <Link to={`/organizations/${orgId}/account`}>Account Detail</Link>
+                      <Link to={`/organizations/${orgId}/account`}>Account Details</Link>
                     </li>
                   </div>) : null
               }

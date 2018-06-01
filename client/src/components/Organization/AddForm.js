@@ -35,7 +35,7 @@ class AddForm extends React.Component {
       return (
         <div>
           <div>
-          <input name='name' value={name} onChange={onChange}></input><button onClick={onSave}>Add Form</button>
+          <input name='name' value={name} onChange={onChange}></input><button onClick={onSave}>Add Category</button>
           </div>
         </div>
       )

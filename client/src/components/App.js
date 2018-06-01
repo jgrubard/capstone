@@ -14,6 +14,8 @@ import UserInfo from './User/UserInfo';
 import OrganizationList from './Organization/OrganizationList';
 import OrganizationInfo from './Organization/OrganizationInfo';
 import OrgUsers from './Organization/OrgUsers';
+import OrgRequests from './Organization/OrgRequests';
+import OrgCustomize from './Organization/OrgCustomize';
 import LoginForm from './User/LoginForm'; 
 import Welcome from './General/Welcome'
 
@@ -38,6 +40,8 @@ class App extends React.Component {
     const UserInfoAuth = CheckAuth(UserInfo)
     const OrganizationInfoAuth = CheckAuth(OrganizationInfo)
     const OrgUsersAuth = CheckAuth(OrgUsers)
+    const OrgRequestsAuth = CheckAuth(OrgRequests)
+    const OrgCustomizeAuth = CheckAuth(OrgCustomize)
     return (
       <Router>
         <div>
@@ -51,8 +55,8 @@ class App extends React.Component {
             {/* ORGANIZATION ROUTES */}
             <Route exact path='/' component={Welcome} />
             <Route exact path='/organizations/:id/users' component={({ match, history }) => <OrgUsersAuth id={ match.params.id } history={history} />} />
-            <Route exact path='/organizations/:id/requests' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
-            <Route exact path='/organizations/:id/customize' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
+            <Route exact path='/organizations/:id/requests' component={({ match, history }) => <OrgRequestsAuth id={ match.params.id } history={history} />} />
+            <Route exact path='/organizations/:id/customize' component={({ match, history }) => <OrgCustomizeAuth id={ match.params.id } history={history} />} />
             <Route exact path='/organizations/:id/account' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
             {/* MASTER ROUTES */}
             <Route exact path ='/master' component={OrganizationsMaster}/>
