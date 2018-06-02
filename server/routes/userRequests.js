@@ -9,6 +9,12 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+router.post('/', (req, res, next) => {
+  UserRequest.create(req.body)
+    .then(userRequest => res.send(userRequest))
+    .catch(next);
+});
+
 router.delete('/:id', (req, res, next) => {
   UserRequest.findById(req.params.id)
     .then(userRequest => userRequest.destroy())
