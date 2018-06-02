@@ -9,9 +9,10 @@ import user from './sessions';
 import userOrganizations from './userOrganizations';
 import forms from './forms'
 import organizationRequests from './organizationRequests';
+import userRequests from './userRequests';
 
 const middleware = applyMiddleware(thunk, logger);
-const reducers = combineReducers({ organizations, users, descriptions, user, userOrganizations, forms, organizationRequests });
+const reducers = combineReducers({ organizations, users, descriptions, user, userOrganizations, forms, organizationRequests, userRequests });
 
 const store = createStore(reducers, middleware);
 
@@ -23,3 +24,4 @@ export * from './userOrganizations';
 export * from './sessions';
 export * from './forms';
 export * from './organizationRequests';
+export * from './userRequests';
