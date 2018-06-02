@@ -15,6 +15,16 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
+router.put('/:id', (req, res, next) => {
+  UserRequest.findById(req.params.id)
+    .then(userRequest => {
+      Object.assign(userRequest, req.body)
+      return userRequest.save()
+    })
+    .then(userRequest => res.send(userRequest))
+    .catch(next);
+})
+
 router.delete('/:id', (req, res, next) => {
   UserRequest.findById(req.params.id)
     .then(userRequest => userRequest.destroy())
