@@ -19,7 +19,7 @@ class TextColor extends Component {
     }
 
     handleChange(ev) {
-        this.setState({ value: event.target.value });
+        this.setState({ textColor: event.target.value });
     }
 
     onSave(ev) {
