@@ -19,7 +19,7 @@ class TextColor extends Component {
     }
 
     handleChange(ev) {
-        this.setState({ textColor: event.target.value });
+        this.setState({ textColor: ev.target.value });
     }
 
     onSave(ev) {
@@ -38,7 +38,7 @@ class TextColor extends Component {
         return (
             <div>
                 <div>
-                    <select onChange={this.handleChange} value={textColor}>
+                    <select onChange={handleChange} value={textColor}>
                     <option value='#000000'> Black </option>
                     <option value='#fff'> White </option>
                     <option value='#969696'> Grey </option>
