@@ -19,9 +19,7 @@ class TextColor extends Component {
     }
 
     handleChange(ev) {
-        const change = {};
-        change[ev.target.name] = ev.target.value;
-        this.setState(change);
+        this.setState({ value: event.target.value });
     }
 
     onSave(ev) {
@@ -29,36 +27,24 @@ class TextColor extends Component {
         const { createOrUpdateOrganization } = this.props;
         const { id, textColor } = this.state;
         createOrUpdateOrganization({ id, textColor });
-        console.log("******state", textColor)
+        console.log("******color", textColor)
     }
 
     render() {
         const { handleChange, onSave } = this;
         const { organization } = this.props
         const { textColor } = this.state;
+        const colors = { Black: '#000000', White: '#fff', Grey: '#969696' }
         return (
             <div>
-                <form onSubmit={onSave}>
-                    <input
-                        type='checkbox'
-                        value='#000000'
-                        name='Black'
-                        onChange={handleChange}
-                    />
-                    <input
-                        type='checkbox'
-                        value='#fff'
-                        name='White'
-                        onChange={handleChange}
-                    />
-                    <input
-                        type='checkbox'
-                        value='#969696'
-                        name='Gray'
-                        onChange={handleChange}
-                    />
-                    <div><button onClick={onSave} style={{ background: organization.backgroundColor, color: textColor }}>Save Text Color</button></div>
-                </form>
+                <div>
+                    <select onChange={this.handleChange} value={textColor}>
+                    <option value='#000000'> Black </option>
+                    <option value='#fff'> White </option>
+                    <option value='#969696'> Grey </option>
+                    </select>
+                </div>
+                <div><button onClick={onSave} style={{ background: organization.backgroundColor, color: textColor }}>Save Text Color</button></div>
             </div>
         )
     }
