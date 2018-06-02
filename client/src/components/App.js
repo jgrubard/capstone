@@ -13,6 +13,7 @@ import Users from './User/Users';
 import UserInfo from './User/UserInfo';
 import OrganizationList from './Organization/OrganizationList';
 import AllOrganizationRequests from './Organization/AllOrganizationRequests';
+import UserRequests from './Organization/UserRequests';
 import OrganizationInfo from './Organization/OrganizationInfo';
 import LoginForm from './User/LoginForm';
 import Welcome from './General/Welcome'
@@ -56,6 +57,7 @@ class App extends React.Component {
             {/* ADMIN ROUTES */}
             <Route exact path = '/master' component={OrganizationsMaster}/>
             <Route exact path = '/master/organizationRequests' component={AllOrganizationRequests}/>
+            <Route exact path = '/master/userRequests' component={UserRequests}/>
             {/* AUTH ROUTES */}
             <Route exact path='/login' component={LoginForm} />
             <Route exact path='/signup' component={LoginForm} />

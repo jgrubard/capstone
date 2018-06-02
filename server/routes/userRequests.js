@@ -8,3 +8,10 @@ router.get('/', (req, res, next) => {
     .then(userRequests => res.send(userRequests))
     .catch(next);
 });
+
+router.delete('/:id', (req, res, next) => {
+  UserRequest.findById(req.params.id)
+    .then(userRequest => userRequest.destroy())
+    .then(() => res.sendStatus(204))
+    .catch(next);
+})
