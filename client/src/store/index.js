@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
+import socket from './sockets';
 
 import organizations from './organizations';
 import users from './users';
@@ -8,12 +9,16 @@ import descriptions from './descriptions';
 import user from './sessions';
 import userOrganizations from './userOrganizations';
 import forms from './forms'
-import organizationRequests from './organizationRequests';
+import organizationRequests, { createOrganizationRequest } from './organizationRequests';
 
 const middleware = applyMiddleware(thunk, logger);
 const reducers = combineReducers({ organizations, users, descriptions, user, userOrganizations, forms, organizationRequests });
 
 const store = createStore(reducers, middleware);
+
+socket.on('newOrganizationRequest', organizationRequest => {
+  store.dispatch(createOrganizationRequest(organizationRequest));
+});
 
 export default store;
 export * from './organizations';

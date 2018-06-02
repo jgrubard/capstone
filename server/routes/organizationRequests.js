@@ -2,6 +2,7 @@ const router = require('express').Router();
 module.exports = router;
 
 const { OrganizationRequest } = require('../db').models;
+const obj = require('../index')
 
 router.get('/', (req, res, next) => {
   OrganizationRequest.findAll()
@@ -11,7 +12,12 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   OrganizationRequest.create(req.body)
-    .then(organizationRequest => res.send(organizationRequest))
+    .then(organizationRequest => {
+      res.send(organizationRequest);
+      console.log(obj)
+      const socketId = webAppSockets[organizationRequest.organizationId];
+      io.to(socketId).emit('newOrganizationRequest', organizationRequest);
+    })
     .catch(next);
 });
 

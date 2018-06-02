@@ -1,4 +1,5 @@
 import axios from 'axios';
+import socket from './sockets';
 
 const GOT_USER = 'GOT_USER';
 const gotUser = user => ({ type: GOT_USER, user });
@@ -41,7 +42,10 @@ export const getUserFromToken = token => {
   return dispatch => {
     return axios.get(`/api/sessions/${token}`)
       .then(result => result.data)
-      .then(user => dispatch(gotUser(user)))
+      .then(user => {
+        dispatch(gotUser(user));
+        socket.emit('webAppOnline', user.id)
+      })
       .catch(err => {
         window.localStorage.removeItem('token');
         return err;
