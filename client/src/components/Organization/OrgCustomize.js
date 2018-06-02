@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { deleteFormFromServer } from '../../store';
 import AddForm from './AddForm';
 import { Link } from 'react-router-dom';
-import ColorPicker from '../General/ColorPicker';
+import ColorPicker from './ColorPicker';
+import TextColor from './TextColor';
 
 const OrgCustomize = ({ organization, id, ownForms, forms, deleteForm }) => {
     if (!organization) return null
@@ -24,6 +25,8 @@ const OrgCustomize = ({ organization, id, ownForms, forms, deleteForm }) => {
             <AddForm organization={organization} />
             <h4>Select Your Page's Background Color</h4>
             <ColorPicker organization={organization} />
+            <h4>Select Your Page's Text Color</h4>
+            <TextColor organization={organization} />
         </div>
     );
 }

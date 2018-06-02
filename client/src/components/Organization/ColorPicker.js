@@ -23,7 +23,7 @@ class ColorPicker extends Component {
         const { createOrUpdateOrganization } = this.props;
         const { id, backgroundColor } = this.state;
         createOrUpdateOrganization({ id, backgroundColor });
-        console.log("******state", backgroundColor)
+        // console.log("******state", backgroundColor)
       }
 
     render() {
