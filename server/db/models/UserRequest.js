@@ -15,4 +15,4 @@ const UserRequest = conn.define('user_request', {
   timestamps: false
 });
 
-module.exports = OrganizationRequest;
+module.exports = UserRequest;
