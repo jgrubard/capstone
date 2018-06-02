@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteOrganizationFromServer, deleteFormFromServer, deleteUserOrganizationFromServer } from '../../store';
+import { deleteOrganizationFromServer, deleteFormFromServer, deleteUserOrganizationFromServer, updateUserOnServer } from '../../store';
 import OrganizationForm from './OrganizationForm';
 import AddUserForm from '../User/AddUserForm';
 import AddForm from './AddForm';
@@ -22,7 +22,7 @@ const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownF
           <li key={user.id}>
             {user.fullName}
             <Link to={`/users/${user.id}`}><button>Edit user</button></Link>
-            <button onClick={() => removeUser(user.id, organization.id, userOrganizations)}>Remove from {organization.name}</button>
+            <button onClick={() => removeUser(user, organization.id, userOrganizations)}>Remove from {organization.name}</button>
           </li>
         ))
       }
@@ -65,8 +65,12 @@ const mapDispatch = (dispatch, { history }) => {
   return {
     deleteOrganization: (id) => dispatch(deleteOrganizationFromServer(id, history)),
     deleteForm: (id) => dispatch(deleteFormFromServer(id, history)),
-    removeUser: (userId, organizationId, userOrgs) => {
-      const userOrg = userOrgs.find(userOrg => userOrg.userId === userId && userOrg.organizationId === organizationId)
+    removeUser: (user, organizationId, userOrgs) => {
+      const userOrg = userOrgs.find(userOrg => userOrg.userId === user.id && userOrg.organizationId === organizationId)
+      if (user.checkedInId === organizationId) {
+        const { id, firstName, lastName, email, password, userStatus } = user;
+        dispatch(updateUserOnServer({ id, firstName, lastName, email, password, userStatus, checkedInId: null }))
+      }
       dispatch(deleteUserOrganizationFromServer(userOrg.id))
     }
   }

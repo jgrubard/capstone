@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteOrganizationRequestFromServer } from '../../store';
+import { deleteOrganizationRequestFromServer, updateUserOnServer } from '../../store';
 
 const AllOrganizationRequests = ({ users, organizations, organizationRequests, deleteOrganizationRequest }) => {
   return (
@@ -14,7 +14,7 @@ const AllOrganizationRequests = ({ users, organizations, organizationRequests, d
           return (
             <div key={request.id}>
               {organization.name} requested by {user.fullName} ({ request.status }) - {user.checkedInId ? `Checked into ${checkedOrg.name}` : 'Checked in Nowhere'}
-              <button onClick={() => deleteOrganizationRequest(request.id)}>delete</button>
+              <button onClick={() => deleteOrganizationRequest(request.id, user, checkedOrg.id )}>delete</button>
             </div>
           );
         })
@@ -33,7 +33,13 @@ const mapState = ({ users, organizations, organizationRequests }) => {
 
 const mapDispatch = dispatch => {
   return {
-    deleteOrganizationRequest: (id) => dispatch(deleteOrganizationRequestFromServer(id))
+    deleteOrganizationRequest: (requestId, user, orgId) => {
+      if (user.checkedInId === orgId) {
+        const { id, firstName, lastName, email, password, userStatus } = user;
+        dispatch(updateUserOnServer({ id, firstName, lastName, email, password, userStatus, checkedInId: null }))
+      }
+      dispatch(deleteOrganizationRequestFromServer(requestId))
+    }
   }
 }
 
