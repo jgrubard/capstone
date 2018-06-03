@@ -4,15 +4,15 @@ const { User, Organization, Description, UserOrganization, Form, OrganizationReq
 const seed = () => {
   return Promise.all([
     User.create({
-      firstName: 'master',
-      lastName: 'master',
+      firstName: 'Master',
+      lastName: 'Master',
       email: 'master@test.com',
       password: 'master',
       userStatus: 'master'
     }),
     User.create({
-      firstName: 'admin',
-      lastName: 'admin',
+      firstName: 'Admin',
+      lastName: 'Admin',
       email: 'admin@test.com',
       password: 'admin',
       userStatus: 'admin'
@@ -35,7 +35,7 @@ const seed = () => {
       firstName: 'Gabriel',
       lastName: 'Rumbaut',
       email: 'gabrialrumbaut@gmail.com',
-      password: 'gabrial',
+      password: 'gabriel',
       userStatus: 'user'
     }),
     User.create({
@@ -58,8 +58,8 @@ const seed = () => {
       textColor: '#000000'
     }),
     Organization.create({
-      name: 'Brooklyn Boulders',
-      organization_type: 'Climbing Gym',
+      name: 'REACTO',
+      organization_type: 'Education',
       address: '575 Degraw St',
       city: 'Brooklyn',
       state: 'New York',
@@ -67,7 +67,7 @@ const seed = () => {
       contact_name: 'Lucy',
       contact_phone: '347-834-9066',
       backgroundColor: '#33691e',
-      textColor: '#ffffff'
+      textColor: '#fff'
     }),
     Organization.create({
       name: 'Fullstack Academy',
@@ -80,8 +80,8 @@ const seed = () => {
       contact_phone: '123-456-7890',
     }),
     Organization.create({
-      name: 'New York University',
-      organization_type: 'Education',
+      name: 'Tiger Boxing',
+      organization_type: 'Boxing Gym',
       address: '383 Lafayette Street',
       city: 'New York',
       state: 'New York',
@@ -90,17 +90,17 @@ const seed = () => {
       contact_phone: '123-456-7890',
     }),
     Organization.create({
-      name: 'Dos Caminos',
-      organization_type: 'Restaurant',
+      name: 'Acme',
+      organization_type: 'Bar',
       address: '373 Park Ave S',
       city: 'New York',
       state: 'New York',
       zip: '10016',
-      contact_name: 'Megan',
+      contact_name: 'Mat',
       contact_phone: '212-294-1000'
     })
   ])
-  .then(([ master, admin, jeremy, anna, gabriel, alexander, cliffs, bkb, fullstack, nyu, doscaminos]) => {
+  .then(([ master, admin, jeremy, anna, gabriel, alexander, cliffs, reacto, fullstack, tiger, acme]) => {
     return Promise.all([
       UserRequest.create({
         requesterId: gabriel.id,
@@ -162,7 +162,7 @@ const seed = () => {
       // }),
       UserOrganization.create({
         userId: jeremy.id,
-        organizationId: bkb.id
+        organizationId: reacto.id
       }),
       UserOrganization.create({
         userId: jeremy.id,
@@ -174,7 +174,7 @@ const seed = () => {
       }),
       UserOrganization.create({
         userId: anna.id,
-        organizationId: nyu.id
+        organizationId: tiger.id
       }),
       UserOrganization.create({
         userId: gabriel.id,
@@ -190,7 +190,7 @@ const seed = () => {
       }),
       UserOrganization.create({
         userId: alexander.id,
-        organizationId: doscaminos.id
+        organizationId: acme.id
       }),
       gabriel.setCheckedIn(cliffs)
     ])
