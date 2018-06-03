@@ -24,7 +24,6 @@ class ColorPicker extends Component {
         const { id, name, organization_type, address, city, state, zip, contact_name, contact_phone, image, textColor } = organization;
         const { backgroundColor } = this.state;
         createOrUpdateOrganization({ id, name, organization_type, address, city, state, zip, contact_name, contact_phone, image, textColor, backgroundColor });
-        // console.log("******state", backgroundColor)
       }
 
     render() {
