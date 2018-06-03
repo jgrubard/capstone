@@ -44,7 +44,9 @@ export const getUserFromToken = token => {
       .then(result => result.data)
       .then(user => {
         dispatch(gotUser(user));
-        socket.emit('webAppOnline', user.id)
+        if(user.organizationId) {
+          socket.emit('webAppOnline', user.organizationId);
+        }
       })
       .catch(err => {
         window.localStorage.removeItem('token');

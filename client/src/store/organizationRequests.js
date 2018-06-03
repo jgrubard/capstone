@@ -6,7 +6,7 @@ const UPDATE_ORGANIZATION_REQUEST = 'UPDATE_ORGANIZATION_REQUEST';
 const DELETE_ORGANIZATION_REQUEST = 'DELETE_ORGANIZATION_REQUEST';
 
 const getOrganizationRequests = organizationRequests => ({ type: GET_ORGANIZATION_REQUESTS, organizationRequests });
-const createOrganizationRequest = organizationRequest => ({ type: CREATE_ORGANIZATION_REQUEST, organizationRequest });
+export const createOrganizationRequest = organizationRequest => ({ type: CREATE_ORGANIZATION_REQUEST, organizationRequest });
 const updateOrganizationRequest = organizationRequest => ({ type: UPDATE_ORGANIZATION_REQUEST, organizationRequest });
 const deleteOrganizationRequest = id => ({ type: DELETE_ORGANIZATION_REQUEST, id });
 

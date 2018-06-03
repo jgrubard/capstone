@@ -18,6 +18,7 @@ const reducers = combineReducers({ organizations, users, descriptions, user, use
 const store = createStore(reducers, middleware);
 
 socket.on('newOrganizationRequest', organizationRequest => {
+  console.log(organizationRequest)
   store.dispatch(createOrganizationRequest(organizationRequest));
 });
 

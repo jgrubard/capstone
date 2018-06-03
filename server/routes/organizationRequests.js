@@ -14,6 +14,8 @@ router.post('/', (req, res, next) => {
   OrganizationRequest.create(req.body)
     .then(organizationRequest => {
       res.send(organizationRequest);
+      const socketId = webAppSockets[organizationRequest.organizationId];
+      io.to(socketId).emit('newOrganizationRequest', organizationRequest);
     })
     .catch(next);
 });
