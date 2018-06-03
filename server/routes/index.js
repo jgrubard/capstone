@@ -22,5 +22,6 @@ router.use('/sessions', require('./sessions'));
 router.use('/userOrganizations', require('./userOrganizations'))
 router.use('/forms', require('./forms'));
 router.use('/organizationRequests', require('./organizationRequests'))
+router.use('/userRequests', require('./userRequests'))
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const conn = require('./conn');
-const { User, Organization, Description, UserOrganization, Form, OrganizationRequest } = require('./index').models;
+const { User, Organization, Description, UserOrganization, Form, OrganizationRequest, UserRequest } = require('./index').models;
 
 const seed = () => {
   return Promise.all([
@@ -98,6 +98,11 @@ const seed = () => {
   ])
   .then(([ master, admin, jeremy, anna, gabriel, alexander, cliffs, bkb, fullstack, nyu, doscaminos]) => {
     return Promise.all([
+      UserRequest.create({
+        requesterId: gabriel.id,
+        responderId: jeremy.id,
+        organizationId: cliffs.id,
+      }),
       OrganizationRequest.create({
         organizationId: cliffs.id,
         userId: gabriel.id,
@@ -186,12 +191,12 @@ const seed = () => {
       gabriel.setCheckedIn(cliffs)
     ])
   })
-  .then(([ orgReq1, form1, form2, form3, form4, des1, des2, des3, des4, uo1, /*uo2,*/ uo3, uo4, uo5, uo6, uo7, uo8, uo9 ]) => {
+  .then(([ userReq1, orgReq1, form1, form2, form3, form4, des1, des2, des3, des4, uo1, /*uo2,*/ uo3, uo4, uo5, uo6, uo7, uo8, uo9 ]) => {
     return Promise.all([
-    form1.setDescriptions([des1]),
-    form2.setDescriptions([des2]),
-    form3.setDescriptions([des3]),
-    form4.setDescriptions([des4]),
+      form1.setDescriptions([des1]),
+      form2.setDescriptions([des2]),
+      form3.setDescriptions([des3]),
+      form4.setDescriptions([des4]),
     ])
   })
 }
