@@ -24,6 +24,7 @@ UserOrganization.belongsTo(Organization);
 
 OrganizationRequest.belongsTo(Organization);
 OrganizationRequest.belongsTo(User);
+User.belongsTo(Organization);
 
 UserRequest.belongsTo(User, { as: 'requester' });
 UserRequest.belongsTo(User, { as: 'responder' });

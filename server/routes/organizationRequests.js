@@ -14,7 +14,6 @@ router.post('/', (req, res, next) => {
   OrganizationRequest.create(req.body)
     .then(organizationRequest => {
       res.send(organizationRequest);
-      console.log(webAppSockets)
     })
     .catch(next);
 });

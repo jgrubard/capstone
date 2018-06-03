@@ -188,7 +188,8 @@ const seed = () => {
         userId: alexander.id,
         organizationId: doscaminos.id
       }),
-      gabriel.setCheckedIn(cliffs)
+      gabriel.setCheckedIn(cliffs),
+      admin.setOrganization(cliffs),
     ])
   })
   .then(([ userReq1, orgReq1, form1, form2, form3, form4, des1, des2, des3, des4, uo1, /*uo2,*/ uo3, uo4, uo5, uo6, uo7, uo8, uo9 ]) => {
