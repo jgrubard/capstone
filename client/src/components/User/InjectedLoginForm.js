@@ -262,9 +262,9 @@ class InjectedLoginForm extends React.Component {
                   {url === '/signup' ? ('Create account') : ('Log in')}
                 </button>
                 {url === '/signup' ?
-                  <p className="margin-t-15">Have an account? <a href='#/login'>Log in now &raquo;</a></p>
+                  <p className="margin-t-15">Have an Account? <a href='#/login'>Log in Now &raquo;</a></p>
                   :
-                  <p className="margin-t-15">Don't have an account? <a href='#/signup'>Create one now &raquo;</a></p>
+                  <p className="margin-t-15">Don't Have an Account for Your Organization? <a href='#/signup'>Create a New Organization &raquo;</a></p>
                 }
               </div>
             )}

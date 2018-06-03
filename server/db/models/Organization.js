@@ -43,10 +43,12 @@ const Organization = conn.define('organization', {
     type: Sequelize.TEXT
   },
   backgroundColor: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    defaultValue: '#fff'
   },
   textColor: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    defaultValue: '#000000'
   }
 }, {
   timestamps: false

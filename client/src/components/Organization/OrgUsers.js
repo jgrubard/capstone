@@ -8,13 +8,13 @@ const OrgUsers = ({ organization, id, ownUsers, removeUser, userOrganizations })
   if (!organization) return null
   return (
     <div>
-      <h4>My Users</h4>
+      <h4>My Members</h4>
       <ul>
       {
         ownUsers.map(user => (
           <li key={user.id}>
             {user.fullName}
-            <Link to={`/users/${user.id}`}><button>Edit user</button></Link>
+            <Link to={`/users/${user.id}`}><button>Edit Member</button></Link>
             <button onClick={() => removeUser(user.id, organization.id, userOrganizations)}>Remove from {organization.name}</button>
           </li>
         ))
