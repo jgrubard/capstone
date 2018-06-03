@@ -100,7 +100,8 @@ const seed = () => {
     return Promise.all([
       UserRequest.create({
         requesterId: gabriel.id,
-        responderId: jeremy.id
+        responderId: jeremy.id,
+        organizationId: cliffs.id,
       }),
       OrganizationRequest.create({
         organizationId: cliffs.id,

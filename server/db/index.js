@@ -27,6 +27,7 @@ OrganizationRequest.belongsTo(User);
 
 UserRequest.belongsTo(User, { as: 'requester' });
 UserRequest.belongsTo(User, { as: 'responder' });
+UserRequest.belongsTo(Organization);
 
 module.exports = {
   conn,
