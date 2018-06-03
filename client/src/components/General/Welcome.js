@@ -7,8 +7,7 @@ const Welcome = ({user, orgId}) => {
     <div>
       {user.userStatus === 'admin'?
       <div>
-      <h3>Welcome {user.firstName} to Pair App</h3>
-      <Link to ={`/organizations/${orgId}`}><button className="ui olive button">Go to my Dashboard</button></Link>
+      <h3>Welcome {user.firstName} to Pair Up!</h3>
       </div> : null
       }
     </div>
