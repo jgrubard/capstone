@@ -52,11 +52,11 @@ class App extends React.Component {
             <Switch>
             <Route exact path='/' component={Welcome} />
             {/* USER ROUTES */}
-            <Route exact path= '/users' component={UsersMaster} />
-            <Route exact path= '/users/:id' component={({ match }) => <UserInfoAuth id={ match.params.id } />} />
+            <Route exact path='/users' component={UsersMaster} />
+            <Route exact path='/users/:id' component={({ match }) => <UserInfoAuth id={ match.params.id } />} />
             {/* ORGANIZATION ROUTES */}
-            <Route exact path= '/organizations' component={OrganizationsMaster} />
-            <Route exact path= '/organizations/:id' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
+            <Route exact path='/organizations' component={OrganizationsMaster} />
+            <Route exact path='/organizations/:id' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
             <Route exact path='/organizations/:id/users' component={({ match, history }) => <OrgUsersAuth id={ match.params.id } history={history} />} />
             <Route exact path='/organizations/:id/requests' component={({ match, history }) => <OrgRequestsAuth id={ match.params.id } history={history} />} />
             <Route exact path='/organizations/:id/customize' component={({ match, history }) => <OrgCustomizeAuth id={ match.params.id } history={history} />} />

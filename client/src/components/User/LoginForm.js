@@ -2,8 +2,8 @@ import React from 'react';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import InjectedLoginForm from './InjectedLoginForm';
 
-const LoginForm = () => {
-  console.log(location)
+const LoginForm = ({ history }) => {
+  // console.log(location)
   return (
     <StripeProvider apiKey='pk_test_AhLiCUGnPSZ5IySTH3Givqd0'>
       <Elements>
