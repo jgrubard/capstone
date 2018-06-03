@@ -7,9 +7,6 @@ const User = require('./models/User');
 const Form = require('./models/Form')
 const conn = require('./conn');
 
-// User.belongsToMany(Organization, { through: Description });
-// Organization.belongsToMany(User, { through: Description });
-
 Description.belongsTo(User);
 Description.belongsTo(Organization);
 Description.belongsTo(Form);

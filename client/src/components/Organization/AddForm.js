@@ -34,8 +34,12 @@ class AddForm extends React.Component {
       const { name} = this.state;
       return (
         <div>
-          <div>
-          <input name='name' value={name} onChange={onChange}></input><button onClick={onSave}>Add Form/Category</button>
+          <div className="ui form">
+          <div className="three fields">
+          <input name='name' value={name} onChange={onChange} className='field'></input>
+          <button className="field" onClick={onSave} className='ui grey button'>Add Category</button>
+          <div className='field'></div>
+          </div>
           </div>
         </div>
       )

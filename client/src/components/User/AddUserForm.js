@@ -50,10 +50,14 @@ class AddUserForm extends React.Component {
       const { email, findUser, errormessage} = this.state;
       return (
         <div>
-          <div>
-          <input name='email' value={email} onChange={onChange}></input><button onClick={onSearch}>Search by email</button>
+          <div className="ui form">
+          <div className="three fields">
+          <input name='email' value={email} onChange={onChange} className='field'></input>
+          <button className='field'onClick={onSearch} className='ui grey button'>Search by email</button>
+          <div className='field'></div>
+          </div>
           {/* <button onClick={onSave}>Save</button> */}
-          {findUser? <div>{findUser.firstName} {findUser.lastName}<button onClick={onSave}>Add {findUser.firstName} to {organization.name}</button></div>: errormessage? <p>Can't find this user</p>:null  }
+          {findUser? <span>{findUser.fullName+'  '}<button onClick={onSave} className='tiny ui olive button'>Add {findUser.firstName} to {organization.name}</button></span>: errormessage? <p>Can't find this user</p>:null  }
           </div>
         </div>
       )

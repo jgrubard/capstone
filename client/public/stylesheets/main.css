@@ -1,11 +1,10 @@
-
 * {
 	box-sizing: border-box;
 }
 body {
 	font-family: 'Avenir', sans-serif;
 	line-height: 1.6;
-	margin: 0;
+  margin: 0;
 	min-height: 100vh;
 }
 ul {
@@ -56,10 +55,10 @@ a {
 	/* padding-top: .5em;
 	padding-bottom: .5em; */
 	background-color: #f4f4f4;
-	
+
 }
 
-/* ================================= 
+/* =================================
   Media Queries
 ==================================== */
 

@@ -15,7 +15,6 @@ export const getDescriptionsFromServer = () => {
 const store = (state = [], action) => {
   switch (action.type) {
     case GET_DESCRIPTIONS:
-    // console.log(action.descriptions)
       return action.descriptions;
     default:
       return state;

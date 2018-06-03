@@ -41,6 +41,14 @@ const Organization = conn.define('organization', {
   },
   image: {
     type: Sequelize.TEXT
+  },
+  backgroundColor: {
+    type: Sequelize.TEXT,
+    defaultValue: '#fff'
+  },
+  textColor: {
+    type: Sequelize.TEXT,
+    defaultValue: '#000000'
   }
 }, {
   timestamps: false
