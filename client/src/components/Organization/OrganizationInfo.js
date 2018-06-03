@@ -11,7 +11,8 @@ const OrganizationInfo = ({ organization, id, deleteOrganization }) => {
       <h2>{organization.name}</h2>
       {organization.image && <img src={organization.image} style={{ height: '200px', width: 'auto'}}/>}
       <OrganizationForm organization={organization} />
-      <button onClick={() => deleteOrganization(id)}>Delete Organization</button>
+      <br></br>
+      <button className="ui orange button"onClick={() => deleteOrganization(id)}>Delete Organization</button>
     </div>
   );
 }

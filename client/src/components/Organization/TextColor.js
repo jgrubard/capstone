@@ -38,13 +38,14 @@ class TextColor extends Component {
         return (
             <div>
                 <div>
-                    <select onChange={handleChange} value={textColor}>
+                    <select  className="ui selection dropdown" onChange={handleChange} value={textColor}>
                     <option value='#000000'> Black </option>
                     <option value='#fff'> White </option>
                     <option value='#969696'> Grey </option>
                     </select>
                 </div>
-                <div><button onClick={onSave} style={{ background: organization.backgroundColor, color: textColor }}>Save Text Color</button></div>
+                <br></br>
+                <div><button className="ui button" onClick={onSave} style={{ background: organization.backgroundColor, color: textColor }}>Save Text Color</button></div>
             </div>
         )
     }

@@ -8,18 +8,22 @@ const OrgUsers = ({ organization, id, ownUsers, removeUser, userOrganizations })
   if (!organization) return null
   return (
     <div>
-      <h4>My Users</h4>
+      <h2>My Users</h2>
       <ul>
       {
         ownUsers.map(user => (
+          <div>
           <li key={user.id}>
-            {user.fullName}
-            <Link to={`/users/${user.id}`}><button>Edit user</button></Link>
-            <button onClick={() => removeUser(user.id, organization.id, userOrganizations)}>Remove from {organization.name}</button>
+            {user.fullName+' '}
+            <Link to={`/users/${user.id}`}><button className='tiny olive ui button'>Edit user</button></Link>
+            <button className='tiny orange ui button' onClick={() => removeUser(user.id, organization.id, userOrganizations)}>Remove from {organization.name}</button>
           </li>
+          <br></br>
+          </div>
         ))
       }
       </ul>
+      <div className="ui hidden divider"></div>
       <AddUserForm organization={organization} />
     </div>
   );
