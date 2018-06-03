@@ -35,7 +35,7 @@ const seed = () => {
       firstName: 'Gabriel',
       lastName: 'Rumbaut',
       email: 'gabrialrumbaut@gmail.com',
-      password: 'gabrial',
+      password: 'gabriel',
       userStatus: 'user'
     }),
     User.create({
