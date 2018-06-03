@@ -57,17 +57,25 @@ class OrganizationForm extends Component {
     const { handleChange, onSave, addPhoto } = this;
     const { name, organization_type, address, city, state, zip, contact_name, contact_phone } = this.state;
     return (
-      <div>
-        <div>Organization Name<input name='name' value={name} onChange={handleChange} /></div>
-        <div>Type<input name='organization_type' value={organization_type} onChange={handleChange} /></div>
-        <div>Address<input name='address' value={address} onChange={handleChange} /></div>
-        <div>City<input name='city' value={city} onChange={handleChange} /></div>
-        <div>State<input name='state' value={state} onChange={handleChange} /></div>
-        <div>Zip<input name='zip' value={zip} onChange={handleChange} /></div>
-        <div>Contact Name<input name='contact_name' value={contact_name} onChange={handleChange} /></div>
-        <div>Contact Phone<input name='contact_phone' value={contact_phone} onChange={handleChange} /></div>
+      <div className="ui form">
+      <div className="two fields">
+        <div className="field"><label>Organization Name</label><input name='name' value={name} onChange={handleChange} /></div>
+        <div className="field"><label>Organization Type</label><input name='organization_type' value={organization_type} onChange={handleChange} /></div>
+      </div>
+      <div className="two fields">
+        <div className="field"><label>Address</label><input name='address' value={address} onChange={handleChange} /></div>
+        <div className="field"><label>City</label><input name='city' value={city} onChange={handleChange} /></div>
+      </div>
+      <div className="two fields">
+        <div className="field"><label>State</label><input name='state' value={state} onChange={handleChange} /></div>
+        <div className="field"><label>Zip</label><input name='zip' value={zip} onChange={handleChange} /></div>
+      </div>
+      <div className="two fields">
+        <div className="field"><label>Contact Name</label><input name='contact_name' value={contact_name} onChange={handleChange} /></div>
+        <div className="field"><label>Contact Phone</label><input name='contact_phone' value={contact_phone} onChange={handleChange} /></div>
+      </div>
         <div>Add Image<input type='file' onChange={addPhoto}/></div>
-        <div><button onClick={onSave}>Submit</button></div>
+        <div><button className="ui olive button"onClick={onSave}>Submit</button></div>
       </div>
     );
   }

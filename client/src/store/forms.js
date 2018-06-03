@@ -31,7 +31,6 @@ export const deleteFormFromServer = (id) => {
   };
 };
 
-
 const store = (state = [], action) => {
   let forms;
   switch (action.type) {
