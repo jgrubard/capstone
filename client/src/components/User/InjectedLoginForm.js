@@ -124,60 +124,59 @@ class InjectedLoginForm extends React.Component {
                 <div>
                   {
                     url === '/signup' ? (
-                      <div>
-                        <div className="form-group">
+                      <div className="ui form error">
+                      <div className="two fields">
+                        <div className="field">
+                        <label>First Name</label>
                           <Input
-                            label="First name"
                             name="firstName"
-                            className="form-control"
                             onChange={onChange}
                             value={firstName}
                             type="text"
                           />
-                          {errors.firstName && <div className="help-block">
-                            {errors.firstName}
+                          {errors.firstName && <div className="ui error message">
+                            <p>{errors.firstName}</p>
                           </div>
                           }
                         </div>
-                        <div className="form-group">
+                        <div className="field">
+                        <label>Last Name</label>
                           <Input
-                            label="Last name"
                             name="lastName"
-                            className="form-control"
                             onChange={onChange}
                             value={lastName}
                             type="text"
                           />
-                          {errors.lastName && <div className="help-block">
-                            {errors.lastName}
+                          {errors.lastName && <div className="ui error message">
+                            <p>{errors.lastName}</p>
                           </div>
                           }
                         </div>
-                        <div className="form-group">
+                      </div>
+                      <div className="two fields">
+                        <div className="field">
+                        <label>Email</label>
                           <Input
-                            label="Email address"
                             name="email"
-                            className="form-control"
                             onChange={onChange}
                             value={email}
                             type='email'
                           />
-                          {errors.email && <div className="help-block">
-                            {errors.email}
+                          {errors.email && <div className="ui error message">
+                            <p>{errors.email}</p>
                           </div>
                           }
                         </div>
-                        <div className="form-group">
+                        <div className="field">
+                        <label>Password</label>
                           <Input
-                            label='Password'
                             name="password"
-                            className="form-control"
                             onChange={onChange}
                             value={password}
                             type="password"
                           />
-                          {errors.password && <div className="help-block">
-                            {errors.password}
+                          {errors.password && <div className="ui error message">
+                            <p>{errors.password}</p>
                           </div>
                           }
                         </div>
@@ -196,69 +195,72 @@ class InjectedLoginForm extends React.Component {
                                 ))
                           }
                         </div>
-                        <div className="form-group">
+                        </div>
+                        <div className="two fields">
+                        <div className="field">
+                        <label>Billing First Name</label>
                           <Input
-                            label="Billing First Name"
                             name="billingFirstName"
-                            className="form-control"
                             onChange={onChange}
                             value={billingFirstName}
                             type="text"
                           />
-                          {errors.billingFirstName && <div className="help-block">
-                            {errors.billingFirstName}
+                          {errors.billingFirstName && <div className="ui error message">
+                            <p>{errors.billingFirstName}</p>
                           </div>
                           }
                         </div>
-                        <div className="form-group">
+                        <div className="field">
+                        <label>Billing Last Name</label>
                           <Input
-                            label="Billing Last Name"
                             name="billingLastName"
-                            className="form-control"
                             onChange={onChange}
                             value={billingLastName}
                             type="text"
                           />
-                          {errors.billingLastName && <div className="help-block">
-                            {errors.billingLastName}
+                          {errors.billingLastName && <div className="ui error message">
+                            <p>{errors.billingLastName}</p>
                           </div>
                           }
                         </div>
+                        </div>
+                        <div className="ui divider"></div>
                         <div className='form-group'>
                           <CardElement onChange={ this.handlePaymentChange } />
                         </div>
+                        <div className="ui divider"></div>
                       </div>
                     ) : (
-                        <div>
+                        <div className="ui form">
                           {/* <label className="font-weight-bold">Email</label> */}
-                          <div className="form-group">
+                          <div className="field">
+                          <label>Email</label>
                             <Input
-                              label='Email'
                               name="email"
-                              className="form-control"
                               onChange={onChange}
                               value={email}
+                              type='text'
                             />
                             {errors.email && <div className="help-block">
                               {errors.email}
                             </div>
                             }
                           </div>
-
                           {/*  <label className="font-weight-bold">Password</label> */}
+                          <div className="field">
+                          <label>Password</label>
                           <Input
-                            label='Password'
                             name="password"
-                            className="form-control"
                             onChange={onChange}
                             value={password}
                             type="password"
                           />
+                          </div>
                         </div>
                       )
                   }
                 </div>
-                <button onClick={onSubmit} className="btn btn-success margin-t-15">
+                <button onClick={onSubmit} className="ui primary button">
                   {url === '/signup' ? ('Create account') : ('Log in')}
                 </button>
                 {url === '/signup' ?
