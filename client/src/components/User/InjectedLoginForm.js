@@ -282,6 +282,7 @@ const mapState = ({ users, user }) => {
 }
 
 const mapDispatch = (dispatch, { history }) => {
+  // console.log('HISTORY:', history)
   return {
     attemptLogin: (credentials) => dispatch(attemptLogin(credentials, history)),
     attemptSignup: user => dispatch(signup(user)),
