@@ -9,12 +9,8 @@ import descriptions from './descriptions';
 import user from './sessions';
 import userOrganizations from './userOrganizations';
 import forms from './forms'
-<<<<<<< HEAD
 import organizationRequests, { createOrganizationRequest } from './organizationRequests';
-=======
-import organizationRequests from './organizationRequests';
 import userRequests from './userRequests';
->>>>>>> 69e664b70d9e65bc6c5c64e9451faf4a6942c0a3
 
 const middleware = applyMiddleware(thunk, logger);
 const reducers = combineReducers({ organizations, users, descriptions, user, userOrganizations, forms, organizationRequests, userRequests });
