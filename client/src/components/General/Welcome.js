@@ -8,16 +8,16 @@ const Welcome = ({user, orgId}) => {
       {user.userStatus === 'admin'?
       <div>
       <h3>Welcome {user.firstName} to Pair App</h3>
-      <Link to ={`/organizations/${orgId}`}><button>Go to my Dashboard</button></Link>
+      <Link to ={`/organizations/${orgId}`}><button className="ui olive button">Go to my Dashboard</button></Link>
       </div> : null
       }
     </div>
   )
 }
 
-const mapState = ({ user, userorganizations}) => {
+const mapState = ({ user, userOrganizations}) => {
   const loggedIn = !!user.id;
-  const entry = loggedIn && userorganizations.find( (ent) => {
+  const entry = loggedIn && userOrganizations.find( (ent) => {
     return ent.userId === user.id
   });
   const orgId = entry && entry.organizationId;

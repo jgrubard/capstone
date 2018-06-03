@@ -1,7 +1,8 @@
 const Description = require('./models/Description');
 const Organization = require('./models/Organization');
-const UserOrganization = require ('./models/UserOrganization')
-const OrganizationRequest = require ('./models/OrganizationRequest')
+const UserOrganization = require('./models/UserOrganization')
+const OrganizationRequest = require('./models/OrganizationRequest')
+const UserRequest = require('./models/UserRequest')
 const User = require('./models/User');
 const Form = require('./models/Form')
 const conn = require('./conn');
@@ -14,6 +15,8 @@ Description.belongsTo(Organization);
 Description.belongsTo(Form);
 Form.hasMany(Description);
 
+User.belongsTo(Organization, { as: 'checkedIn' })
+
 Form.belongsTo(Organization);
 
 UserOrganization.belongsTo(User);
@@ -21,6 +24,10 @@ UserOrganization.belongsTo(Organization);
 
 OrganizationRequest.belongsTo(Organization);
 OrganizationRequest.belongsTo(User);
+
+UserRequest.belongsTo(User, { as: 'requester' });
+UserRequest.belongsTo(User, { as: 'responder' });
+UserRequest.belongsTo(Organization);
 
 module.exports = {
   conn,
@@ -30,6 +37,7 @@ module.exports = {
     UserOrganization,
     User,
     Form,
-    OrganizationRequest
+    OrganizationRequest,
+    UserRequest
   }
 };

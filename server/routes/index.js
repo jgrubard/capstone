@@ -19,8 +19,9 @@ router.use('/organizations', require('./organizations'));
 router.use('/users', require('./users'));
 router.use('/descriptions', require('./descriptions'));
 router.use('/sessions', require('./sessions'));
-router.use('/userorganizations', require('./userorganizations'))
+router.use('/userOrganizations', require('./userOrganizations'))
 router.use('/forms', require('./forms'));
 router.use('/organizationRequests', require('./organizationRequests'))
+router.use('/userRequests', require('./userRequests'))
 
 module.exports = router;

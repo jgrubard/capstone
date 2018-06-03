@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteOrganizationFromServer, deleteUserFromServer, deleteUserOrganizationFromServer, deleteFormFromServer } from '../../store';
+import { deleteOrganizationFromServer, deleteFormFromServer, deleteUserOrganizationFromServer, updateUserOnServer } from '../../store';
 import OrganizationForm from './OrganizationForm';
 import AddUserForm from '../User/AddUserForm';
 import AddForm from './AddForm';
 import OrganizationRequests from './OrganizationRequests';
 import { Link } from 'react-router-dom';
 
-const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownForms, forms, deleteUser, userorganizations, deleteForm }) => {
+const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownForms, forms, removeUser, userOrganizations, deleteForm }) => {
   if (!organization) return null
   return (
     <div>
@@ -18,11 +18,11 @@ const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownF
       <h4>Users of this organization</h4>
       <ul>
       {
-        ownUsers.map(user=>(
+        ownUsers.map(user => (
           <li key={user.id}>
             {user.fullName}
             <Link to={`/users/${user.id}`}><button>Edit user</button></Link>
-            <button onClick={() => deleteUser(user.id, userorganizations)}>Remove from {organization.name}</button>
+            <button onClick={() => removeUser(user, organization.id, userOrganizations)}>Remove from {organization.name}</button>
           </li>
         ))
       }
@@ -48,9 +48,9 @@ const OrganizationInfo = ({ organization, id, deleteOrganization, ownUsers, ownF
   );
 }
 
-const mapState = ({ organizations, users, userorganizations, forms }, { id }) => {
+const mapState = ({ organizations, users, userOrganizations, forms }, { id }) => {
   const organization = organizations.find(org => org.id === id);
-  const ownUsers = userorganizations.reduce((memo, userOrg) => {
+  const ownUsers = userOrganizations.reduce((memo, userOrg) => {
     const user = users.find(user => user.id === userOrg.userId && id === userOrg.organizationId)
     if (!memo.includes(user) && user) {
       memo.push(user)
@@ -58,20 +58,20 @@ const mapState = ({ organizations, users, userorganizations, forms }, { id }) =>
     return memo;
   }, [])
   const ownForms = forms.filter(form => form.organizationId === id)
-  return { organization, ownUsers, ownForms, forms, userorganizations }
+  return { organization, ownUsers, ownForms, forms, userOrganizations }
 }
 
 const mapDispatch = (dispatch, { history }) => {
   return {
     deleteOrganization: (id) => dispatch(deleteOrganizationFromServer(id, history)),
     deleteForm: (id) => dispatch(deleteFormFromServer(id, history)),
-    deleteUser: (id, userorganizations) => {
-      userorganizations.forEach(userOrg => {
-        if(userOrg.userId === id) {
-          dispatch(deleteUserOrganizationFromServer(userOrg.id))
-        }
-      })
-      dispatch(deleteUserFromServer(id))
+    removeUser: (user, organizationId, userOrgs) => {
+      const userOrg = userOrgs.find(userOrg => userOrg.userId === user.id && userOrg.organizationId === organizationId)
+      if (user.checkedInId === organizationId) {
+        const { id, firstName, lastName, email, password, userStatus } = user;
+        dispatch(updateUserOnServer({ id, firstName, lastName, email, password, userStatus, checkedInId: null }))
+      }
+      dispatch(deleteUserOrganizationFromServer(userOrg.id))
     }
   }
 }

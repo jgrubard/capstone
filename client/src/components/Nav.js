@@ -6,40 +6,33 @@ import { logout } from '../store'
 const Nav = ({ user, loggedIn,logout, orgId }) => {
   const url = location.hash.slice(1)
   return (
-    <div>
-      <header className='header'>
-        <h1 className="logo"><a href="#">LOGO</a></h1>
-        <div>
+    <div className="ui inverted menu">
           {
             loggedIn ?
               (
-                <ul className='main-nav' >
+                <ul >
                 { user.userStatus === 'admin' ?
-                  <li>
+                  <li className="item">
                     <Link to={`/organizations/${orgId}`}>Dashboard</Link>
                   </li> : null
                   }
-                  <li >
+                  <li className="item">
                     <span onClick={logout}>Log out</span>
                   </li>
                 </ul>
               ) : (
-                <ul className='main-nav' >
-                  <li>
+                  <li className="item">
                     <Link to='/login'>Log In</Link>
                   </li>
-                </ul>
               )
           }
-        </div>
-      </header>
     </div>
   );
 }
 
-const mapState = ({ user, userorganizations, logout }) => {
+const mapState = ({ user, userOrganizations, logout }) => {
   const loggedIn = !!user.id;
-  const entry = loggedIn && userorganizations.find( (ent) => {
+  const entry = loggedIn && userOrganizations.find( (ent) => {
     return ent.userId === user.id
   });
   const orgId = entry && entry.organizationId;

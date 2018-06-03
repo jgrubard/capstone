@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { getOrganizationsFromServer, getDescriptionsFromServer, getUsersFromServer, getUserOrganizationsFromServer, getUserFromToken, getFormsFromServer, getOrganizationRequestsFromServer } from '../store';
+import { getOrganizationsFromServer, getDescriptionsFromServer, getUsersFromServer, getUserOrganizationsFromServer, getUserFromToken, getFormsFromServer, getOrganizationRequestsFromServer, getUserRequestsFromServer } from '../store';
 
 import CheckMaster from './General/CheckMaster'
 import CheckAuth from './General/CheckAuth'
@@ -12,8 +12,10 @@ import NotMaster from './Master/NotMaster';
 import Users from './User/Users';
 import UserInfo from './User/UserInfo';
 import OrganizationList from './Organization/OrganizationList';
+import AllOrganizationRequests from './Organization/AllOrganizationRequests';
+import UserRequests from './Organization/UserRequests';
 import OrganizationInfo from './Organization/OrganizationInfo';
-import LoginForm from './User/LoginForm'; 
+import LoginForm from './User/LoginForm';
 import Welcome from './General/Welcome'
 
 
@@ -21,7 +23,7 @@ import Welcome from './General/Welcome'
 
 class App extends React.Component {
   componentDidMount() {
-    const { loadOrganizations, loadUsers, loadDescriptions, loadUserOrganizations, loadUser, loadForm, loadOrganizationRequests } = this.props;
+    const { loadOrganizations, loadUsers, loadDescriptions, loadUserOrganizations, loadUser, loadForm, loadOrganizationRequests, loadUserRequests } = this.props;
     loadOrganizations();
     loadUsers();
     loadDescriptions();
@@ -29,6 +31,7 @@ class App extends React.Component {
     loadUser();
     loadForm();
     loadOrganizationRequests();
+    loadUserRequests();
   }
 
   render(){
@@ -41,18 +44,20 @@ class App extends React.Component {
         <div>
           <div className="container">
             <Nav />
-            <div id="body-elements">
+            <div id="body-elements" className= 'ui container'>
             <MasterNav />
             <Switch>
             {/* USER ROUTES */}
-            <Route exact path='/users' component={UsersMaster} />
-            <Route exact path='/users/:id' component={({ match }) => <UserInfoAuth id={ match.params.id } />} />
+            <Route exact path= '/users' component={UsersMaster} />
+            <Route exact path= '/users/:id' component={({ match }) => <UserInfoAuth id={ match.params.id } />} />
             {/* ORGANIZATION ROUTES */}
-            <Route exact path='/organizations' component={OrganizationsMaster} />
-            <Route exact path='/organizations/:id' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
-            <Route exact path='/' component={Welcome} />
+            <Route exact path= '/organizations' component={OrganizationsMaster} />
+            <Route exact path= '/organizations/:id' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
+            <Route exact path= '/' component={Welcome} />
             {/* ADMIN ROUTES */}
-            <Route exact path ='/master' component={OrganizationsMaster}/>
+            <Route exact path = '/master' component={OrganizationsMaster}/>
+            <Route exact path = '/master/organizationRequests' component={AllOrganizationRequests}/>
+            <Route exact path = '/master/userRequests' component={UserRequests}/>
             {/* AUTH ROUTES */}
             <Route exact path='/login' component={LoginForm} />
             <Route exact path='/signup' component={LoginForm} />
@@ -76,6 +81,7 @@ const mapDisptach = (dispatch) => {
     loadUserOrganizations:() => dispatch(getUserOrganizationsFromServer()),
     loadForm: () => dispatch(getFormsFromServer()),
     loadOrganizationRequests: () => dispatch(getOrganizationRequestsFromServer()),
+    loadUserRequests: () => dispatch(getUserRequestsFromServer()),
     loadUser: () =>{
       const token = window.localStorage.getItem('token')
       if (token){

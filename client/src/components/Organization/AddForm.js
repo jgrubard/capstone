@@ -24,7 +24,7 @@ class AddForm extends React.Component {
       const { createForm } = this.props;
       const name = this.state.name;
       const organizationId = this.props.organization.id;
-      this.props.createForm({ name: name, organizationId: organizationId });
+      createForm({ name: name, organizationId: organizationId });
       this.setState({ name: '' });
     }
 
@@ -42,11 +42,11 @@ class AddForm extends React.Component {
     }
   }
 
-  const mapState = ({state,users}) => {
+  const mapState = ({ users }) => {
     return { users }
   }
 
-  const mapDispatch = (dispatch) => {
+  const mapDispatch = dispatch => {
     return {
       createForm: (form) => dispatch(createFormOnServer(form))
     }
