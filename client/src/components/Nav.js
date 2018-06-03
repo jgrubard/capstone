@@ -10,9 +10,9 @@ const Nav = ({ user, loggedIn, logout, orgId }) => {
       {
         loggedIn ?
           (
-            <ul >
-              {user.userStatus === 'admin' ?
-                (
+            <ul>
+              {
+                user.userStatus === 'admin' ? (
                   <div>
                     <li className="item">
                       <Link to={`/organizations/${orgId}/users`}>Manage Members</Link>
@@ -26,16 +26,19 @@ const Nav = ({ user, loggedIn, logout, orgId }) => {
                     <li className="item">
                       <Link to={`/organizations/${orgId}/account`}>Account Details</Link>
                     </li>
-                  </div>) : null
+                  </div>
+                ) : null
               }
               <li className="item">
                 <span onClick={logout}>Log out</span>
               </li>
             </ul>
           ) : (
-            <li className="item">
-              <Link to='/login'>Log In</Link>
-            </li>
+            <ul>
+              <li className="item">
+                <Link to='/login'>Log In</Link>
+              </li>
+            </ul>
           )
       }
     </div>
@@ -44,8 +47,8 @@ const Nav = ({ user, loggedIn, logout, orgId }) => {
 
 const mapState = ({ user, userOrganizations, logout }) => {
   const loggedIn = !!user.id;
-  const entry = loggedIn && userOrganizations.find((ent) => {
-    return ent.userId === user.id
+  const entry = loggedIn && userOrganizations.find(entry => {
+    return entry.userId === user.id
   });
   const orgId = entry && entry.organizationId;
   return { user, loggedIn, orgId }

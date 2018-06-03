@@ -4,54 +4,56 @@ import { SwatchesPicker } from 'react-color';
 import { updateOrganizationOnServer } from '../../store';
 
 class ColorPicker extends Component {
-    constructor(props) {
-        super(props);
-        const { organization } = props;
-        this.state = {
-            backgroundColor: organization ? organization.backgroundColor : '#fff'
-        }
-        this.handleColorChange = this.handleColorChange.bind(this)
-        this.onSave = this.onSave.bind(this)
-
+  constructor(props) {
+    super(props);
+    const { organization } = props;
+    this.state = {
+      backgroundColor: organization ? organization.backgroundColor : '#fff'
     }
-    handleColorChange(ev) {
-        this.setState({backgroundColor: ev.hex});
-    }
+    this.handleColorChange = this.handleColorChange.bind(this)
+    this.onSave = this.onSave.bind(this)
+  }
 
-    onSave(ev) {
-        ev.preventDefault();
-        const { createOrUpdateOrganization, organization } = this.props;
-        const { id, name, organization_type, address, city, state, zip, contact_name, contact_phone, image, textColor } = organization;
-        const { backgroundColor } = this.state;
-        createOrUpdateOrganization({ id, name, organization_type, address, city, state, zip, contact_name, contact_phone, image, textColor, backgroundColor });
-      }
+  handleColorChange(ev) {
+    this.setState({backgroundColor: ev.hex});
+  }
 
-    render() {
-        const { handleColorChange, onSave } = this;
-        const { organization } = this.props
-        const { backgroundColor } = this.state;
-        return (
-            <div>
-                <SwatchesPicker
-                name='backgroundColor' value={backgroundColor}
-                onChangeComplete={this.handleColorChange}
-                />
-                <div><button onClick={onSave} style={{background:backgroundColor, color:organization.textColor}}>Save Background Color</button></div>
-            </div>
-        )
-    }
+  onSave(ev) {
+    ev.preventDefault();
+    const { createOrUpdateOrganization, organization } = this.props;
+    const { id, name, organization_type, address, city, state, zip, contact_name, contact_phone, image, textColor } = organization;
+    const { backgroundColor } = this.state;
+    createOrUpdateOrganization({ id, name, organization_type, address, city, state, zip, contact_name, contact_phone, image, textColor, backgroundColor });
+  }
+
+  render() {
+    const { handleColorChange, onSave } = this;
+    const { organization } = this.props
+    const { backgroundColor } = this.state;
+    return (
+      <div>
+        <SwatchesPicker
+        name='backgroundColor' value={backgroundColor}
+        onChangeComplete={this.handleColorChange}
+        />
+        <div>
+          <button onClick={onSave} style={{background:backgroundColor, color:organization.textColor}}>
+            Save Background Color
+          </button>
+        </div>
+      </div>
+    )
+  }
 }
 
 const mapState = (state, { organization }) => {
-    return { organization }
+  return { organization }
 }
 
 const mapDispatch = (dispatch) => {
-    return {
-        createOrUpdateOrganization: (organization) => dispatch(updateOrganizationOnServer(organization))
-    }
+  return {
+    createOrUpdateOrganization: (organization) => dispatch(updateOrganizationOnServer(organization))
+  }
 }
-
-
 
 export default connect(mapState, mapDispatch)(ColorPicker);

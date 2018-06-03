@@ -23,7 +23,6 @@ const UserRequests = ({ users, userRequests, deleteRequest, organizations }) => 
   );
 }
 
-
 const mapState = ({ users, userRequests, organizations }) => {
   return { users, userRequests, organizations }
 }

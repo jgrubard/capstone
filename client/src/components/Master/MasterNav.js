@@ -6,26 +6,25 @@ const MasterNav = ({ user, isMaster }) => {
   const url = location.hash.slice(1)
   return (
     <div>
-          {
-            isMaster ?
-              (
-                <ul className='main-nav' >
-                  <li>
-                    <Link to='/organizations'>Organizations</Link>
-                  </li>
-                  <li>
-                    <Link to='/users'>Users</Link>
-                  </li>
-                  <li>
-                    <Link to='/master/organizationRequests'>Organization Requests</Link>
-                  </li>
-                  <li>
-                    <Link to='/master/userRequests'>User Requests</Link>
-                  </li>
-                </ul>
-              ) : null
-          }
-        </div>
+      {
+        isMaster ? (
+          <ul className='main-nav' >
+            <li>
+              <Link to='/organizations'>Organizations</Link>
+            </li>
+            <li>
+              <Link to='/users'>Users</Link>
+            </li>
+            <li>
+              <Link to='/master/organizationRequests'>Organization Requests</Link>
+            </li>
+            <li>
+              <Link to='/master/userRequests'>User Requests</Link>
+            </li>
+          </ul>
+        ) : null
+      }
+    </div>
   );
 }
 
