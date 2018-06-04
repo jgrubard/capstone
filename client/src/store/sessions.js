@@ -55,6 +55,14 @@ export const getUserFromToken = token => {
   };
 };
 
+export const updateUserOrganizationId = (userId, organizationId) => {
+  return dispatch => {
+    return axios.post(`/api/sessions/${userId}`, organizationId)
+      .then(result => result.data)
+      .then(user => dispatch(gotUser(user)));
+  }
+}
+
 export const logout = () => {
   return (dispatch) => {
     window.localStorage.removeItem('token');

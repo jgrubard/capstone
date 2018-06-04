@@ -26,7 +26,10 @@ export const updateOrganizationOnServer = (organization) => {
   return dispatch => {
     return axios[method](url, organization)
       .then(result => result.data)
-      .then(organization => dispatch(action(organization)))
+      .then(organization => {
+        dispatch(action(organization));
+        return organization;
+      })
   };
 };
 
