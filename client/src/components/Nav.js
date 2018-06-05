@@ -12,7 +12,9 @@ const Nav = ({ user, loggedIn, logout, orgId }) => {
         loggedIn ? (
           <div className='ui inverted menu'>
             {
-              user.userStatus === 'admin' ? (
+              user.userStatus === 'admin' ?
+                user.organizationId ?
+                (
                 <div className='ui inverted menu'>
                   <span className="item">
                     <Link to={`/organizations/${orgId}/users`}>Manage Members</Link>
@@ -27,7 +29,15 @@ const Nav = ({ user, loggedIn, logout, orgId }) => {
                     <Link to={`/organizations/${orgId}/account`}>Account Details</Link>
                   </span>
                 </div>
-              ) : null
+                )
+                : (
+                  <div className='ui inverted menu'>
+                    <span className='item'>
+                      <Link to={`/organizations/create`}>Create Organization</Link>
+                    </span>
+                  </div>
+                )
+              : null
             }
             <div>
               <span className="active blue item" onClick={logout}>Log out</span>
@@ -45,10 +55,7 @@ const Nav = ({ user, loggedIn, logout, orgId }) => {
 
 const mapState = ({ user, userOrganizations, logout }) => {
   const loggedIn = !!user.id;
-  const entry = loggedIn && userOrganizations.find(entry => {
-    return entry.userId === user.id
-  });
-  const orgId = entry && entry.organizationId;
+  const orgId = user.organizationId;
   return { user, loggedIn, orgId }
 }
 

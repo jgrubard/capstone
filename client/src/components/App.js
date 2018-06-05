@@ -19,7 +19,8 @@ import OrgUsers from './Organization/OrgUsers';
 import OrgRequests from './Organization/OrgRequests';
 import OrgCustomize from './Organization/OrgCustomize';
 import LoginForm from './User/LoginForm';
-import Welcome from './General/Welcome'
+import OrganizationForm from './Organization/OrganizationForm';
+import Welcome from './General/Welcome';
 
 class App extends React.Component {
   componentDidMount() {
@@ -42,6 +43,7 @@ class App extends React.Component {
     const OrgUsersAuth = CheckAuth(OrgUsers)
     const OrgRequestsAuth = CheckAuth(OrgRequests)
     const OrgCustomizeAuth = CheckAuth(OrgCustomize)
+    const OrgFormAuth = CheckAuth(OrganizationForm)
     return (
       <Router>
         <div>
@@ -56,6 +58,7 @@ class App extends React.Component {
               <Route exact path='/users/:id' component={({ match }) => <UserInfoAuth id={ match.params.id } />} />
               {/* ORGANIZATION ROUTES */}
               <Route exact path='/organizations' component={OrganizationsMaster} />
+              <Route exact path='/organizations/create' component={ OrgFormAuth } />
               <Route exact path='/organizations/:id' component={({ match, history }) => <OrganizationInfoAuth id={ match.params.id } history={history} />} />
               <Route exact path='/organizations/:id/users' component={({ match, history }) => <OrgUsersAuth id={ match.params.id } history={history} />} />
               <Route exact path='/organizations/:id/requests' component={({ match, history }) => <OrgRequestsAuth id={ match.params.id } history={history} />} />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateOrganizationOnServer } from '../../store';
+import { updateOrganizationOnServer, createNewOrg } from '../../store';
 
 class OrganizationForm extends Component {
   constructor(props) {
@@ -24,11 +24,6 @@ class OrganizationForm extends Component {
     this.addPhoto = this.addPhoto.bind(this);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   const { organization } = nextProps;
-  //   this.setState(organization);
-  // }
-
   handleChange(ev) {
     const change = {}
     change[ev.target.name] = ev.target.value;
@@ -46,11 +41,13 @@ class OrganizationForm extends Component {
 
   onSave(ev) {
     ev.preventDefault();
-    const { organization } = this.props;
-    const { createOrUpdateOrganization } = this.props;
-    const { id, name, organization_type, address, city, state, zip, contact_name, contact_phone, image } = this.state;
-    createOrUpdateOrganization({ id, name, organization_type, address, city, state, zip, contact_name, contact_phone, image });
-    // this.setState({name: '', organization_type: '', address: '', city: '', state: '', zip: '', contact_name: '', contact_phone: ''})
+    const { organization, user } = this.props;
+    const { updateOrganization, createOrganization } = this.props;
+    if(organization && organization.id) {
+      updateOrganization(this.state);
+    } else {
+      createOrganization(this.state, user.id);
+    }
   }
 
   render() {
@@ -81,13 +78,14 @@ class OrganizationForm extends Component {
   }
 }
 
-const mapState = (state, { organization }) => {
-  return { organization }
+const mapState = ({ user }, { organization }) => {
+  return { organization, user }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
-    createOrUpdateOrganization: (organization) => dispatch(updateOrganizationOnServer(organization))
+    updateOrganization: (organization) => dispatch(updateOrganizationOnServer(organization)),
+    createOrganization: (organization, userId) => dispatch(createNewOrg(organization, userId, history))
   }
 }
 

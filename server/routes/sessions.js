@@ -32,4 +32,13 @@ router.get('/:token', (req, res, next) => {
     .catch(next);
 });
 
+router.post('/:userId/organizations/:organizationId', (req, res, next) => {
+  User.findById(req.params.userId)
+    .then(user => user.update({
+        organizationId: req.params.organizationId
+      }))
+    .then(user => res.send(user))
+    .catch(next)
+})
+
 module.exports = router;
