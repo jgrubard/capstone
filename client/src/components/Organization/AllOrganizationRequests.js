@@ -10,11 +10,12 @@ const AllOrganizationRequests = ({ users, organizations, organizationRequests, d
         organizationRequests.map(request => {
           const user = users.find(user => user.id === request.userId)
           const organization = organizations.find(organization => organization.id === request.organizationId)
-          const checkedOrg = organizations.find(org => org.id === user.checkedInId)
+          const checkedOrg = user.checkedInId ? organizations.find(org => org.id === user.checkedInId) : null
+          console.log(user, checkedOrg, request)
           return (
             <div key={request.id}>
               {organization.name} requested by {user.fullName} ({ request.status }) - {user.checkedInId ? `Checked into ${checkedOrg.name}` : 'Checked in Nowhere'}
-              <button onClick={() => deleteOrganizationRequest(request.id, user, checkedOrg.id )}>delete</button>
+              <button onClick={() => deleteOrganizationRequest(request.id, user, checkedOrg)}>delete</button>
             </div>
           );
         })
@@ -33,8 +34,8 @@ const mapState = ({ users, organizations, organizationRequests }) => {
 
 const mapDispatch = dispatch => {
   return {
-    deleteOrganizationRequest: (requestId, user, orgId) => {
-      if (user.checkedInId === orgId) {
+    deleteOrganizationRequest: (requestId, user, checkedOrg) => {
+      if (checkedOrg && user.checkedInId === checkedOrg.id) {
         const { id, firstName, lastName, email, password, userStatus } = user;
         dispatch(updateUserOnServer({ id, firstName, lastName, email, password, userStatus, checkedInId: null }))
       }
