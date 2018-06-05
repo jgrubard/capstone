@@ -2,7 +2,7 @@ const router = require('express').Router();
 module.exports = router;
 
 const { OrganizationRequest } = require('../db').models;
-const { io, webAppSockets } = require('../sockets');
+const { io, webAppSockets, mobileSockets } = require('../sockets');
 
 router.get('/', (req, res, next) => {
   OrganizationRequest.findAll()
@@ -13,9 +13,9 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   OrganizationRequest.create(req.body)
     .then(organizationRequest => {
-      res.send(organizationRequest);
       const socketId = webAppSockets[organizationRequest.organizationId];
       io.to(socketId).emit('newOrganizationRequest', organizationRequest);
+      res.send(organizationRequest);
     })
     .catch(next);
 });
@@ -26,7 +26,11 @@ router.put('/:id', (req, res, next) => {
       Object.assign(organizationRequest, req.body)
       return organizationRequest.save()
     })
-    .then(organizationRequest => res.send(organizationRequest))
+    .then(organizationRequest => {
+      const socketId = mobileSockets[organizationRequest.userId];
+      io.to(socketId).emit('updatedOrganizationRequest', organizationRequest);
+      res.send(organizationRequest)
+    })
     .catch(next);
 });
 
