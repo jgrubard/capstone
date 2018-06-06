@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   OrganizationRequest.create(req.body)
     .then(organizationRequest => {
-      const socketId = webAppSockets[organizationRequest.organizationId];
+      const socketId = webAppSockets[organizationRequest.organizationId].id;
       io.to(socketId).emit('newOrganizationRequest', organizationRequest);
       res.send(organizationRequest);
     })
@@ -27,7 +27,7 @@ router.put('/:id', (req, res, next) => {
       return organizationRequest.save()
     })
     .then(organizationRequest => {
-      const socketId = mobileSockets[organizationRequest.userId];
+      const socketId = mobileSockets[organizationRequest.userId].id;
       io.to(socketId).emit('updatedOrganizationRequest', organizationRequest);
       res.send(organizationRequest)
     })
