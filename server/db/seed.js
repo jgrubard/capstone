@@ -199,8 +199,8 @@ const seed = () => {
       form3.setDescriptions([des3]),
       form4.setDescriptions([des4]),
     ])
-    */
   })
+  */
 }
 
 conn.sync({ force: true })
