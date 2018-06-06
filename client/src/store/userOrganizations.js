@@ -17,7 +17,7 @@ export const getUserOrganizationsFromServer = () => {
 };
 
 export const createUserOrganizationOnServer = (userOrganization) => {
-  console.log('thunk:', userOrganization)
+  // console.log('thunk:', userOrganization)
   return dispatch => {
     return axios.post('/api/userOrganizations', userOrganization)
       .then(result => result.data)
