@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   UserRequest.create(req.body)
     .then(userRequest => {
-      const socketId = webAppSockets[userRequest.responderId];
+      const socketId = mobileSockets[userRequest.responderId].id;
       io.to(socketId).emit('newUserRequest', userRequest);
       res.send(userRequest);
     })
@@ -27,6 +27,7 @@ router.put('/:id', (req, res, next) => {
       return userRequest.save()
     })
     .then(userRequest => {
+      const socketId = mobileSockets[userRequest.requesterId].id;
       io.to(socketId).emit('updatedUserRequest', userRequest)
       res.send(userRequest)
     })
