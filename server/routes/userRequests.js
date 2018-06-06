@@ -26,7 +26,10 @@ router.put('/:id', (req, res, next) => {
       Object.assign(userRequest, req.body)
       return userRequest.save()
     })
-    .then(userRequest => res.send(userRequest))
+    .then(userRequest => {
+      io.to(socketId).emit('updatedUserRequest', userRequest)
+      res.send(userRequest)
+    })
     .catch(next);
 })
 
