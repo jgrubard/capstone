@@ -2,6 +2,7 @@ const router = require('express').Router();
 module.exports = router;
 
 const { UserRequest } = require('../db').models;
+const { io, webAppSockets, mobileSockets } = require('../sockets');
 
 router.get('/', (req, res, next) => {
   UserRequest.findAll()
@@ -11,7 +12,11 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   UserRequest.create(req.body)
-    .then(userRequest => res.send(userRequest))
+    .then(userRequest => {
+      const socketId = webAppSockets[userRequest.responderId];
+      io.to(socketId).emit('newUserRequest', userRequest);
+      res.send(userRequest);
+    })
     .catch(next);
 });
 

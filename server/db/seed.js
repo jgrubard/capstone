@@ -102,16 +102,16 @@ const seed = () => {
   ])
   .then(([ master, admin, jeremy, anna, gabriel, alexander, cliffs, reacto, fullstack, tiger, acme]) => {
     return Promise.all([
-      UserRequest.create({
-        requesterId: gabriel.id,
-        responderId: jeremy.id,
-        organizationId: cliffs.id,
-      }),
-      OrganizationRequest.create({
-        organizationId: cliffs.id,
-        userId: gabriel.id,
-        status: 'accepted'
-      }),
+      // UserRequest.create({
+      //   requesterId: gabriel.id,
+      //   responderId: jeremy.id,
+      //   organizationId: cliffs.id,
+      // }),
+      // OrganizationRequest.create({
+      //   organizationId: cliffs.id,
+      //   userId: gabriel.id,
+      //   status: 'accepted'
+      // }),
       Form.create({
         name: 'Climbing Skill Level',
         organizationId: cliffs.id
@@ -128,18 +128,17 @@ const seed = () => {
         name: 'Developer Level',
         organizationId: fullstack.id
       }),
-      Description.create({
-        description: 'I climb V3 level bouldering and 5.9 level on top-ropes',
-        userId: gabriel.id,
-        organizationId: cliffs.id,
-        // formId: form1.id
-      }),
-      Description.create({
-        description: 'I am super cool',
-        userId: gabriel.id,
-        organizationId: cliffs.id,
-        // formId: form2.id
-      }),
+      // Description.create({
+      //   description: 'I climb V3 level bouldering and 5.9 level on top-ropes',
+      //   userId: gabriel.id,
+      //   organizationId: cliffs.id,
+      //   // formId: form1.id
+      // }),
+      // Description.create({
+      //   description: 'I am super cool',
+      //   userId: gabriel.id,
+      //   organizationId: cliffs.id,
+      // }),
       Description.create({
         description: 'I am a junior',
         userId: anna.id,
@@ -156,10 +155,6 @@ const seed = () => {
         userId: admin.id,
         organizationId: cliffs.id
       }),
-      // UserOrganization.create({
-        // userId: jeremy.id,
-        // organizationId: cliffs.id
-      // }),
       UserOrganization.create({
         userId: jeremy.id,
         organizationId: reacto.id
@@ -176,10 +171,10 @@ const seed = () => {
         userId: anna.id,
         organizationId: tiger.id
       }),
-      UserOrganization.create({
-        userId: gabriel.id,
-        organizationId: cliffs.id
-      }),
+      // UserOrganization.create({
+      //   userId: gabriel.id,
+      //   organizationId: cliffs.id
+      // }),
       UserOrganization.create({
         userId: gabriel.id,
         organizationId: fullstack.id
@@ -192,17 +187,19 @@ const seed = () => {
         userId: alexander.id,
         organizationId: acme.id
       }),
-      gabriel.setCheckedIn(cliffs),
+      // gabriel.setCheckedIn(cliffs),
       admin.setOrganization(cliffs),
     ])
   })
-  .then(([ userReq1, orgReq1, form1, form2, form3, form4, des1, des2, des3, des4, uo1, /*uo2,*/ uo3, uo4, uo5, uo6, uo7, uo8, uo9 ]) => {
+  /*
+  .then(([ userReq1, orgReq1, form1, form2, form3, form4, des1, des2, des3, des4, uo1, uo3, uo4, uo5, uo6, uo7, uo8, uo9 ]) => {
     return Promise.all([
       form1.setDescriptions([des1]),
       form2.setDescriptions([des2]),
       form3.setDescriptions([des3]),
       form4.setDescriptions([des4]),
     ])
+    */
   })
 }
 
