@@ -11,6 +11,7 @@ const UserRequests = ({ users, userRequests, deleteRequest, organizations }) => 
           const requester = users.find(user => user.id === request.requesterId);
           const responder = users.find(user => user.id === request.responderId);
           const organization = organizations.find(org => org.id === request.organizationId)
+          // console.log(requester, responder, organization)
           return (
             <div key={request.id}>
               {requester.fullName} wants to pair with {responder.fullName} @ {organization.name} ({request.status})&nbsp;
