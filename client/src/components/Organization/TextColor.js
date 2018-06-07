@@ -38,7 +38,7 @@ class TextColor extends Component {
     return (
       <div>
         <div>
-          <select onChange={handleChange} value={textColor} className="ui selection dropdown">
+          <select onChange={handleChange} value={textColor} className="ui selection dropdown" style={{marginBottom: '10px'}}>
             <option value='#000000'> Black </option>
             <option value='#fff'> White </option>
             <option value='#969696'> Grey </option>

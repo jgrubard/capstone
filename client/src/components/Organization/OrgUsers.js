@@ -15,11 +15,11 @@ const OrgUsers = ({ organization, id, ownUsers, removeUser, userOrganizations })
           <li key={user.id} style={{ marginBottom: '20px' }}>
             {user.fullName}&nbsp;
             <Link to={`/users/${user.id}`}>
-              <button className='tiny olive ui button'>
+              <button className='tiny olive ui button' style={{float:'right'}}>
                 Edit Member
               </button>
             </Link>
-            <button className='tiny orange ui button' onClick={() => removeUser(user.id, organization.id, userOrganizations)}>
+            <button className='tiny orange ui button' style={{float:'right'}} onClick={() => removeUser(user.id, organization.id, userOrganizations)}>
               Remove from {organization.name}
             </button>
           </li>

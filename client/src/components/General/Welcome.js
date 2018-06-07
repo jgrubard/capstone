@@ -1,8 +1,10 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const Welcome = ({user, orgId}) => {
+const Welcome = ({user, orgId, loggedIn}) => {
+  if (!loggedIn) { return  <Redirect to='/login' /> }
   return (
     <div>
       {user.userStatus === 'admin'?

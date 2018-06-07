@@ -49,14 +49,18 @@ a {
 	color: #718daa;
 }
 
-
-
 .header {
 	/* padding-top: .5em;
 	padding-bottom: .5em; */
 	background-color: #f4f4f4;
 
 }
+
+/* .right {
+	position:absolute;
+	right:0;
+	top:10px;
+  }  */
 
 /* =================================
   Media Queries

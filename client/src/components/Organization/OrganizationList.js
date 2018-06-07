@@ -11,18 +11,18 @@ const OrganizationList = ({ organizations, count, pluralize }) => {
       <h4>Add an organization</h4>
       <OrganizationForm />
 
-      <ul>
-      <h4>There {pluralize[0]} currently {count} Organization{pluralize[1]}</h4>
+      <ol style={{type:1}}>
+      <h4 style={{'marginTop':'20px'}}>There {pluralize[0]} currently {count} Organization{pluralize[1]}:</h4>
         {
           organizations.map(org => (
-            <li key={org.id}>
+            <li key={org.id} style={{'marginTop':'10px'}}>
               <Link to={`/organizations/${org.id}`}>
-                { org.name }
+              { org.name }
               </Link>
             </li>
           ))
         }
-      </ul>
+      </ol>
     </div>
   );
 }

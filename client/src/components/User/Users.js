@@ -40,10 +40,10 @@ class Users extends React.Component {
         <ul>
           {
             matchingUsers.map(user => (
-              <li key={user.id}>
+              <li key={user.id} style={{ marginBottom: '10px' }}>
                 {user.fullName}
-                <Link to={`/users/${user.id}`}><button>Edit user</button></Link>
-                <button onClick={() => deleteUser(user.id)}>Delete user</button>
+                <Link to={`/users/${user.id}`}><button className='tiny olive ui button' style={{float:'right'}}>Edit user</button></Link>
+                <button className='tiny orange ui button' style={{float:'right'}} onClick={() => deleteUser(user.id)}>Delete user</button>
               </li>
             ))
           }
