@@ -19,7 +19,7 @@ class Users extends React.Component {
   }
 
   render() {
-    const { users, deleteUser } = this.props
+    const { users, deleteUser, count, pluralize } = this.props
     const { name } = this.state
     const { onChange } = this
     const matchingUsers = users.reduce((memo, user) => {
@@ -37,24 +37,27 @@ class Users extends React.Component {
         <UserForm />
         <hr />
         <input onChange={onChange} value={name} placeholder="Search for a user" />
-        <ul>
+        <ol style={{type:1}}>
+      <h4 style={{'marginTop':'20px'}}>There {pluralize[0]} currently {count} User{pluralize[1]}:</h4>
           {
             matchingUsers.map(user => (
-              <li key={user.id} style={{ marginBottom: '10px' }}>
+              <li key={user.id} style={{ marginBottom: '15px' }}>
                 {user.fullName}
                 <Link to={`/users/${user.id}`}><button className='tiny olive ui button' style={{float:'right'}}>Edit user</button></Link>
                 <button className='tiny orange ui button' style={{float:'right'}} onClick={() => deleteUser(user.id)}>Delete user</button>
               </li>
             ))
           }
-        </ul>
+        </ol>
       </div>
     );
   }
 }
 
 const mapState = ({ users }) => {
-  return { users }
+  const count = users.length;
+  const pluralize = count === 1 ? [ 'is', '' ] : [ 'are', 's']
+  return { users, count, pluralize }
 }
 
 const mapDispatch = (dispatch) => {
