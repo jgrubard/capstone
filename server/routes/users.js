@@ -2,6 +2,7 @@ const router = require('express').Router();
 module.exports = router;
 
 const { User } = require('../db').models;
+const { mobileSockets } = require('../sockets');
 
 router.get('/', (req, res, next) => {
   User.findAll()
@@ -21,7 +22,11 @@ router.put('/:id', (req, res, next) => {
       Object.assign(user, req.body);
       return user.save();
     })
-    .then(user => res.send(user))
+    .then(user => {
+      const socket = mobileSockets[user.id];
+      socket.broadcast.emit('updatedUser', user);
+      res.send(user);
+    })
     .catch(next);
 });
 

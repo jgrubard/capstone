@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import socket from './sockets';
 
 import organizations, { updateOrganizationOnServer } from './organizations';
-import users from './users';
+import users, { updateUser } from './users';
 import descriptions from './descriptions';
 import user, { updateUserOrganizationId } from './sessions';
 import userOrganizations from './userOrganizations';
@@ -28,6 +28,10 @@ export const createNewOrg = (organization, userId, history) => {
 socket.on('newOrganizationRequest', organizationRequest => {
   console.log(organizationRequest)
   store.dispatch(createOrganizationRequest(organizationRequest));
+});
+
+socket.on('updatedUser', user => {
+  store.dispatch(updateUser(user));
 });
 
 export default store;
