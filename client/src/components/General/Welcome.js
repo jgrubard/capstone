@@ -8,9 +8,18 @@ const Welcome = ({user, orgId, loggedIn}) => {
   return (
     <div>
       {user.userStatus === 'admin'?
+      user.organizationId ?
+      (
       <div>
       <h3>Welcome {user.firstName} to Pair Up!</h3>
-      </div> : null
+      </div>
+    ) : (
+      <div>
+      <h3>Welcome {user.firstName} to Pair Up!</h3>
+      <button className="large ui primary basic button"><Link to={`/organizations/create`}>Click to Create Your Organization!</Link></button>
+      </div>
+    )
+     : null
       }
     </div>
   )

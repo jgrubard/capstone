@@ -120,7 +120,7 @@ class InjectedLoginForm extends React.Component {
           ) :
             (
               <div>
-                <h3>{url === '/signup' ? ('Sign up for an account') : ('Log in to your account')}</h3>
+                <h3>{url === '/signup' ? ('Sign up as an Admin to Create an Organization Account') : ('Log in to your account')}</h3>
                 <div>
                   {
                     url === '/signup' ? (
