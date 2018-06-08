@@ -72,7 +72,7 @@ class OrganizationForm extends Component {
         <div className="field"><label>Contact Phone</label><input name='contact_phone' value={contact_phone} onChange={handleChange} /></div>
       </div>
         <div>Add Image<input type='file' onChange={addPhoto}/></div>
-        <div><button className="ui olive button"onClick={onSave}>Submit</button></div>
+        <div><button className="ui olive button" style={{'marginTop':'10px'}} onClick={onSave}>Submit</button></div>
       </div>
     );
   }

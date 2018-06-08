@@ -44,9 +44,9 @@ class UserForm extends React.Component {
       const { user, users } = this.props
       const { firstName, lastName, email, password } = this.state;
       const fields = {
-        firstName: 'First name',
-        lastName: 'Last name',
-        email: 'Email address',
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        email: 'Email Address',
         password: 'Password'
       }
       return (
@@ -55,7 +55,7 @@ class UserForm extends React.Component {
           <div>
             {
               Object.keys(fields).map(field => (
-                <div key={field}>
+                <div key={field} className="ui form">
                   <label>{fields[field]}</label>
                   <input
                     name={field}

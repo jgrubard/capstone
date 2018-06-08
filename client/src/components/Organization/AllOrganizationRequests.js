@@ -15,7 +15,7 @@ const AllOrganizationRequests = ({ users, organizations, organizationRequests, d
           return (
             <div key={request.id}>
               {organization.name} requested by {user.fullName} ({ request.status }) - {user.checkedInId ? `Checked into ${checkedOrg.name}` : 'Not Checked In'}
-              <button onClick={() => deleteOrganizationRequest(request.id, user, checkedOrg)}>delete</button>
+              <button style={{float:'right'}} onClick={() => deleteOrganizationRequest(request.id, user, checkedOrg)}>delete</button>
             </div>
           );
         })

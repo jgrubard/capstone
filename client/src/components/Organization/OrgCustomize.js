@@ -17,8 +17,8 @@ const OrgCustomize = ({ organization, id, ownForms, forms, deleteForm }) => {
           ownForms.map(form => (
             <li key={form.id} style={{ marginBottom: '20px' }}>
               {form.name}&nbsp;
-              <button className="tiny ui orange button" onClick={() => deleteForm(form.id)}>Delete Category</button>
-            </li>
+              <button className="tiny ui orange button" style={{float:'right'}} onClick={() => deleteForm(form.id)}>Delete Category</button>
+              </li>
           ))
         }
       </ul>
