@@ -24,7 +24,9 @@ router.put('/:id', (req, res, next) => {
     })
     .then(user => {
       const socket = mobileSockets[user.id];
-      socket.broadcast.emit('updatedUser', user);
+      if(socket) {
+        socket.broadcast.emit('updatedUser', user);
+      }
       res.send(user);
     })
     .catch(next);

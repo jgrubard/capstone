@@ -10,7 +10,7 @@ import user, { updateUserOrganizationId } from './sessions';
 import userOrganizations from './userOrganizations';
 import forms from './forms'
 import organizationRequests, { createOrganizationRequest } from './organizationRequests';
-import userRequests from './userRequests';
+import userRequests, { deleteUserRequest } from './userRequests';
 
 const middleware = applyMiddleware(thunk, logger);
 const reducers = combineReducers({ organizations, users, descriptions, user, userOrganizations, forms, organizationRequests, userRequests });
@@ -32,6 +32,10 @@ socket.on('newOrganizationRequest', organizationRequest => {
 
 socket.on('updatedUser', user => {
   store.dispatch(updateUser(user));
+});
+
+socket.on('deletedUserRequest', id => {
+  store.dispatch(deleteUserRequest(id));
 });
 
 export default store;
