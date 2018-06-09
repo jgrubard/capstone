@@ -37,8 +37,8 @@ router.put('/:id', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
   UserRequest.findById(req.params.id)
     .then(userRequest => {
-      const requesterId = mobileSockets[userRequest.requesterId];
-      const organizationId = webAppSockets[userRequest.organizationId];
+      const requesterId = mobileSockets[userRequest.requesterId].id;
+      const organizationId = webAppSockets[userRequest.organizationId].id;
       io.to(requesterId).emit('deletedUserRequest', userRequest.id);
       io.to(organizationId).emit('deletedUserRequest', userRequest.id);
       userRequest.destroy();
