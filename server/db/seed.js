@@ -113,11 +113,11 @@ const seed = () => {
       //   status: 'accepted'
       // }),
       Form.create({
-        name: 'Climbing Skill Level',
+        name: 'Bouldering Skill Level',
         organizationId: cliffs.id
       }),
       Form.create({
-        name: 'Highest Rope',
+        name: 'Top-Rope Skill Level',
         organizationId: cliffs.id
       }),
       Form.create({
