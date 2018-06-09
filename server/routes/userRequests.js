@@ -39,8 +39,8 @@ router.delete('/:id', (req, res, next) => {
     .then(userRequest => {
       const requesterId = mobileSockets[userRequest.requesterId];
       const organizationId = webAppSockets[userRequest.organizationId];
-      io.to(requesterId).emit('deleteUserRequest', userRequest.id);
-      io.to(organizationId).emit('deleteUserRequest', userRequest.id);
+      io.to(requesterId).emit('deletedUserRequest', userRequest.id);
+      io.to(organizationId).emit('deletedUserRequest', userRequest.id);
       userRequest.destroy();
     })
     .then(() => res.sendStatus(204))

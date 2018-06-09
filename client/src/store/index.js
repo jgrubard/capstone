@@ -34,7 +34,7 @@ socket.on('updatedUser', user => {
   store.dispatch(updateUser(user));
 });
 
-socket.on('deleteUserRequest', id => {
+socket.on('deletedUserRequest', id => {
   store.dispatch(deleteUserRequest(id));
 });
 
