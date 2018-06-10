@@ -1,10 +1,9 @@
 const conn = require('../conn');
 const { Sequelize } = conn;
-const Message = require('./Message');
 const Op = Sequelize.Op;
 
 const Conversation = conn.define('conversation', {
-  chatId: {
+  id: {
     type: Sequelize.STRING,
     primaryKey: true
   }
@@ -15,21 +14,23 @@ Conversation.findOrCreateConversation = (user1Id, user2Id) => {
   const secondPermutation = `${user2Id}&${user1Id}`;
   return Conversation.find({
     where: {
-      chatId: {
+      id: {
         [Op.or]: [firstPermutation, secondPermutation]
       }
     },
-    include: [ Message ]
+    include: [{ model: conn.models.message}],
+    order: [[ conn.models.message, 'createdAt', 'DESC' ]]
   })
     .then(conversation => {
       if(conversation) {
         return conversation;
       } else {
         return Conversation.create({
-          chatId: firstPermutation
+          id: firstPermutation
         })
           .then(() => Conversation.findById(firstPermutation, {
-              include: [ Message ]
+              include: [{ model: conn.models.message }],
+              order: [[ conn.models.message, 'createdAt', 'DESC' ]]
             }))
               .then(conversation => conversation);
       }

@@ -1,32 +1,37 @@
 const conn = require('../conn');
 const { Sequelize } = conn;
-const Conversation = require('./Conversation');
+const Op = Sequelize.Op;
 
 const Message = conn.define('message', {
   text: Sequelize.STRING,
-  userId: Sequelize.STRING
+  user: Sequelize.JSON,
+  _id: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
+    primaryKey: true
+  }
 });
 
-Message.createMessage = function(text, senderId, user1Id, user2Id) {
+Message.createMessage = function(text, user1, user2) {
+  const firstPermutation = `${user1.id}&${user2.id}`;
+  const secondPermutation = `${user2.id}&${user1.id}`;
   return Message.create({
     text,
-    userId: senderId
+    user: {
+      "_id": user1.id,
+      "name": user1.fullName
+    }
   })
-    .then(() => {
-      const firstPermutation = `${user1Id}&${user2Id}`;
-      const secondPermutation = `${user2Id}&${user1Id}`;
-      Conversation.find({
+    .then(message => Promise.all([
+      conn.models.conversation.find({
         where: {
-          chatId: {
+          id: {
             [Op.or]: [firstPermutation, secondPermutation]
           }
         }
-      })
-        .then(conversation => {
-          const messages = conversation.messages;
-          return messages;
-        })
-    })
+      }), message
+    ]))
+    .then(([ conversation, message ]) => message.setConversation(conversation))
 }
 
 module.exports = Message;

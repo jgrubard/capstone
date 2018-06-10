@@ -30,7 +30,7 @@ UserRequest.belongsTo(User, { as: 'responder' });
 UserRequest.belongsTo(Organization);
 
 Message.belongsTo(Conversation);
-Conversation.hasMany(Conversation);
+Conversation.hasMany(Message);
 
 module.exports = {
   conn,
