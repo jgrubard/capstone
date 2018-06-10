@@ -49,7 +49,13 @@ const Organization = conn.define('organization', {
   textColor: {
     type: Sequelize.TEXT,
     defaultValue: '#000000'
-  }
+  },
+  latitude: {
+    type: Sequelize.DECIMAL
+  },
+  longitude: {
+    type: Sequelize.DECIMAL
+  },
 }, {
   timestamps: false
 });

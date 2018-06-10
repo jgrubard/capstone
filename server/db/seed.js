@@ -55,7 +55,9 @@ const seed = () => {
       contact_name: 'Mary',
       contact_phone: '718-729-7625',
       backgroundColor: '#c5cae9',
-      textColor: '#000000'
+      textColor: '#000000',
+      latitude: 40.705076,
+      longitude: -74.009160
     }),
     Organization.create({
       name: 'REACTO',
@@ -67,7 +69,9 @@ const seed = () => {
       contact_name: 'Lucy',
       contact_phone: '347-834-9066',
       backgroundColor: '#33691e',
-      textColor: '#fff'
+      textColor: '#fff',
+      latitude: 40.704418,
+      longitude: -74.017902
     }),
     Organization.create({
       name: 'Fullstack Academy',
@@ -78,6 +82,8 @@ const seed = () => {
       zip: '10004',
       contact_name: 'David',
       contact_phone: '123-456-7890',
+      latitude: 40.705726,
+      longitude: -74.017750
     }),
     Organization.create({
       name: 'Tiger Boxing',
@@ -88,6 +94,8 @@ const seed = () => {
       zip: '10003',
       contact_name: 'Andrew D. Hamilton',
       contact_phone: '123-456-7890',
+      latitude: 40.704362,
+      longitude: -74.010046
     }),
     Organization.create({
       name: 'Acme',
@@ -97,7 +105,9 @@ const seed = () => {
       state: 'New York',
       zip: '10016',
       contact_name: 'Mat',
-      contact_phone: '212-294-1000'
+      contact_phone: '212-294-1000',
+      latitude: 40.706877,
+      longitude: -74.011265
     })
   ])
   .then(([ master, admin, jeremy, anna, gabriel, alexander, cliffs, reacto, fullstack, tiger, acme]) => {
