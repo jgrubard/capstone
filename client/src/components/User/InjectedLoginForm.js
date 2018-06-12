@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { attemptLogin, signup } from '../../store'
 import { Input, Button, Progress } from 'mdbreact';
+import { ProgressBar } from 'react-bootstrap';
 import { injectStripe, CardElement } from 'react-stripe-elements';
 import axios from 'axios';
 
@@ -179,21 +180,23 @@ class InjectedLoginForm extends React.Component {
                             <p>{errors.password}</p>
                           </div>
                           }
-                        </div>
-                        <div className="progress-wrapper">
-                          {passwordTestStrong ? (
-                            <Progress value={100} color={"success"} />
-                          ) : (
-                              passwordTestMedium ? (
-                                <Progress value={67} color={"warning"} />
-                              ) : (
-                                  password.length > 3 ? (
-                                    <Progress value={33} color={"danger"} />
-                                  ) : (
-                                      <Progress value={0} color={"danger"} />
-                                    )
-                                ))
-                          }
+                          <div className="progress-wrapper">
+                            {passwordTestStrong ? (
+                              <Progress value={100} color={"success"}/>
+                            ) : (
+                                passwordTestMedium ? (
+                                  <Progress value={67} color={"warning"} />
+                                ) : (
+                                    password.length > 3 ? (
+                                      <div>
+                                      <Progress value={33} color={"danger"} />
+                                      </div>
+                                    ) : (
+                                        <Progress value={0} color={"danger"} />
+                                      )
+                                  ))
+                            }
+                          </div>
                         </div>
                         </div>
                         <div className="two fields">
