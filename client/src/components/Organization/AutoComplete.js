@@ -29,25 +29,31 @@ class AutoComplete extends Component {
   };
 
   onSelect(placeId) {
-    // const { organization } = this.props;
+    const { createOrUpdateOrganization, organization } = this.props;
+    // const { id, name, organization_type, address, city, state, zip, contact_name, contact_phone, image, textColor, latitude, longitude } = organization;
     axios.post('/api/autoComplete/getplace', { query: placeId })
       .then(res => res.data)
       .then((_address) => {
         _address = _address[0];
+        // console.log("ADDDD", _address)
         let address = _address.formatted_address.split(', ');
         address[2] = address[2].split(' ');
         const { lat, lng } = _address.geometry.location;
-        this.props.organization = {
-          id, name, organization_type,
-          address: address[0],
-          city: address[1],
-          state: address[2][0],
-          zip: address[2][1],
-          contact_name, contact_phone, image, backgroundColor, textColor,
-          latitude: lat,
-          longitude: lng
-        };
-        this.props.updateOrganization(organization);
+        // const { address } = address[0];
+        // const { city } = address[1];
+        // const { state } = address[2][0];
+        // const { zip } = address[2][1];
+        // _organization = {
+        //   id, name, organization_type,
+        //   address: address[0],
+        //   city: address[1],
+        //   state: address[2][0],
+        //   zip: address[2][1],
+        //   contact_name, contact_phone, image, backgroundColor, textColor,
+        //   latitude: lat,
+        //   longitude: lng
+        // }
+        createOrUpdateOrganization({ id, name, organization_type, address: address[0], city: address[1], state: address[2][0], zip: address[2][1], contact_name, contact_phone, image, textColor, backgroundColor, latitude, longitude });
       })
       .catch(err => console.log(err))
   }
@@ -77,8 +83,7 @@ const mapState = ({ organization }) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    updateOrganization: (organization) => dispatch(updateOrganizationOnServer(organization))
-  }
+    createOrUpdateOrganization: (organization) => dispatch(updateOrganizationOnServer(organization))  }
 }
 
 export default connect(mapState, mapDispatch)(AutoComplete);
