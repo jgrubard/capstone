@@ -39,16 +39,16 @@ const seed = () => {
       userStatus: 'user'
     }),
     User.create({
-      firstName: 'Alexander',
-      lastName: 'Levin',
-      email: 'alexanderlevin@gmail.com',
-      password: 'alexander',
+      firstName: 'A',
+      lastName: 'L',
+      email: 'al@gmail.com',
+      password: 'al',
       userStatus: 'user'
     }),
     Organization.create({
       name: 'Cliffs LIC',
       organization_type: 'Climbing Gym',
-      address: '11-11 44th Drive',
+      address: '11 44th Drive',
       city: 'Queens',
       state: 'New York',
       zip: '11101',

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateOrganizationOnServer, createNewOrg } from '../../store';
 
+import AutoComplete from './AutoComplete';
+
 class OrganizationForm extends Component {
   constructor(props) {
     super(props);
@@ -60,16 +62,20 @@ class OrganizationForm extends Component {
         <div className="field"><label>Organization Type</label><input name='organization_type' value={organization_type} onChange={handleChange} /></div>
       </div>
       <div className="two fields">
+      <div className="field"><label>Contact Name</label><input name='contact_name' value={contact_name} onChange={handleChange} /></div>
+      <div className="field"><label>Contact Phone</label><input name='contact_phone' value={contact_phone} onChange={handleChange} /></div>
+    </div>
+      <div className="field">
+      <label>Search Your Address</label>
+      <AutoComplete/>
+      </div>
+      <div className="two fields">
         <div className="field"><label>Address</label><input name='address' value={address} onChange={handleChange} /></div>
         <div className="field"><label>City</label><input name='city' value={city} onChange={handleChange} /></div>
       </div>
       <div className="two fields">
         <div className="field"><label>State</label><input name='state' value={state} onChange={handleChange} /></div>
         <div className="field"><label>Zip</label><input name='zip' value={zip} onChange={handleChange} /></div>
-      </div>
-      <div className="two fields">
-        <div className="field"><label>Contact Name</label><input name='contact_name' value={contact_name} onChange={handleChange} /></div>
-        <div className="field"><label>Contact Phone</label><input name='contact_phone' value={contact_phone} onChange={handleChange} /></div>
       </div>
         <div>Add Image<input type='file' onChange={addPhoto}/></div>
         <div><button className="ui olive button" style={{'marginTop':'10px'}} onClick={onSave}>Submit</button></div>
