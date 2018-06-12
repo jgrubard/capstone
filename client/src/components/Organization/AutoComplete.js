@@ -43,17 +43,18 @@ class AutoComplete extends Component {
         // const { city } = address[1];
         // const { state } = address[2][0];
         // const { zip } = address[2][1];
-        // _organization = {
-        //   id, name, organization_type,
-        //   address: address[0],
-        //   city: address[1],
-        //   state: address[2][0],
-        //   zip: address[2][1],
-        //   contact_name, contact_phone, image, backgroundColor, textColor,
-        //   latitude: lat,
-        //   longitude: lng
-        // }
-        createOrUpdateOrganization({ id, name, organization_type, address: address[0], city: address[1], state: address[2][0], zip: address[2][1], contact_name, contact_phone, image, textColor, backgroundColor, latitude, longitude });
+        address = {
+          // id, name, organization_type,
+          address: address[0],
+          city: address[1],
+          state: address[2][0],
+          zip: address[2][1],
+          // contact_name, contact_phone, image, backgroundColor, textColor,
+          latitude: lat,
+          longitude: lng
+        }
+        createOrUpdateOrganization({ address });
+        // createOrUpdateOrganization({ id, name, organization_type, address: address[0], city: address[1], state: address[2][0], zip: address[2][1], contact_name, contact_phone, image, textColor, backgroundColor, latitude, longitude });
       })
       .catch(err => console.log(err))
   }
