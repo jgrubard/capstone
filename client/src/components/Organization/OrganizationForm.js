@@ -28,7 +28,7 @@ class OrganizationForm extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.state.address != this.props.organization.address) {
-      this.setState({address: this.props.organization.address})
+      this.setState({address: this.props.organization.address, city: this.props.organization.city, state: this.props.organization.state, zip:this.props.organization.zip,})
     }
   }
 
