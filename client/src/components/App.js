@@ -21,6 +21,8 @@ import OrgCustomize from './Organization/OrgCustomize';
 import LoginForm from './User/LoginForm';
 import OrganizationForm from './Organization/OrganizationForm';
 import Welcome from './General/Welcome';
+import Home from './Home'
+import NavNew from './NavNew'
 
 class App extends React.Component {
   componentDidMount() {
@@ -33,6 +35,7 @@ class App extends React.Component {
     loadForm();
     loadOrganizationRequests();
     loadUserRequests();
+  
   }
 
   render(){
@@ -44,15 +47,17 @@ class App extends React.Component {
     const OrgRequestsAuth = CheckAuth(OrgRequests)
     const OrgCustomizeAuth = CheckAuth(OrgCustomize)
     const OrgFormAuth = CheckAuth(OrganizationForm)
+    
     return (
       <Router>
         <div>
-          <div className="container">
+          <div>
             <Nav />
-            <div id="body-elements" className= 'ui container'>
+            {/* <NavNew /> */}
+            <div>
             <MasterNav />
               <Switch>
-              <Route exact path='/' component={Welcome} />
+              <Route exact path='/' component={Home} />
               {/* USER ROUTES */}
               <Route exact path='/users' component={UsersMaster} />
               <Route exact path='/users/:id' component={({ match }) => <UserInfoAuth id={ match.params.id } />} />

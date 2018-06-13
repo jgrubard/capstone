@@ -6,42 +6,52 @@ import { logout } from '../store'
 const Nav = ({ user, loggedIn, logout, orgId }) => {
   const url = location.hash.slice(1)
   return (
-    <div className="ui inverted menu">
-    <a className="item">LOGO</a>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">Pair Up!</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
       {
         loggedIn ? (
-          <div className='ui inverted menu'>
+          <div>
             {
               user.userStatus === 'admin' ?
                 user.organizationId ?
                 (
-                <div className='ui inverted menu'>
-                  <span className="item">
-                    <Link to={`/organizations/${orgId}/users`}>Manage Members</Link>
-                  </span>
-                  <span className="item">
-                    <Link to={`/organizations/${orgId}/requests`}>Manage Requests</Link>
-                  </span>
-                  <span className="item">
-                    <Link to={`/organizations/${orgId}/customize`}>Customize My Page</Link>
-                  </span>
-                  <span className="item">
-                    <Link to={`/organizations/${orgId}/account`}>Account Details</Link>
-                  </span>
+                <div class="navbar-nav ml-auto">
+                  {/* <li>
+                    <Link class="nav-item" to={`/organizations/${orgId}/users`}>Manage Members</Link>
+                  </li>
+                  <li>
+                    <Link class="nav-item" to={`/organizations/${orgId}/requests`}>Manage Requests</Link>
+                  </li>
+                  <li>
+                    <Link class="nav-item" to={`/organizations/${orgId}/customize`}>Customize My Page</Link>
+                  </li>
+                  <li>
+                    <Link class="nav-item" to={`/organizations/${orgId}/account`}>Account Details</Link>
+                  </li> */}
+                  <li>
+                    <a class="nav-item" onClick={logout}>Log out</a>
+                  </li>
                 </div>
                 )
                 : (
-                  <div className='ui inverted menu'>
-                    <span className='item'>
-                      <Link to={`/organizations/create`}>Create Organization</Link>
+                  <div>
+                    <span>
+                      <Link class="nav-item" to={`/organizations/create`}>Create Organization</Link>
                     </span>
                   </div>
                 )
               : null
             }
-            <div>
+            {/* <div>
               <span className="active blue item" onClick={logout}>Log out</span>
-            </div>
+            </div> */}
           </div>
         ) : (
           <span className="active blue item">
@@ -49,6 +59,10 @@ const Nav = ({ user, loggedIn, logout, orgId }) => {
           </span>
         )
       }
+                  </ul>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 }
