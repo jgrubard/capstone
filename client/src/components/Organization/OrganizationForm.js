@@ -26,6 +26,12 @@ class OrganizationForm extends Component {
     this.addPhoto = this.addPhoto.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.state.address != this.props.organization.address) {
+      this.setState({address: this.props.organization.address})
+    }
+  }
+
   handleChange(ev) {
     const change = {}
     change[ev.target.name] = ev.target.value;
@@ -55,6 +61,7 @@ class OrganizationForm extends Component {
   render() {
     const { handleChange, onSave, addPhoto } = this;
     const { name, organization_type, address, city, state, zip, contact_name, contact_phone } = this.state;
+    const { organization, id } = this.props
     return (
       <div className="ui form">
       <div className="two fields">
@@ -67,7 +74,7 @@ class OrganizationForm extends Component {
     </div>
       <div className="field">
       <label>Search Your Address</label>
-      <AutoComplete/>
+      <AutoComplete organization={organization} />
       </div>
       <div className="two fields">
         <div className="field"><label>Address</label><input name='address' value={address} onChange={handleChange} /></div>
@@ -84,8 +91,8 @@ class OrganizationForm extends Component {
   }
 }
 
-const mapState = ({ user }, { organization }) => {
-  return { organization, user }
+const mapState = ({ user }, { organization, id }) => {
+  return { organization, user, id }
 }
 
 const mapDispatch = (dispatch, { history }) => {

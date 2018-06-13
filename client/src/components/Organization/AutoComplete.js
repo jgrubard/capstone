@@ -8,14 +8,15 @@ class AutoComplete extends Component {
   constructor() {
     super();
     this.state = {
-      predictions: []
+      predictions: [],
+      input: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSelect = this.onSelect.bind(this)
   }
 
   onChange(ev) {
-    (ev.target.value.length < 3) ?
+    (ev.target.value.length <= 3) ?
       (this.setState({ predictions: [] }))
       : (
         ev.target.value.length > 3 &&
@@ -30,32 +31,23 @@ class AutoComplete extends Component {
 
   onSelect(placeId) {
     const { createOrUpdateOrganization, organization } = this.props;
-    // const { id, name, organization_type, address, city, state, zip, contact_name, contact_phone, image, textColor, latitude, longitude } = organization;
     axios.post('/api/autoComplete/getplace', { query: placeId })
       .then(res => res.data)
       .then((_address) => {
         _address = _address[0];
-        // console.log("ADDDD", _address)
         let address = _address.formatted_address.split(', ');
         address[2] = address[2].split(' ');
         const { lat, lng } = _address.geometry.location;
-        // const { address } = address[0];
-        // const { city } = address[1];
-        // const { state } = address[2][0];
-        // const { zip } = address[2][1];
-        address = {
-          // id, name, organization_type,
-          address: address[0],
-          city: address[1],
-          state: address[2][0],
-          zip: address[2][1],
-          // contact_name, contact_phone, image, backgroundColor, textColor,
-          latitude: lat,
-          longitude: lng
-        }
-        createOrUpdateOrganization({ address });
-        // createOrUpdateOrganization({ id, name, organization_type, address: address[0], city: address[1], state: address[2][0], zip: address[2][1], contact_name, contact_phone, image, textColor, backgroundColor, latitude, longitude });
-      })
+        organization.address = address[0],
+          organization.city = address[1],
+          organization.state = address[2][0],
+          organization.zip = address[2][1],
+          organization.latitude = lat,
+          organization.longitude = lng
+        createOrUpdateOrganization(organization);
+        this.setState({ predictions: [] })
+      }
+      )
       .catch(err => console.log(err))
   }
 
@@ -78,13 +70,14 @@ class AutoComplete extends Component {
   }
 }
 
-const mapState = ({ organization }) => {
-  return { organization }
+const mapState = ({}, { organization }) => {
+    return { organization }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    createOrUpdateOrganization: (organization) => dispatch(updateOrganizationOnServer(organization))  }
+    createOrUpdateOrganization: (organization) => dispatch(updateOrganizationOnServer(organization))
+  }
 }
 
 export default connect(mapState, mapDispatch)(AutoComplete);
