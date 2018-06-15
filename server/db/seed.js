@@ -183,16 +183,6 @@ const seed = () => {
       admin.setOrganization(cliffs),
     ])
   })
-  /*
-  .then(([ form1, form2, form3, form4, des1, des2, uo1, uo3, uo4, uo5, uo6, uo7, uo8, uo9 ]) => {
-    return Promise.all([
-      form1.setDescriptions([des1]),
-      form2.setDescriptions([des2]),
-      form3.setDescriptions([des3]),
-      form4.setDescriptions([des4]),
-    ])
-  })
-  */
 }
 
 conn.sync({ force: true })
