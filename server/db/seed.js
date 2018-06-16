@@ -117,7 +117,7 @@ const seed = () => {
       latitude: 40.706877,
       longitude: -74.011265,
       image: 'https://ksr-ugc.imgix.net/assets/016/971/196/8f871c6128dce37f044cadf6a6858f5d_original.jpg?crop=faces&w=1552&h=873&fit=crop&v=1499951444&auto=format&q=92&s=6b8ad9ccaa766e75d5bef7ebfd59c9de',
-      avatar: 'https://www.theretrofitsource.com/skin/frontend/trs2016/default/img/brand-acmeHover.svg',
+      avatar: 'https://vignette.wikia.nocookie.net/villains/images/5/56/Comp_2.jpg/revision/latest?cb=20140318215950',
     })
   ])
   .then(([ master, admin, jeremy, anna, gabriel, alexander, cliffs, reacto, fullstack, tiger, acme]) => {
