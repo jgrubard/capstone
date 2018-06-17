@@ -6,30 +6,39 @@ import OrganizationForm from './OrganizationForm';
 
 const OrganizationList = ({ organizations, count, pluralize }) => {
   return (
-    <div>
-      <h2>Organizations</h2>
-      <h4>Add an organization</h4>
-      <OrganizationForm />
+    <div class="org-background">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12" >
+            <div class="card mt-4 card-body">
+              <h2>Organizations</h2>
+              <h4>Add an organization</h4>
+              <OrganizationForm />
 
-      <ol style={{type:1}}>
-      <h4 style={{'marginTop':'20px'}}>There {pluralize[0]} currently {count} Organization{pluralize[1]}:</h4>
-        {
-          organizations.map(org => (
-            <li key={org.id} style={{'marginTop':'10px'}}>
-              <Link to={`/organizations/${org.id}`}>
-              { org.name }
-              </Link>
-            </li>
-          ))
-        }
-      </ol>
+
+              <h4 style={{ 'marginTop': '20px' }}>There {pluralize[0]} currently {count} Organization{pluralize[1]}:</h4>
+              <ol style={{ type: 1 }} class="list-group list-group-flush">
+                {
+                  organizations.map(org => (
+                    <li class="list-group-item" key={org.id}>
+                      <Link to={`/organizations/${org.id}`}>
+                        {org.name}
+                      </Link>
+                    </li>
+                  ))
+                }
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
 const mapState = ({ organizations }) => {
   const count = organizations.length;
-  const pluralize = count === 1 ? [ 'is', '' ] : [ 'are', 's']
+  const pluralize = count === 1 ? ['is', ''] : ['are', 's']
   return {
     organizations,
     count,

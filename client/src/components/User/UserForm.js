@@ -51,13 +51,13 @@ class UserForm extends React.Component {
       }
       return (
         <div>
-          <button onClick={onSave}>Save</button>
           <div>
             {
               Object.keys(fields).map(field => (
-                <div key={field} className="ui form">
+                <div key={field} class="form-group col-md-6">
                   <label>{fields[field]}</label>
                   <input
+                    class="form-control"
                     name={field}
                     onChange={onChange}
                     value={this.state[field]}
@@ -66,7 +66,9 @@ class UserForm extends React.Component {
                 </div>
               ))
             }
+          <button style={{'marginLeft':'15px'}}className="btn btn-info" onClick={onSave}>Save</button>
           </div>
+          
         </div>
       )
     }

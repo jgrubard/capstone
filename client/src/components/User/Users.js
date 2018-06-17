@@ -31,24 +31,33 @@ class Users extends React.Component {
     }, [])
 
     return (
-      <div>
-        <h2>Users</h2>
-        <h4>Add a User</h4>
-        <UserForm />
-        <hr />
-        <input onChange={onChange} value={name} placeholder="Search for a user" />
-        <ol style={{type:1}}>
-      <h4 style={{'marginTop':'20px'}}>There {pluralize[0]} currently {count} User{pluralize[1]}:</h4>
-          {
-            matchingUsers.map(user => (
-              <li key={user.id} style={{ marginBottom: '15px' }}>
-                {user.fullName}
-                <Link to={`/users/${user.id}`}><button className='tiny olive ui button' style={{float:'right'}}>Edit user</button></Link>
-                <button className='tiny orange ui button' style={{float:'right'}} onClick={() => deleteUser(user.id)}>Delete user</button>
-              </li>
-            ))
-          }
-        </ol>
+      <div class="org-background">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12" >
+              <div class="card mt-4 card-body">
+                <h2>Users</h2>
+                <h4>Add a User</h4>
+                <UserForm />
+                <hr />
+                <input class="form-control" onChange={onChange} value={name} placeholder="Search for a user" />
+                <ol style={{ type: 1 }} class="list-group list-group-flush">
+                  <h4 style={{ 'marginTop': '20px' }}>There {pluralize[0]} currently {count} User{pluralize[1]}:</h4>
+                  {
+                    matchingUsers.map(user => (
+                      <li key={user.id} class="list-group-item">
+                        {user.fullName}
+                        <button className='tiny orange ui button' class="btn2 btn-danger btn-sm" style={{ float: 'right' }} onClick={() => deleteUser(user.id)}>Delete user</button>
+                        <span style={{ float: 'right' }}>&nbsp;</span>
+                        <Link to={`/users/${user.id}`}><button class="btn2 btn-info btn-sm" style={{ float: 'right' }}>Edit user</button></Link>
+                      </li>
+                    ))
+                  }
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -56,7 +65,7 @@ class Users extends React.Component {
 
 const mapState = ({ users }) => {
   const count = users.length;
-  const pluralize = count === 1 ? [ 'is', '' ] : [ 'are', 's']
+  const pluralize = count === 1 ? ['is', ''] : ['are', 's']
   return { users, count, pluralize }
 }
 

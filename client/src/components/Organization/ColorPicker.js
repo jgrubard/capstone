@@ -38,7 +38,7 @@ class ColorPicker extends Component {
         />
         <br />
         <div>
-          <button className="ui button" onClick={onSave} style={{ background: backgroundColor, color: organization.textColor }}>
+          <button className="btn" onClick={onSave} style={{ background: backgroundColor, color: organization.textColor }}>
             Save Background Color
           </button>
         </div>

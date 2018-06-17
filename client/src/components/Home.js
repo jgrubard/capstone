@@ -7,26 +7,6 @@ const Home = () => {
     return (
         <div id="page-top">
 
-            {/* <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-                <div class="container">
-                    <a class="navbar-brand js-scroll-trigger" href="#page-top">Pair Up!</a>
-                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        Menu
-          <i class="fa fa-bars"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <Link to={`/login`} class="nav-link js-scroll-trigger" href="#download">Log In</Link>
-                            </li>
-                            <li class="nav-item">
-                            <Link to={`/signup`} class="nav-link js-scroll-trigger" href="#features">Sign up</Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav> */}
-
             <header class="masthead">
                 <div class="container h-100">
                     <div class="row h-100">
@@ -68,7 +48,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section class="features" id="features">
+            <section class="features bg-white" id="features">
                 <div class="container">
                     <div class="section-heading text-center">
                         <h2>Unlimited Features, Unlimited Fun</h2>
@@ -94,32 +74,32 @@ const Home = () => {
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="feature-item">
-                                            <i class="icon-screen-smartphone text-primary"></i>
-                                            <h3>User Check-In</h3>
-                                            <p class="text-muted">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
+                                            <i class="icon-login text-primary"></i>
+                                            <h3>Check-In</h3>
+                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="feature-item">
-                                            <i class="icon-camera text-primary"></i>
-                                            <h3>Request Partner</h3>
-                                            <p class="text-muted">Put an image, video, animation, or anything else in the screen!</p>
+                                            <i class="icon-arrow-right-circle text-primary"></i>
+                                            <h3>Request</h3>
+                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="feature-item">
-                                            <i class="icon-present text-primary"></i>
-                                            <h3>Chat Functionality</h3>
-                                            <p class="text-muted">As always, this theme is free to download and use for any purpose!</p>
+                                            <i class="icon-phone text-primary"></i>
+                                            <h3>Chat</h3>
+                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="feature-item">
-                                            <i class="icon-lock-open text-primary"></i>
-                                            <h3>Search Nearby Organization</h3>
-                                            <p class="text-muted">Since this theme is MIT licensed, you can use it commercially!</p>
+                                            <i class="icon-people text-primary"></i>
+                                            <h3>Match</h3>
+                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                                         </div>
                                     </div>
                                 </div>

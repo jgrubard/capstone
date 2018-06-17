@@ -45,7 +45,7 @@ class TextColor extends Component {
           </select>
         </div>
         <div>
-          <button onClick={onSave} style={{ background: organization.backgroundColor, color: textColor }} className="ui button">
+          <button onClick={onSave} style={{ background: organization.backgroundColor, color: textColor }} className="btn">
             Save Text Color
           </button>
         </div>
