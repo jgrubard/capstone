@@ -34,7 +34,6 @@ class App extends React.Component {
     loadForm();
     loadOrganizationRequests();
     loadUserRequests();
-
   }
 
   render() {

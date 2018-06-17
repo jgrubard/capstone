@@ -50,11 +50,11 @@ class AddUserForm extends React.Component {
     const { email, findUser, errormessage } = this.state;
     return (
 
-      <div class="row">
-        <div class="form-group col-md-6">
-          <input name='email' value={email} onChange={onChange} class="form-control"></input>
+      <div className="row">
+        <div className="form-group col-md-6">
+          <input name='email' value={email} onChange={onChange} className="form-control"></input>
         </div>
-        <div class="col-md-4">
+        <div className="col-md-4">
           <button onClick={onSearch} className='btn btn-info'>Search by email</button>
         </div>
 

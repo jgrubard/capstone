@@ -18,10 +18,14 @@ const reducers = combineReducers({ organizations, users, descriptions, user, use
 const store = createStore(reducers, middleware);
 
 export const createNewOrg = (organization, userId, history) => {
+  let _organization;
   return dispatch => {
     return dispatch(updateOrganizationOnServer(organization))
-      .then(organization => dispatch(updateUserOrganizationId(userId, organization.id)))
-      .then(() => history.push('/'))
+      .then(organization => {
+        _organization = organization;
+        dispatch(updateUserOrganizationId(userId, organization.id))
+      })
+      .then(() => history.push(`/organizations/${_organization.id}/users`))
   }
 }
 

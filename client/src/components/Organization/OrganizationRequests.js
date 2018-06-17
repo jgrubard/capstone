@@ -37,11 +37,11 @@ class OrganizationRequests extends Component {
               ownRequest.status !== 'accepted' ? (
                 <div key={user.id}>
                   {user.fullName}
-                  <button class="btn2 btn-danger btn-sm" style={{ float: 'right' }} onClick={() => deleteRequest(id)}>Delete Request</button>
+                  <button className="btn2 btn-danger btn-sm" style={{ float: 'right' }} onClick={() => deleteRequest(id)}>Delete Request</button>
                   <span style={{ float: 'right' }}>&nbsp;</span>
-                  <button class="btn2 btn-warning btn-sm" style={{ float: 'right' }} disabled={requestStatus === 'declined'} onClick={() => decline(id, userId, organizationId)}>Decline</button>
+                  <button className="btn2 btn-warning btn-sm" style={{ float: 'right' }} disabled={requestStatus === 'declined'} onClick={() => decline(id, userId, organizationId)}>Decline</button>
                   <span style={{ float: 'right' }}>&nbsp;</span>
-                  <button class="btn2 btn-info btn-sm" style={{ float: 'right' }} onClick={() => accept(id, userId, organizationId)}>Accept</button>
+                  <button className="btn2 btn-info btn-sm" style={{ float: 'right' }} onClick={() => accept(id, userId, organizationId)}>Accept</button>
 
                   { requestStatus === 'accepted' && 'Accepted' }
                   { requestStatus === 'declined' && 'Declined' }

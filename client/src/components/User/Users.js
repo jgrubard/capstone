@@ -31,25 +31,25 @@ class Users extends React.Component {
     }, [])
 
     return (
-      <div class="org-background">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12" >
-              <div class="card mt-4 card-body">
+      <div className="org-background">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12" >
+              <div className="card mt-4 card-body">
                 <h2>Users</h2>
                 <h4>Add a User</h4>
                 <UserForm />
                 <hr />
-                <input class="form-control" onChange={onChange} value={name} placeholder="Search for a user" />
-                <ol style={{ type: 1 }} class="list-group list-group-flush">
+                <input className="form-control" onChange={onChange} value={name} placeholder="Search for a user" />
+                <ol style={{ type: 1 }} className="list-group list-group-flush">
                   <h4 style={{ 'marginTop': '20px' }}>There {pluralize[0]} currently {count} User{pluralize[1]}:</h4>
                   {
                     matchingUsers.map(user => (
-                      <li key={user.id} class="list-group-item">
+                      <li key={user.id} className="list-group-item">
                         {user.fullName}
-                        <button className='tiny orange ui button' class="btn2 btn-danger btn-sm" style={{ float: 'right' }} onClick={() => deleteUser(user.id)}>Delete user</button>
+                        <button className="btn2 btn-danger btn-sm" style={{ float: 'right' }} onClick={() => deleteUser(user.id)}>Delete user</button>
                         <span style={{ float: 'right' }}>&nbsp;</span>
-                        <Link to={`/users/${user.id}`}><button class="btn2 btn-info btn-sm" style={{ float: 'right' }}>Edit user</button></Link>
+                        <Link to={`/users/${user.id}`}><button className="btn2 btn-info btn-sm" style={{ float: 'right' }}>Edit user</button></Link>
                       </li>
                     ))
                   }

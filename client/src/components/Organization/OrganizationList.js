@@ -6,21 +6,21 @@ import OrganizationForm from './OrganizationForm';
 
 const OrganizationList = ({ organizations, count, pluralize }) => {
   return (
-    <div class="org-background">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12" >
-            <div class="card mt-4 card-body">
+    <div className="org-background">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12" >
+            <div className="card mt-4 card-body">
               <h2>Organizations</h2>
               <h4>Add an organization</h4>
               <OrganizationForm />
 
 
               <h4 style={{ 'marginTop': '20px' }}>There {pluralize[0]} currently {count} Organization{pluralize[1]}:</h4>
-              <ol style={{ type: 1 }} class="list-group list-group-flush">
+              <ol style={{ type: 1 }} className="list-group list-group-flush">
                 {
                   organizations.map(org => (
-                    <li class="list-group-item" key={org.id}>
+                    <li className="list-group-item" key={org.id}>
                       <Link to={`/organizations/${org.id}`}>
                         {org.name}
                       </Link>

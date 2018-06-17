@@ -4,11 +4,11 @@ import { deleteUserRequestFromServer } from '../../store';
 
 const UserRequests = ({ users, userRequests, deleteRequest, organizations }) => {
   return (
-    <div class="org-background">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12" >
-            <div class="card mt-4 card-body">
+    <div className="org-background">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12" >
+            <div className="card mt-4 card-body">
               <h4>User Requests</h4>
               {
                 userRequests.map(request => {

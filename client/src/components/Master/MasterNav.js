@@ -10,30 +10,30 @@ const MasterNav = ({ user, isMaster, logout }) => {
       {
         isMaster ? (
           <div>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
-              <div class="container">
-                <a class="navbar-brand" href="#">Pair Up!</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
+              <div className="container">
+                <a className="navbar-brand" href="#">Pair Up!</a>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                  <ul class="navbar-nav ml-auto">
-                    <div class="navbar-nav ml-auto">
+                <div className="collapse navbar-collapse" id="navbarResponsive">
+                  <ul className="navbar-nav ml-auto">
+                    <div className="navbar-nav ml-auto">
 
-                      <li class="nav-item">
-                        <Link class="nav-link" to='/organizations'>Organizations</Link>
+                      <li className="nav-item">
+                        <Link className="nav-link" to='/organizations'>Organizations</Link>
                       </li>
-                      <li class="nav-item">
-                        <Link class="nav-link" to='/users'>Users</Link>
+                      <li className="nav-item">
+                        <Link className="nav-link" to='/users'>Users</Link>
                       </li>
-                      <li class="nav-item">
-                        <Link class="nav-link" to='/master/organizationRequests'>Organization Requests</Link>
+                      <li className="nav-item">
+                        <Link className="nav-link" to='/master/organizationRequests'>Organization Requests</Link>
                       </li>
-                      <li class="nav-item">
-                        <Link class="nav-link" to='/master/userRequests'>User Requests</Link>
+                      <li className="nav-item">
+                        <Link className="nav-link" to='/master/userRequests'>User Requests</Link>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" onClick={logout}>Log out</a>
+                      <li className="nav-item">
+                        <a className="nav-link" onClick={logout}>Log out</a>
                       </li>
                     </div>
                   </ul>

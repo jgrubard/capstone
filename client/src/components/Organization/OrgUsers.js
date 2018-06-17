@@ -8,38 +8,36 @@ const OrgUsers = ({ organization, id, ownUsers, removeUser, userOrganizations })
   if (!organization) return null
   var orgId = id;
   return (
-    <div class="org-background">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3">
-            <h3 class="my-4"></h3>
-            <div class="list-group">
-              <Link to={`/organizations/${orgId}/users`} class="list-group-item active">Manage Members</Link>
-              <Link to={`/organizations/${orgId}/requests`} href="#" class="list-group-item">Manage Requests</Link>
-              <Link to={`/organizations/${orgId}/customize`} href="#" class="list-group-item">Customize My Page</Link>
-              <Link to={`/organizations/${orgId}/account`} href="#" class="list-group-item">Account Details</Link>
+    <div className="org-background">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-3">
+            <h3 className="my-4"></h3>
+            <div className="list-group">
+              <Link to={`/organizations/${orgId}/users`} className="list-group-item active">Manage Members</Link>
+              <Link to={`/organizations/${orgId}/requests`} href="#" className="list-group-item">Manage Requests</Link>
+              <Link to={`/organizations/${orgId}/customize`} href="#" className="list-group-item">Customize My Page</Link>
+              <Link to={`/organizations/${orgId}/account`} href="#" className="list-group-item">Account Details</Link>
             </div>
           </div>
-
-          <div class="col-lg-9" >
-            <div class="card mt-4 card-body">
-              <h2>My Members</h2>
+          <div className="col-lg-9" >
+            <div className="card mt-4 card-body">
+              <h2>{organization.name}: Members</h2>
               <span>&nbsp;</span>
-              <ul class="list-group list-group-flush">
+              <ul className="list-group list-group-flush">
                 {
                   ownUsers.map(user => (
-                    <li class="list-group-item" key={user.id}>
+                    <li className="list-group-item" key={user.id}>
                       {user.fullName}
                       <Link to={`/users/${user.id}`}>
-                        <button class="btn2 btn-info btn-sm" style={{ float: 'right' }}>
+                        <button className="btn2 btn-info btn-sm" style={{ float: 'right' }}>
                           Edit
-              </button>
+                        </button>
                       </Link>
                       <span style={{ float: 'right' }}>&nbsp;</span>
-                      <button class="btn2 btn-warning btn-sm" style={{ float: 'right' }} onClick={() => removeUser(user.id, organization.id, userOrganizations)}>
+                      <button className="btn2 btn-warning btn-sm" style={{ float: 'right' }} onClick={() => removeUser(user.id, organization.id, userOrganizations)}>
                         Remove
-            </button>
+                      </button>
                     </li>
                   ))
                 }

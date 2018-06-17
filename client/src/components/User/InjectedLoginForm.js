@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { attemptLogin, signup } from '../../store'
 import { Input, Button, Progress } from 'mdbreact';
+import { ProgressBar } from 'react-bootstrap';
 import { injectStripe, CardElement } from 'react-stripe-elements';
 import axios from 'axios';
 
@@ -119,9 +120,9 @@ class InjectedLoginForm extends React.Component {
                   {
                     url === '/signup' ? (
                       <div className="ui form error">
-                        
-                          <div class="form-row">
-                          <div class="form-group col-md-6">
+
+                          <div className="form-row">
+                          <div className="form-group col-md-6">
                             <label>First Name</label>
                             <Input
                               name="firstName"
@@ -135,7 +136,7 @@ class InjectedLoginForm extends React.Component {
                             }
                           </div>
 
-                          <div class="form-group col-md-6">
+                          <div className="form-group col-md-6">
                             <label>Last Name</label>
                             <Input
                               name="lastName"
@@ -150,9 +151,9 @@ class InjectedLoginForm extends React.Component {
                           </div>
                         </div>
 
-                        
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
+
+                        <div className="form-row">
+                          <div className="form-group col-md-6">
                             <label>Email</label>
                             <Input
                               name="email"
@@ -165,8 +166,8 @@ class InjectedLoginForm extends React.Component {
                             </div>
                             }
                           </div>
-                          
-                          <div class="form-group col-md-6">
+
+                          <div className="form-group col-md-6">
                           <div className="field">
                             <label>Password</label>
                             <Input
@@ -183,6 +184,7 @@ class InjectedLoginForm extends React.Component {
                           <div className="progress-wrapper">
                             {passwordTestStrong ? (
                               <Progress value={100} color={"success"} />
+
                             ) : (
                                 passwordTestMedium ? (
                                   <Progress value={67} color={"warning"} />
@@ -199,9 +201,9 @@ class InjectedLoginForm extends React.Component {
 
                         </div>
 
-                        
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
+
+                        <div className="form-row">
+                          <div className="form-group col-md-6">
                             <label>Billing First Name</label>
                             <Input
                               name="billingFirstName"
@@ -214,7 +216,7 @@ class InjectedLoginForm extends React.Component {
                             </div>
                             }
                           </div>
-                          <div class="form-group col-md-6">
+                          <div className="form-group col-md-6">
                             <label>Billing Last Name</label>
                             <Input
                               name="billingLastName"

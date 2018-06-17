@@ -33,11 +33,11 @@ class AddForm extends React.Component {
     const { organization } = this.props
     const { name } = this.state;
     return (
-      <div class="row">
-        <div class="form-group col-md-6">
-          <input name='name' value={name} onChange={onChange} class="form-control"></input>
+      <div className="row">
+        <div className="form-group col-md-6">
+          <input name='name' value={name} onChange={onChange} className="form-control"></input>
         </div>
-        <div class="col-md-4">
+        <div className="col-md-4">
           <button className="field" onClick={onSave} className="btn btn-info">Add Category</button>
         </div>
       </div>

@@ -7,22 +7,22 @@ const OrgRequests = ({ organization, id }) => {
   if (!organization) return null
   var orgId = id;
   return (
-    <div class="org-background">
-      <div class="container">
-        <div class="row">
+    <div className="org-background">
+      <div className="container">
+        <div className="row">
 
-          <div class="col-lg-3">
-            <h3 class="my-4"></h3>
-            <div class="list-group">
-              <Link to={`/organizations/${orgId}/users`} class="list-group-item">Manage Members</Link>
-              <Link to={`/organizations/${orgId}/requests`} href="#" class="list-group-item active">Manage Requests</Link>
-              <Link to={`/organizations/${orgId}/customize`} href="#" class="list-group-item">Customize My Page</Link>
-              <Link to={`/organizations/${orgId}/account`} href="#" class="list-group-item">Account Details</Link>
+          <div className="col-lg-3">
+            <h3 className="my-4"></h3>
+            <div className="list-group">
+              <Link to={`/organizations/${orgId}/users`} className="list-group-item">Manage Members</Link>
+              <Link to={`/organizations/${orgId}/requests`} href="#" className="list-group-item active">Manage Requests</Link>
+              <Link to={`/organizations/${orgId}/customize`} href="#" className="list-group-item">Customize My Page</Link>
+              <Link to={`/organizations/${orgId}/account`} href="#" className="list-group-item">Account Details</Link>
             </div>
           </div>
 
-          <div class="col-lg-9" >
-            <div class="card mt-4 card-body">
+          <div className="col-lg-9" >
+            <div className="card mt-4 card-body">
               <h2>Pending Requests</h2>
               <span>&nbsp;</span>
               <OrganizationRequests organization={organization} />
