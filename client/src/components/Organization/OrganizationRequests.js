@@ -42,9 +42,12 @@ class OrganizationRequests extends Component {
                   <button className="btn2 btn-warning btn-sm" style={{ float: 'right' }} disabled={requestStatus === 'declined'} onClick={() => decline(id, userId, organizationId)}>Decline</button>
                   <span style={{ float: 'right' }}>&nbsp;</span>
                   <button className="btn2 btn-info btn-sm" style={{ float: 'right' }} onClick={() => accept(id, userId, organizationId)}>Accept</button>
-
-                  { requestStatus === 'accepted' && 'Accepted' }
-                  { requestStatus === 'declined' && 'Declined' }
+                  <br />
+                  <br />
+                  {/*
+                    { requestStatus === 'accepted' && 'Accepted' }
+                    { requestStatus === 'declined' && 'Declined' }
+                  */}
                 </div>
               ) : null
             )

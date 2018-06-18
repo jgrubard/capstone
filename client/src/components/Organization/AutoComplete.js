@@ -58,10 +58,13 @@ class AutoComplete extends Component {
       <div>
         <input
           onChange={onChange}
-          placeholder='Search your Address' />
-        <ul>
+          placeholder='Search your Address'
+          className='form-control'
+        />
+
+        <ul className='list-group'>
           {predictions.length ? predictions.map(pred => (
-            <li key={pred.place_id}
+            <li className='list-group-item' key={pred.place_id}
               onClick={() => onSelect(pred.place_id)}>{pred.description}</li>
           )) : null}
         </ul>

@@ -33,8 +33,8 @@ class ColorPicker extends Component {
     return (
       <div>
         <SwatchesPicker
-        name='backgroundColor' value={backgroundColor}
-        onChangeComplete={this.handleColorChange}
+          name='backgroundColor' value={backgroundColor}
+          onChangeComplete={this.handleColorChange}
         />
         <br />
         <div>
